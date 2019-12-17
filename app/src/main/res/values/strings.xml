@@ -5,4 +5,5 @@
     <string name="inputName">Name</string>
     <string name="inputAlter">Alter</string>
     <string name="btPInfo">Speichern und Weiter</string>
+    <string name="btBack">Zurück</string>
 </resources>
