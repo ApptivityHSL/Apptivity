@@ -9,14 +9,14 @@ import android.widget.Button;
 
 public class PreferedTags extends AppCompatActivity {
 
-    private Button button;
+    private Button btPrefTags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefered_tags);
-        button =  findViewById(R.id.btWelcome);
-        button.setOnClickListener(new View.OnClickListener(){
+        btPrefTags =  findViewById(R.id.btPrefTags);
+        btPrefTags.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openPersonalInformation();
