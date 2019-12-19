@@ -10,6 +10,7 @@ import android.widget.Button;
 public class PreferedTags extends AppCompatActivity {
 
     private Button btPrefTags;
+    private Button btHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,24 @@ public class PreferedTags extends AppCompatActivity {
 
         });
 
+        btHome =  findViewById(R.id.btHome);
+        btHome.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openHome();
+            }
+
+        });
+
 
     }
     public void openPersonalInformation(){
         Intent intent = new Intent(this, PersonalInformation.class);
+        startActivity(intent);
+    }
+
+    public void openHome(){
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 }

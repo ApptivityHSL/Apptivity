@@ -6,4 +6,6 @@
     <string name="inputAlter">Alter</string>
     <string name="btPInfo">Speichern und Weiter</string>
     <string name="btBack">Zurück</string>
+    <string name="btHome">Weiter</string>
+    <string name="greetings">User</string>
 </resources>

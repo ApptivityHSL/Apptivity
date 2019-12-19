@@ -18,11 +18,7 @@ public class PersonalInformation extends AppCompatActivity {
     private RadioButton inputMale;
     private RadioButton inputFemale;
     private Button btPInfo;
-
-   /* String namefuerfunc = inputName.getText().toString();
-    int alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
-    Boolean malefuerfunc = inputMale.hasFocus();
-    Boolean femalefuerfunc = inputFemale.hasFocus();*/
+    
 
     public static final String SHARED_PREFS ="sharedPrefs";
     public static final String INPUT_NAME ="name";
@@ -45,7 +41,17 @@ public class PersonalInformation extends AppCompatActivity {
         btPInfo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-               // storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
+                String namefuerfunc = "";
+                int alterfuerfunc = 0;
+                Boolean malefuerfunc = true;
+                Boolean femalefuerfunc = false;
+
+                namefuerfunc = inputName.getText().toString();
+                alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
+                malefuerfunc = inputMale.hasFocus();
+                femalefuerfunc = inputFemale.hasFocus();
+
+                storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
                 openPreferedTags();
             }
 
@@ -79,7 +85,7 @@ public class PersonalInformation extends AppCompatActivity {
         mEditor3.apply();
     }
 
-    private String getInputName(){
+    public String getInputName(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
         return mSharedPreferences.getString(INPUT_NAME, "");
 
