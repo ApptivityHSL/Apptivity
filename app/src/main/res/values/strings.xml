@@ -12,4 +12,6 @@
     <string name="btFav">Favoriten</string>
     <string name="btOptions">Einstellungen</string>
     <string name="continues">Weiter</string>
+    <string name="btBackHome">Fertig</string>
+    <string name="btNewPI">Ändern</string>
 </resources>

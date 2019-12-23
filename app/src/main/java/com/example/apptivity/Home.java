@@ -16,6 +16,7 @@ public class Home extends AppCompatActivity {
     private TextView greetings;
     private Button btFav;
     private Button btSearch;
+    private Button btOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,15 @@ public class Home extends AppCompatActivity {
             }
 
         });
+
+        btOptions =  findViewById(R.id.btOptions);
+        btOptions.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openPersonalOverview();
+            }
+
+        });
     }
 
     private void insertNameintoTextView(){
@@ -55,6 +65,11 @@ public class Home extends AppCompatActivity {
 
     public void openFavos(){
         Intent intent = new Intent(this, Favourites.class);
+        startActivity(intent);
+    }
+
+    public void openPersonalOverview(){
+        Intent intent = new Intent(this, PersonOverview.class);
         startActivity(intent);
     }
 
