@@ -7,7 +7,7 @@
     tools:context=".Swiping">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btSwipeLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LeftSwipe"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btSwipeRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RightSwipe"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btSwipeUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
