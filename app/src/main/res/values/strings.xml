@@ -14,4 +14,15 @@
     <string name="continues">Weiter</string>
     <string name="btBackHome">Fertig</string>
     <string name="btNewPI">Ändern</string>
+    <string name="WithWho">Mit wem möchtest du etwas unternehmen?</string>
+    <string name="budget">Dein heutiges Budget:</string>
+    <string name="alone">Alleine</string>
+    <string name="partner">Partner(in)</string>
+    <string name="family">Familie</string>
+    <string name="friends">Freunden</string>
+    <string name="showme">Zeig mir was!</string>
+    <string name="where">Und wo?</string>
+    <string name="city">Stadt</string>
+    <string name="postalcode">Postleitzahl</string>
+    <string name="backToHome">Zurück zu Home</string>
 </resources>

@@ -19,7 +19,7 @@
         tools:layout_editor_absoluteY="359dp" />
 
     <Button
-        android:id="@+id/btHome"
+        android:id="@+id/btBackHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
