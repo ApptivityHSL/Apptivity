@@ -9,14 +9,14 @@ import android.widget.Button;
 
 public class WelcomeScreen extends AppCompatActivity {
 
-    private Button button;
+    private Button btWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prefered_tags);
-        button =  findViewById(R.id.btPrefTags);
-        button.setOnClickListener(new View.OnClickListener(){
+        setContentView(R.layout.activity_welcome_screen);
+        btWelcome =  findViewById(R.id.btWelcome);
+        btWelcome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openPersonalInformation();

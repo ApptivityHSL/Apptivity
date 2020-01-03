@@ -18,11 +18,7 @@ public class PersonalInformation extends AppCompatActivity {
     private RadioButton inputMale;
     private RadioButton inputFemale;
     private Button btPInfo;
-
-    String namefuerfunc = inputName.getText().toString();
-    int alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
-    Boolean malefuerfunc = inputMale.hasFocus();
-    Boolean femalefuerfunc = inputFemale.hasFocus();
+    
 
     public static final String SHARED_PREFS ="sharedPrefs";
     public static final String INPUT_NAME ="name";
@@ -33,18 +29,28 @@ public class PersonalInformation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information);
 
-        inputName = (EditText) findViewById(R.id.inputName);
-        inputAlter = (EditText) findViewById(R.id.inputAlter);
-        inputMale = (RadioButton) findViewById(R.id.inputMale);
-        inputFemale = (RadioButton) findViewById(R.id.inputFemale);
-        btPInfo = (Button) findViewById(R.id.btPInfo);
+        inputName =  findViewById(R.id.inputName);
+        inputAlter =  findViewById(R.id.inputAlter);
+        inputMale =  findViewById(R.id.inputMale);
+        inputFemale =  findViewById(R.id.inputFemale);
+        btPInfo =  findViewById(R.id.btPInfo);
 
         btPInfo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                String namefuerfunc = "";
+                int alterfuerfunc = 0;
+                Boolean malefuerfunc = true;
+                Boolean femalefuerfunc = false;
+
+                namefuerfunc = inputName.getText().toString();
+                alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
+                malefuerfunc = inputMale.hasFocus();
+                femalefuerfunc = inputFemale.hasFocus();
+
                 storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
                 openPreferedTags();
             }
@@ -79,29 +85,29 @@ public class PersonalInformation extends AppCompatActivity {
         mEditor3.apply();
     }
 
-    private String getInputName(){
+    public String getInputName(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
-        String name = mSharedPreferences.getString(INPUT_NAME, "");
-        return name;
+        return mSharedPreferences.getString(INPUT_NAME, "");
+
     }
 
     private int getInputAlter(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputAlter", MODE_PRIVATE);
-        int alter = mSharedPreferences.getInt(INPUT_ALTER, 0);
-        return alter;
+       return  mSharedPreferences.getInt(INPUT_ALTER, 0);
+
     }
 
     private boolean getInputMale(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputMale", MODE_PRIVATE);
-        boolean male = mSharedPreferences.getBoolean(INPUT_MALE, false);
-        return male;
+        return mSharedPreferences.getBoolean(INPUT_MALE, false);
     }
 
     private boolean getInputFemale(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputFemale", MODE_PRIVATE);
-        boolean female = mSharedPreferences.getBoolean(INPUT_FEMALE, false);
-        return female;
+        return mSharedPreferences.getBoolean(INPUT_FEMALE, false);
+
     }
 
 
-}
+
+    }

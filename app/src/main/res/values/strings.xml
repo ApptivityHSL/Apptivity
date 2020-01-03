@@ -6,4 +6,12 @@
     <string name="inputAlter">Alter</string>
     <string name="btPInfo">Speichern und Weiter</string>
     <string name="btBack">Zurück</string>
+    <string name="btHome">Weiter</string>
+    <string name="greetings">User</string>
+    <string name="btSearch">Neue Suche</string>
+    <string name="btFav">Favoriten</string>
+    <string name="btOptions">Einstellungen</string>
+    <string name="continues">Weiter</string>
+    <string name="btBackHome">Fertig</string>
+    <string name="btNewPI">Ändern</string>
 </resources>
