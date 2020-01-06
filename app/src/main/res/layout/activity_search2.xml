@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPostalAddress"
-        android:text="@string/postalcode"
+        android:hint="@string/postalcode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTown" />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="112dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/city"
+        android:hint="@string/city"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

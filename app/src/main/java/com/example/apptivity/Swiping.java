@@ -9,7 +9,9 @@ import android.widget.Button;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 public class Swiping extends AppCompatActivity {
     private Button btBackHome;
@@ -49,6 +51,7 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 swipeLeft();
+                nextActivity();
             }
 
         });
@@ -58,6 +61,7 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 swipeRight();
+                nextActivity();
             }
 
         });
@@ -77,6 +81,5 @@ public class Swiping extends AppCompatActivity {
 
     }
     public void nextActivity(){
-
     }
 }
