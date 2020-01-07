@@ -26,4 +26,7 @@
     <string name="postalcode">Postleitzahl</string>
     <string name="backToHome">Zurück zu Home</string>
     <string name="hello_world">Hello World</string>
+    <string name="tvNameOverview">tvNameOverview</string>
+    <string name="tvAgeOverview">tvAgeOverview</string>
+    <string name="tvGenderOverview">tvGenderOverview</string>
 </resources>

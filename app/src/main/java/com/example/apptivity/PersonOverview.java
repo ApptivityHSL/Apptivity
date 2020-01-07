@@ -10,14 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import static com.example.apptivity.PersonalInformation.INPUT_ALTER;
-import static com.example.apptivity.PersonalInformation.INPUT_FEMALE;
 import static com.example.apptivity.PersonalInformation.INPUT_MALE;
 import static com.example.apptivity.PersonalInformation.INPUT_NAME;
 
 public class PersonOverview extends AppCompatActivity {
 
     private Button btBackHome;
-    private Button btPersonalInformation;
+    private Button btNewPI;
     private TextView name;
     private TextView age;
     private TextView gender;
@@ -27,9 +26,9 @@ public class PersonOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_overview);
 
-        insertNameintoTextView();
-        insertGenderintoTextView();
-        insertAgeintoTextView();
+       insertNameintoTextView();
+       insertGenderintoTextView();
+       insertAgeintoTextView();
 
         btBackHome =  findViewById(R.id.btBackHome);
         btBackHome.setOnClickListener(new View.OnClickListener(){
@@ -40,24 +39,32 @@ public class PersonOverview extends AppCompatActivity {
 
         });
 
-        btPersonalInformation =  findViewById(R.id.btNewPI);
-        btPersonalInformation.setOnClickListener(new View.OnClickListener(){
+        btNewPI =  findViewById(R.id.btNewPI);
+        btNewPI.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openPersonalInformation();
             }
 
         });
+
+     /*   btNewPI =  findViewById(R.id.btNewPI);
+        btNewPI.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){ openPersonalInformation();
+            }
+
+        });*/
     }
 
 
 
-    public void openHome(){
+    private void openHome(){
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
-    public void openPersonalInformation(){
+    private void openPersonalInformation(){
         Intent intent = new Intent(this, PersonalInformation.class);
         startActivity(intent);
     }
@@ -69,20 +76,21 @@ public class PersonOverview extends AppCompatActivity {
     }
     private void insertAgeintoTextView(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputAlter", MODE_PRIVATE);
-        String text = mSharedPreferences.getString(INPUT_ALTER, "");
+        int alter =  mSharedPreferences.getInt(INPUT_ALTER, 0);
         age =  findViewById(R.id.tvAgeOverview);
-        age.setText(text);
+        String alter2 = String.valueOf(alter);
+        age.setText(alter2);
     }
 
     private void insertGenderintoTextView(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputFemale", MODE_PRIVATE);
-        String text1 = mSharedPreferences.getString(INPUT_MALE, "");
-        if(text1.equals(false)){
+        SharedPreferences mSharedPreferences = getSharedPreferences("inputMale", MODE_PRIVATE);
+        boolean text1 = mSharedPreferences.getBoolean(INPUT_MALE, false);
+        if(text1 == false){
             gender =  findViewById(R.id.tvGenderOverview);
-            gender.setText("Weiblich");
+            gender.setText("text1");
         } else {
         gender =  findViewById(R.id.tvGenderOverview);
-        gender.setText("Mänchich");}
+        gender.setText("Männlich");}
     }
 }
 

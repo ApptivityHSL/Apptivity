@@ -46,10 +46,20 @@ public class Home extends AppCompatActivity {
         btOptions.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openPersonalOverview();
+                openPersonOverview();
             }
 
         });
+
+
+     /*   btOptions =  findViewById(R.id.btOptions);
+        btOptions.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openPersonOverview();
+            }
+
+        });*/
     }
 
     private void insertNameintoTextView(){
@@ -68,7 +78,7 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPersonalOverview(){
+    public void openPersonOverview(){
         Intent intent = new Intent(this, PersonOverview.class);
         startActivity(intent);
     }
