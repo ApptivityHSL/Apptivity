@@ -25,7 +25,7 @@ public class PreferedTags extends AppCompatActivity {
 
         });
 
-        btHome =  findViewById(R.id.btHome);
+        btHome =  findViewById(R.id.btBackHome);
         btHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

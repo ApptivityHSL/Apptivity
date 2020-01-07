@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Search1">
 
+    <TextView
+        android:id="@+id/tvWith"
+        android:layout_width="226dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="92dp"
+        android:text="@string/WithWho"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGreetings2" />
+
     <Button
         android:id="@+id/btSearch2"
         android:layout_width="wrap_content"
@@ -16,4 +26,74 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGreetings2"
+        android:layout_width="152dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="128dp"
+        android:text="@string/greetings"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBudget"
+        android:layout_width="227dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="472dp"
+        android:text="@string/budget"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/inputAlone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/alone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWith" />
+
+    <CheckBox
+        android:id="@+id/inputPartner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/partner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputAlone" />
+
+    <CheckBox
+        android:id="@+id/inputFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/family"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPartner" />
+
+    <CheckBox
+        android:id="@+id/inputFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/friends"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputFamily" />
+
+    <SeekBar
+        android:id="@+id/inputBudget"
+        android:layout_width="228dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBudget" />
 </androidx.constraintlayout.widget.ConstraintLayout>
