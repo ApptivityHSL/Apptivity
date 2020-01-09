@@ -29,11 +29,13 @@ public class Search2 extends AppCompatActivity {
         btSwipe.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if(inputTown.getText().toString() != null && inputPostal.getText().toString() != null
+                    && !inputTown.getText().toString().isEmpty() && !inputPostal.getText().toString().isEmpty()){
+                    town = inputTown.getText().toString();
+                    postalCode = Integer.parseInt(inputPostal.getText().toString());
 
-                town = inputTown.getText().toString();
-                postalCode = Integer.parseInt(inputPostal.getText().toString());
-
-                openSwipe();
+                    openSwipe();
+                }
             }
 
         });

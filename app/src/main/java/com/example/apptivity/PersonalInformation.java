@@ -41,26 +41,31 @@ public class PersonalInformation extends AppCompatActivity {
         btPInfo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String namefuerfunc = "";
-                int alterfuerfunc = 0;
-                Boolean malefuerfunc = true;
-                Boolean femalefuerfunc = false;
+                if(inputName.getText().toString() != null && inputAlter.getText().toString() != null
+                        && !inputName.getText().toString().isEmpty() && !(inputAlter.getText().toString().isEmpty())
+                    && (inputMale.isChecked() || inputFemale.isChecked())
+                ) {
+                    String namefuerfunc = "";
+                    int alterfuerfunc = 0;
+                    Boolean malefuerfunc = false;
+                    Boolean femalefuerfunc = false;
 
-                namefuerfunc = inputName.getText().toString();
-                alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
-                malefuerfunc = inputMale.hasFocus();
-                femalefuerfunc = inputFemale.hasFocus();
+                    namefuerfunc = inputName.getText().toString();
+                    alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
+                    malefuerfunc = inputMale.isChecked();
+                    femalefuerfunc = inputFemale.isChecked();
 
-                storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
-                openPreferedTags();
+                    storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
+                    openPreferedTags();
+                }
             }
 
         });
     }
 
     public void openPreferedTags(){
-        Intent intent = new Intent(this, PreferedTags.class);
-        startActivity(intent);
+            Intent intent = new Intent(this, PreferedTags.class);
+            startActivity(intent);
     }
 
     private void storePersonalInfo(String name, int alter, boolean male, boolean female){

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import static com.example.apptivity.PersonalInformation.INPUT_ALTER;
+import static com.example.apptivity.PersonalInformation.INPUT_FEMALE;
 import static com.example.apptivity.PersonalInformation.INPUT_MALE;
 import static com.example.apptivity.PersonalInformation.INPUT_NAME;
 
@@ -20,6 +21,7 @@ public class PersonOverview extends AppCompatActivity {
     private TextView name;
     private TextView age;
     private TextView gender;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +86,17 @@ public class PersonOverview extends AppCompatActivity {
 
     private void insertGenderintoTextView(){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputMale", MODE_PRIVATE);
-        boolean text1 = mSharedPreferences.getBoolean(INPUT_MALE, false);
-        if(text1 == false){
-            gender =  findViewById(R.id.tvGenderOverview);
-            gender.setText("text1");
-        } else {
+        SharedPreferences mSharedPreferences1 = getSharedPreferences("inputFemale", MODE_PRIVATE);
+        boolean text1 = mSharedPreferences.getBoolean(INPUT_MALE, true);
+        boolean text2 = mSharedPreferences1.getBoolean(INPUT_FEMALE, true);
         gender =  findViewById(R.id.tvGenderOverview);
-        gender.setText("Männlich");}
+        if(text2 == true && text1 == false){
+            gender.setText("Weiblich");
+        } else {
+            if(text1 == true && text2 == false){
+                gender.setText("Männlich");
+            } else { gender.setText("Fehler");}
+        }
     }
 }
 
