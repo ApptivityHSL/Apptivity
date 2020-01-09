@@ -1,16 +1,20 @@
 package com.example.apptivity;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -19,7 +23,6 @@ import org.json.JSONException;
 public class ConnectFirebase {
     private String jsonString = "[";
     private String gson = "";
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public void pullAllData(String collection, final ConnectFirebaseCallback callback)
     {
@@ -39,15 +42,27 @@ public class ConnectFirebase {
                             Log.d("argl", "Error getting documents: ", task.getException());
                         }
                         jsonString = jsonString.substring(0, jsonString.length()-1) + "]";
-                        JSONArray array = null;
-                        try {
-                            array = new JSONArray(jsonString);
-                        } catch (JSONException e) {
-                            Log.d("argl", "JSONArrayError");
-                            e.printStackTrace();
-                        }
-                        callback.onCallback(array);
+                        callback.onCallback(jsonString);
                     }
                 });
     }
+
+    public void getImageURL(String bild, final ConnectFirebaseCallback callback)
+    {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        storageRef.child(bild).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                callback.onCallback(uri.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d("argl", "getImageError");
+            }
+        });
+    }
+
 }

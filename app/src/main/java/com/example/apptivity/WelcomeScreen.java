@@ -34,25 +34,36 @@ public class WelcomeScreen extends AppCompatActivity {
         ConnectFirebase cf = new ConnectFirebase();
         cf.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
-            public void onCallback(JSONArray value) {
-                try {
+            public void onCallback(String value) {
                     methode(value);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            }
+        });
+
+        cf.getImageURL("Tag/bild3.png", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                Log.d("argl", value);
             }
         });
 
     }
-
 
         public void openPersonalInformation(){
             Intent intent = new Intent(this, PersonalInformation.class);
             startActivity(intent);
         }
 
-        public void methode(JSONArray array) throws JSONException {
-            Log.d("argl", array.getJSONObject(0).get("Name").toString());
+        public void methode(String string){
+            JSONArray array = null;
+            String information = "";
+            try {
+                array = new JSONArray(string);
+                information = array.getJSONObject(0).get("Bild").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("argl", information);
+
         }
 
 }
