@@ -4,8 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class WelcomeScreen extends AppCompatActivity {
 
@@ -23,11 +30,40 @@ public class WelcomeScreen extends AppCompatActivity {
             }
 
         });
+
+        ConnectFirebase cf = new ConnectFirebase();
+        cf.pullAllData("Tag", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                    methode(value);
+            }
+        });
+
+        cf.getImageURL("Tag/bild3.png", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                Log.d("argl", value);
+            }
+        });
+
     }
 
         public void openPersonalInformation(){
             Intent intent = new Intent(this, PersonalInformation.class);
             startActivity(intent);
+        }
+
+        public void methode(String string){
+            JSONArray array = null;
+            String information = "";
+            try {
+                array = new JSONArray(string);
+                information = array.getJSONObject(0).get("Bild").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("argl", information);
+
         }
 
 }

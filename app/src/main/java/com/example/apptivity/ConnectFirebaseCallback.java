@@ -1,7 +1,5 @@
 package com.example.apptivity;
 
-public interface ConnectFirebaseCallback
-{
+public interface ConnectFirebaseCallback {
     void onCallback(String value);
 }
-
