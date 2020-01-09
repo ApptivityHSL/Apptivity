@@ -13,8 +13,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 public class ConnectFirebase {
-    private String jsonString = "{[";
+    private String jsonString = "[";
     private String gson = "";
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
@@ -35,8 +38,15 @@ public class ConnectFirebase {
                         } else {
                             Log.d("argl", "Error getting documents: ", task.getException());
                         }
-                        jsonString = jsonString.substring(0, jsonString.length()-1) + "]}";
-                        callback.onCallback(jsonString);
+                        jsonString = jsonString.substring(0, jsonString.length()-1) + "]";
+                        JSONArray array = null;
+                        try {
+                            array = new JSONArray(jsonString);
+                        } catch (JSONException e) {
+                            Log.d("argl", "JSONArrayError");
+                            e.printStackTrace();
+                        }
+                        callback.onCallback(array);
                     }
                 });
     }
