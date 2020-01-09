@@ -16,12 +16,19 @@ public class PreferedTags extends AppCompatActivity {
     private Button btPrefTags;
     private Button btHome;
     private ConnectFirebase a = new ConnectFirebase();
+    private Button tag1;
+    private Button tag2;
+    private Button tag3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefered_tags);
         btPrefTags =  findViewById(R.id.btPrefTags);
+        tag1 = findViewById(R.id.tag1);
+        tag2 = findViewById(R.id.tag2);
+        tag3 = findViewById(R.id.tag3);
+
         btPrefTags.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -42,13 +49,20 @@ public class PreferedTags extends AppCompatActivity {
         a.pullAllData("Test", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
-                String f =pullTag(value);
-                Log.d("test1",value);
+                String forTag1 = pullTag(value,0,"Name");
+                tag1.setText(forTag1);
+                String forTag2 = pullTag(value,1,"Name");
+                tag2.setText(forTag2);
+                String forTag3 = pullTag(value,2,"Name");
+                tag3.setText(forTag3);
             }
         });
 
 
     }
+
+
+
     public void openPersonalInformation(){
         Intent intent = new Intent(this, PersonalInformation.class);
         startActivity(intent);
@@ -59,16 +73,16 @@ public class PreferedTags extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String pullTag(String string){
+    public String pullTag(String string, int index, String property){
         JSONArray array = null;
         String information = "";
         try {
             array = new JSONArray(string);                                      //"Bild" für Eigenschaft des Tags
-            information = array.getJSONObject(0).get("Bild").toString(); //index für den Tag
+            information = array.getJSONObject(index).get(property).toString(); //index für den Tag
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("argl", information);
+        Log.d("testtest", information);
         return information;
 
     }

@@ -28,4 +28,40 @@
         android:layout_marginBottom="116dp"
         android:text="@string/btHome" />
 
+    <CheckBox
+        android:id="@+id/tag1"
+        android:layout_width="103dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="254dp"
+        android:layout_marginBottom="469dp"
+        android:text="Button" />
+
+    <CheckBox
+        android:id="@+id/tag2"
+        android:layout_width="103dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="466dp"
+        android:text="Button" />
+
+    <CheckBox
+        android:id="@+id/tag3"
+        android:layout_width="111dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginEnd="249dp"
+        android:layout_marginBottom="357dp"
+        android:text="Button" />
+
 </RelativeLayout>
