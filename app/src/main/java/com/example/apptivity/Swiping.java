@@ -23,28 +23,44 @@ public class Swiping extends AppCompatActivity {
 
     private Button btBackHome;
     /*
-    private ConnectFirebase connection = new ConnectFirebase();
     private JSONObject activities = new Gson().fromJson(connection.getAllData("Test"), JSONObject.class);
     */
 
     private ArrayList<String> al;
     private ArrayAdapter<String> arrayAdapter;
     private int i;
+    private ConnectFirebase connection = new ConnectFirebase();
+    private ArrayList<String> actNames;
+    private ArrayList<JSONObject> matches;
+    private int actAmount;
+    private boolean isFirst = true;
+    private JSONArray countArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swiping);
 
+        connection.pullAllData("Test", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                try{
+                    countArray = new JSONArray(value);
+                    actAmount = countArray.length();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                actNames = new ArrayList<>();
+                for(int i = 0; i < actAmount; i++) {
+                    Log.d("actMount", actAmount+"");
+                    actNames.add(pullStringFromData(value, i, "Name"));
+                    Log.d("namtest", actNames.get(i));
+                }
+            }
+        });
+
         al = new ArrayList<>();
-        al.add("php");
-        al.add("c");
-        al.add("python");
-        al.add("java");
-        al.add("html");
-        al.add("c++");
-        al.add("css");
-        al.add("javascript");
+        al.add("Zum Start einmal Swipen!");
 
         arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al);
 
@@ -56,6 +72,12 @@ public class Swiping extends AppCompatActivity {
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
+                if(isFirst) {
+                    for (String s : actNames) {
+                        al.add(s);
+                    }
+                    isFirst = false;
+                }
                 al.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
@@ -76,10 +98,12 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                al.add("XML ".concat(String.valueOf(i)));
-                arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
-                i++;
+                if(!isFirst) {
+                    al.add("XML ".concat(String.valueOf(i)));
+                    arrayAdapter.notifyDataSetChanged();
+                    Log.d("LIST", "notified");
+                    i++;
+                }
             }
 
             @Override
@@ -109,6 +133,19 @@ public class Swiping extends AppCompatActivity {
     public void openHome(){
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
+    }
+    public String pullStringFromData(String string, int index, String property){
+        JSONArray array = null;
+        String information = "";
+        try {
+            array = new JSONArray(string);
+            information = array.getJSONObject(index).get(property).toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("namtestPull", information);
+        return information;
+
     }
 }
 

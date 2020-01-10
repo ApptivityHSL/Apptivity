@@ -46,7 +46,7 @@ public class PreferedTags extends AppCompatActivity {
 
         });
 
-        a.pullAllData("Test", new ConnectFirebaseCallback() {
+        a.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
                 String forTag1 = pullTag(value,0,"Name");
