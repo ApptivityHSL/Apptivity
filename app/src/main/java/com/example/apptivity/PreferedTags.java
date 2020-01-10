@@ -19,6 +19,7 @@ public class PreferedTags extends AppCompatActivity {
     private Button tag1;
     private Button tag2;
     private Button tag3;
+    public String [] tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,47 @@ public class PreferedTags extends AppCompatActivity {
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
         tag3 = findViewById(R.id.tag3);
+
+        a.pullAllData("Test", new ConnectFirebaseCallback(){
+            @Override
+            public void onCallback(String value){
+                String r = "start";
+                String all = "";
+                int i = 0;
+                String property = "Tags";
+                while(!r.equals("")){
+                    r = pullProperty(value, i, "Tags");
+                    all += r;
+                    i++;
+                }
+                Log.d("1234", all);
+                String ph1;
+                String ph2;
+                String ph3;
+                ph1 = getString(R.string.test12);
+                ph2 = getString(R.string.test2);
+                ph3 = getString(R.string.test3);
+
+                String e = all.replace('"', '|');
+                String f = e.replace('[', ' ');
+                String g = f.replace(']', ' ');
+                String h = g.replace('|', ' ');
+                String j = h.replace(',', ' ');
+
+                tags = j.split("   ");
+
+                Log.d("3456", e);
+                Log.d("3456", j);
+
+                tag1.setText(tags[0]);
+                tag2.setText(tags[1]);
+                tag3.setText(tags[2]);
+            }
+
+        });
+
+
+
 
         btPrefTags.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -45,18 +87,20 @@ public class PreferedTags extends AppCompatActivity {
             }
 
         });
+/*
+        a.pullAllData("Test", new ConnectFirebaseCallback() {
 
-        a.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
-                String forTag1 = pullTag(value,0,"Name");
+                String forTag1 = pullProperty(value,0,"Tags");
                 tag1.setText(forTag1);
-                String forTag2 = pullTag(value,1,"Name");
+                String forTag2 = pullProperty(value,1,"Tags");
                 tag2.setText(forTag2);
-                String forTag3 = pullTag(value,2,"Name");
+                String forTag3 = pullProperty(value,2,"Tags");
                 tag3.setText(forTag3);
             }
         });
+        */
 
 
     }
@@ -73,7 +117,7 @@ public class PreferedTags extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String pullTag(String string, int index, String property){
+    public String pullProperty(String string, int index, String property){
         JSONArray array = null;
         String information = "";
         try {
@@ -86,4 +130,36 @@ public class PreferedTags extends AppCompatActivity {
         return information;
 
     }
+
+ /*   private void getAllTags( ConnectFirebase all){
+        all.pullAllData("Test", new ConnectFirebaseCallback(){
+            @Override
+            public void onCallback(String value){
+                String r = "start";
+                String all = "";
+                int i = 0;
+                String property = "Tags";
+               while(!r.equals("")){
+                    r = pullProperty(value, i, "Tags");
+                    all += r;
+                    i++;
+               }
+
+
+                int a = all.length();
+                all.replace('[', '#');
+                all.replace(']', ' ');
+                all.replace('"', '#');
+                all.replace(',', ' ');
+                all.replaceAll("#","");
+
+                 tags = all.split(" ");
+                }
+
+        });
+
+    }*/
+
+
+
 }
