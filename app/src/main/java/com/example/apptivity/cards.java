@@ -13,8 +13,8 @@ public class cards {
     public String getUserID(){
         return actID;
     }
-    public void setUserID(String userID){
-        this.actID = userID;
+    public void setUserID(String actID){
+        this.actID = actID;
     }
 
     public String getName(){

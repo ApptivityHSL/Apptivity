@@ -105,7 +105,7 @@ public class Swiping extends AppCompatActivity {
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
                 //if(!isFirst) {
-                    rowItems.add(new cards("XML ".concat(String.valueOf(i)), "Bla", "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg"));
+                    rowItems.add(new cards("XML ".concat(String.valueOf(i)), "Bitte weiterswipen!", "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg"));
                     arrayAdapter.notifyDataSetChanged();
                     Log.d("LIST", "notified");
                     i++;
