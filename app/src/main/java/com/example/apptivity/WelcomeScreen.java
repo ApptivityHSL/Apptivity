@@ -32,10 +32,17 @@ public class WelcomeScreen extends AppCompatActivity {
         });
 
         ConnectFirebase cf = new ConnectFirebase();
-        cf.pullAllData("Tag", new ConnectFirebaseCallback() {
+        /*cf.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
                     methode(value);
+            }
+        });*/
+        cf.queryData("Tag", "Kategorie", "0", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                Log.d("argl", value);
+                methode(value);
             }
         });
 

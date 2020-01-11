@@ -17,9 +17,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 public class ConnectFirebase {
     private String jsonString = "[";
     private String gson = "";
@@ -28,7 +25,32 @@ public class ConnectFirebase {
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference dbRef = db.collection(collection);
+
         dbRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                gson =  new Gson().toJson(document.getData());
+                                jsonString += gson + ",";
+                            }
+                        } else {
+                            Log.d("argl", "Error getting documents: ", task.getException());
+                        }
+                        jsonString = jsonString.substring(0, jsonString.length()-1) + "]";
+                        callback.onCallback(jsonString);
+                    }
+                });
+    }
+
+    public void queryData(String collection, String condition, String conditionValue, final ConnectFirebaseCallback callback)
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference dbRef = db.collection(collection);
+
+        dbRef.whereEqualTo(condition, conditionValue)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
