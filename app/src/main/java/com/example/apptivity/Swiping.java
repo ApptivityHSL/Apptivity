@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import org.json.JSONException;
@@ -18,29 +18,33 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Swiping extends AppCompatActivity {
 
     private Button btBackHome;
-    /*
-    private JSONObject activities = new Gson().fromJson(connection.getAllData("Test"), JSONObject.class);
-    */
 
-    private ArrayList<String> al;
-    private ArrayAdapter<String> arrayAdapter;
+    //private ArrayList<String> al;
+    //private ArrayList<String> imArray;
     private int i;
     private ConnectFirebase connection = new ConnectFirebase();
-    private ArrayList<String> actNames;
+    //private ArrayList<String> actNames;
     private ArrayList<JSONObject> matches;
+    //private boolean isFirst = true;
     private int actAmount;
-    private boolean isFirst = true;
     private JSONArray countArray;
+
+    private cards cards_data[];
+    private arrayAdapter arrayAdapter;
+
+    ListView listView;
+    List<cards> rowItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swiping);
-
+    /*
         connection.pullAllData("Test", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
@@ -58,11 +62,13 @@ public class Swiping extends AppCompatActivity {
                 }
             }
         });
+    */
+        populateCards();
 
-        al = new ArrayList<>();
-        al.add("Zum Start einmal Swipen!");
+        rowItems = new ArrayList<cards>();
+        //al.add("Zum Start einmal Swipen!");
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al);
+        arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
 
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
@@ -71,14 +77,14 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
-                Log.d("LIST", "removed object!");
+                /*Log.d("LIST", "removed object!");
                 if(isFirst) {
                     for (String s : actNames) {
                         al.add(s);
                     }
                     isFirst = false;
-                }
-                al.remove(0);
+                }*/
+                rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -98,12 +104,12 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                if(!isFirst) {
-                    al.add("XML ".concat(String.valueOf(i)));
+                //if(!isFirst) {
+                    rowItems.add(new cards("XML ".concat(String.valueOf(i)), "Bla", "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg"));
                     arrayAdapter.notifyDataSetChanged();
                     Log.d("LIST", "notified");
                     i++;
-                }
+                //}
             }
 
             @Override
@@ -134,6 +140,31 @@ public class Swiping extends AppCompatActivity {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
+    public void populateCards(){
+        connection.pullAllData("Test", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                try{
+                    countArray = new JSONArray(value);
+                    actAmount = countArray.length();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for(int i = 0; i < actAmount; i++) {
+                    try {
+                        rowItems.add(new cards("" + i,
+                                countArray.getJSONObject(i).get("Name").toString(),
+                                countArray.getJSONObject(i).get("Bild").toString()));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
+
+    }
+    /*
     public String pullStringFromData(String string, int index, String property){
         JSONArray array = null;
         String information = "";
@@ -146,6 +177,6 @@ public class Swiping extends AppCompatActivity {
         Log.d("namtestPull", information);
         return information;
 
-    }
+    }*/
 }
 
