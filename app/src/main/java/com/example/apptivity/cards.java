@@ -10,10 +10,10 @@ public class cards {
         this.name = name;
         this.imURL = imURL;
     }
-    public String getUserID(){
+    public String getActID(){
         return actID;
     }
-    public void setUserID(String actID){
+    public void setActID(String actID){
         this.actID = actID;
     }
 

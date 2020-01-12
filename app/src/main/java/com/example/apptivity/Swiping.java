@@ -3,6 +3,7 @@ package com.example.apptivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,23 +20,29 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Swiping extends AppCompatActivity {
 
     private Button btBackHome;
+
+    public static final String MATCHES ="match";
+    private int matchnum = 0;
 
     //private ArrayList<String> al;
     //private ArrayList<String> imArray;
     private int i;
     private ConnectFirebase connection = new ConnectFirebase();
     //private ArrayList<String> actNames;
-    private ArrayList<JSONObject> matches;
+    private ArrayList<cards> matches;
     //private boolean isFirst = true;
     private int actAmount;
     private JSONArray countArray;
 
     private cards cards_data[];
     private arrayAdapter arrayAdapter;
+
+    private int aktuell = 0;
 
     ListView listView;
     List<cards> rowItems;
@@ -66,7 +73,8 @@ public class Swiping extends AppCompatActivity {
         populateCards();
 
         rowItems = new ArrayList<cards>();
-        //al.add("Zum Start einmal Swipen!");
+
+        matches = new ArrayList<cards>();
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
 
@@ -99,6 +107,13 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(Swiping.this, "Right!", Toast.LENGTH_SHORT).show();
+                cards cardMatched = (cards) dataObject;
+                matches.add(cardMatched);
+                /*matchnum++;
+                SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
+                SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                mEditor.putStringSet(MATCHES, matched);
+                mEditor.apply();*/
             }
 
             @Override
@@ -150,19 +165,50 @@ public class Swiping extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                Log.d("anzahl", actAmount+"");
                 for(int i = 0; i < actAmount; i++) {
+                    JSONArray arrayJ = null;
+                    aktuell = i;
                     try {
+                        arrayJ = new JSONArray(value);
                         rowItems.add(new cards("" + i,
                                 countArray.getJSONObject(i).get("Name").toString(),
                                 countArray.getJSONObject(i).get("Bild").toString()));
+                                getFirstImage(arrayJ.getJSONObject(i).getJSONArray("Bild"));
+                                Log.d("brgl", arrayJ.get(0).toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
                 arrayAdapter.notifyDataSetChanged();
+                Log.d("Whyno2card3", rowItems.get(2).getImURL());
             }
         });
 
+    }
+    public void getFirstImage(JSONArray ImagePaths){
+            List<String> ImPaStr = new ArrayList<String>();
+            try{
+                for(int i = 0; i < ImagePaths.length(); i++){
+                    Log.d("Imagetest", ImagePaths.get(i).toString());
+                    ImPaStr.add(ImagePaths.get(i).toString());
+                    Log.d("Imageteststr", ImPaStr.get(i));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String im = ImPaStr.get(0);
+            Log.d("testingerIM", im);
+            connection.getImageURL(im, new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                Log.d("Whyno2card5", rowItems.get(2).getImURL());
+                Log.d("testinger", value);
+                rowItems.get(aktuell).setImURL(value);
+                arrayAdapter.notifyDataSetChanged();
+                Log.d("Whyno2card4", rowItems.get(2).getImURL());
+            }
+        });
     }
     /*
     public String pullStringFromData(String string, int index, String property){
