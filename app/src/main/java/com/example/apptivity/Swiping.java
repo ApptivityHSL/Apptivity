@@ -156,37 +156,36 @@ public class Swiping extends AppCompatActivity {
         startActivity(intent);
     }
     public void populateCards(){
+        aktuell = 1;
         connection.pullAllData("Test", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
                 try{
                     countArray = new JSONArray(value);
                     actAmount = countArray.length();
+                    Log.d("ObjektZahl",actAmount+"");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 Log.d("anzahl", actAmount+"");
                 for(int i = 0; i < actAmount; i++) {
-                    JSONArray arrayJ = null;
-                    aktuell = i;
                     try {
-                        arrayJ = new JSONArray(value);
                         rowItems.add(new cards("" + i,
                                 countArray.getJSONObject(i).get("Name").toString(),
                                 countArray.getJSONObject(i).get("Bild").toString()));
-                                getFirstImage(arrayJ.getJSONObject(i).getJSONArray("Bild"));
-                                Log.d("brgl", arrayJ.get(0).toString());
+                                getFirstImage(countArray.getJSONObject(i).getJSONArray("Bild"), i);
+                                Log.d("brgl", countArray.get(0).toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
                 arrayAdapter.notifyDataSetChanged();
-                Log.d("Whyno2card3", rowItems.get(2).getImURL());
+                Log.d("Whyno2cardLinkPlsNOW", rowItems.get(2).getImURL());
             }
         });
 
     }
-    public void getFirstImage(JSONArray ImagePaths){
+    public void getFirstImage(JSONArray ImagePaths, final int indexed){
             List<String> ImPaStr = new ArrayList<String>();
             try{
                 for(int i = 0; i < ImagePaths.length(); i++){
@@ -202,11 +201,13 @@ public class Swiping extends AppCompatActivity {
             connection.getImageURL(im, new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
-                Log.d("Whyno2card5", rowItems.get(2).getImURL());
+                Log.d("Whyno2cardStillNothing", rowItems.get(2).getImURL());
                 Log.d("testinger", value);
+                Log.d("aktuell", aktuell+"");
                 rowItems.get(aktuell).setImURL(value);
                 arrayAdapter.notifyDataSetChanged();
-                Log.d("Whyno2card4", rowItems.get(2).getImURL());
+                Log.d("Whyno2cardLinkPls", rowItems.get(2).getImURL());
+                aktuell++;
             }
         });
     }
