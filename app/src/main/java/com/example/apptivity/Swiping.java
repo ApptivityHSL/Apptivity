@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class Swiping extends AppCompatActivity {
     private int i;
     private ConnectFirebase connection = new ConnectFirebase();
     //private ArrayList<String> actNames;
-    private ArrayList<cards> matches;
+    private Set<String> matches;
     //private boolean isFirst = true;
     private int actAmount;
     private JSONArray countArray;
@@ -74,7 +75,9 @@ public class Swiping extends AppCompatActivity {
 
         rowItems = new ArrayList<cards>();
 
-        matches = new ArrayList<cards>();
+        //matches = new HashSet<String>();
+        SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
+        matches = mSharedPreferences.getStringSet(MATCHES, matches);
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
 
@@ -108,12 +111,12 @@ public class Swiping extends AppCompatActivity {
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(Swiping.this, "Right!", Toast.LENGTH_SHORT).show();
                 cards cardMatched = (cards) dataObject;
-                matches.add(cardMatched);
-                /*matchnum++;
+                matches.add(cardMatched.getName());
+                matchnum++;
                 SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                mEditor.putStringSet(MATCHES, matched);
-                mEditor.apply();*/
+                mEditor.putStringSet(MATCHES, matches);
+                mEditor.apply();
             }
 
             @Override
