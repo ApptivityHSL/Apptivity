@@ -71,8 +71,27 @@ public class PreferedTags extends AppCompatActivity {
 
                 tags = j.split("   ");
 
-                Log.d("3456", e);
-                Log.d("3456", j);
+                //Doppelte tags löschen
+
+                int end = tags.length;
+                
+                for(int index = 0; index < end; i++){
+                    for(int index2 = i + 1; index2 < end; index2++){
+                        if(tags[index] == tags[index2]){
+                            int shiftleft = index2;
+                            for(int  index3 = index2 + +1; index3 < end; index3 ++){
+                                tags[shiftleft] = tags[index3];
+                            }
+                            end--;
+                            index2--;
+                        }
+
+                    }
+
+                }
+
+
+
 
                 tag1.setText(tags[0]);
                 tag2.setText(tags[1]);
@@ -88,9 +107,6 @@ public class PreferedTags extends AppCompatActivity {
                 tag11.setText(tags[11]);
                 tag12.setText(tags[12]);
                 tag13.setText(tags[13]);
-
-
-
             }
 
         });
