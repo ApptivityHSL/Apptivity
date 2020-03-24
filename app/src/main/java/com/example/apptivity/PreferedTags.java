@@ -19,6 +19,19 @@ public class PreferedTags extends AppCompatActivity {
     private Button tag1;
     private Button tag2;
     private Button tag3;
+    private Button tag4;
+    private Button tag5;
+    private Button tag6;
+    private Button tag7;
+    private Button tag8;
+    private Button tag9;
+    private Button tag10;
+    private Button tag11;
+    private Button tag12;
+    private Button tag13;
+
+
+
     public String [] tags;
 
     @Override
@@ -64,6 +77,20 @@ public class PreferedTags extends AppCompatActivity {
                 tag1.setText(tags[0]);
                 tag2.setText(tags[1]);
                 tag3.setText(tags[2]);
+                tag3.setText(tags[3]);
+                tag4.setText(tags[4]);
+                tag5.setText(tags[5]);
+                tag6.setText(tags[6]);
+                tag7.setText(tags[7]);
+                tag8.setText(tags[8]);
+                tag9.setText(tags[9]);
+                tag10.setText(tags[10]);
+                tag11.setText(tags[11]);
+                tag12.setText(tags[12]);
+                tag13.setText(tags[13]);
+
+
+
             }
 
         });
