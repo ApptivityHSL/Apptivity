@@ -74,14 +74,11 @@ public class PreferedTags extends AppCompatActivity {
                 //Doppelte tags löschen
 
                 int end = tags.length;
-                
+
                 for(int index = 0; index < end; i++){
                     for(int index2 = i + 1; index2 < end; index2++){
                         if(tags[index] == tags[index2]){
-                            int shiftleft = index2;
-                            for(int  index3 = index2 + +1; index3 < end; index3 ++){
-                                tags[shiftleft] = tags[index3];
-                            }
+                            tags[index2] = tags[end-1];
                             end--;
                             index2--;
                         }
@@ -89,24 +86,28 @@ public class PreferedTags extends AppCompatActivity {
                     }
 
                 }
+                String [] tags2 = new String[end];
+                for(int index = 0; i < end; index++){
+                    tags2[i] = tags[i];
+                }
 
 
 
 
-                tag1.setText(tags[0]);
-                tag2.setText(tags[1]);
-                tag3.setText(tags[2]);
-                tag3.setText(tags[3]);
-                tag4.setText(tags[4]);
-                tag5.setText(tags[5]);
-                tag6.setText(tags[6]);
-                tag7.setText(tags[7]);
-                tag8.setText(tags[8]);
-                tag9.setText(tags[9]);
-                tag10.setText(tags[10]);
-                tag11.setText(tags[11]);
-                tag12.setText(tags[12]);
-                tag13.setText(tags[13]);
+                tag1.setText(tags2[0]);
+                tag2.setText(tags2[1]);
+                tag3.setText(tags2[2]);
+                tag3.setText(tags2[3]);
+                tag4.setText(tags2[4]);
+                tag5.setText(tags2[5]);
+                tag6.setText(tags2[6]);
+                tag7.setText(tags2[7]);
+                tag8.setText(tags2[8]);
+                tag9.setText(tags2[9]);
+                tag10.setText(tags2[10]);
+                tag11.setText(tags2[11]);
+                tag12.setText(tags2[12]);
+                tag13.setText(tags2[13]);
             }
 
         });
