@@ -39,6 +39,7 @@ public class PreferedTags extends AppCompatActivity {
 
 
     public String [] tags;
+    public String [] tagsPT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class PreferedTags extends AppCompatActivity {
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
         tag3 = findViewById(R.id.tag3);
-    /*    tag4 = findViewById(R.id.tag4);
+    /*  tag4 = findViewById(R.id.tag4);
         tag5 = findViewById(R.id.tag5);
         tag6 = findViewById(R.id.tag6);
         tag7 = findViewById(R.id.tag7);
@@ -103,23 +104,23 @@ public class PreferedTags extends AppCompatActivity {
 
                 LinkedHashSet<String> htags = new LinkedHashSet<String>(Arrays.asList(tags));
 
-                tags = htags.toArray(new String[ htags.size() ]);
+                tagsPT = htags.toArray(new String[ htags.size() ]);
 
 
 
-                tag1.setText(tags[0]);
-                tag2.setText(tags[1]);
-                tag3.setText(tags[2]);
-/*              tag4.setText(tags[3]);
-                tag5.setText(tags[4]);
-                tag6.setText(tags[5]);
-                tag7.setText(tags[6]);
-                tag8.setText(tags[7]);
-                tag9.setText(tags[8]);
-                tag10.setText(tags[9]);
-                tag11.setText(tags[10]);
-                tag12.setText(tags[11]);
-                tag13.setText(tags[12]);*/
+                tag1.setText(tagsPT[0]);
+                tag2.setText(tagsPT[1]);
+                tag3.setText(tagsPT[2]);
+/*              tag4.setText(tagsPT[3]);
+                tag5.setText(tagsPT[4]);
+                tag6.setText(tagsPT[5]);
+                tag7.setText(tagsPT[6]);
+                tag8.setText(tagsPT[7]);
+                tag9.setText(tagsPT[8]);
+                tag10.setText(tagsPT[9]);
+                tag11.setText(tagsPT[10]);
+                tag12.setText(tagsPT[11]);
+                tag13.setText(tagsPT[12]);*/
 
             }
 
