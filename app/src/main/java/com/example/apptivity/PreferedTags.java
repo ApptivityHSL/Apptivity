@@ -11,6 +11,12 @@ import android.widget.Button;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 public class PreferedTags extends AppCompatActivity {
 
     private Button btPrefTags;
@@ -42,6 +48,29 @@ public class PreferedTags extends AppCompatActivity {
         tag1 = findViewById(R.id.tag1);
         tag2 = findViewById(R.id.tag2);
         tag3 = findViewById(R.id.tag3);
+    /*    tag4 = findViewById(R.id.tag4);
+        tag5 = findViewById(R.id.tag5);
+        tag6 = findViewById(R.id.tag6);
+        tag7 = findViewById(R.id.tag7);
+        tag8 = findViewById(R.id.tag8);
+        tag9 = findViewById(R.id.tag9);
+        tag10 = findViewById(R.id.tag10);
+        tag11 = findViewById(R.id.tag11);
+        tag12 = findViewById(R.id.tag12);
+        tag13 = findViewById(R.id.tag13);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         a.pullAllData("Test", new ConnectFirebaseCallback(){
             @Override
@@ -71,43 +100,27 @@ public class PreferedTags extends AppCompatActivity {
 
                 tags = j.split("   ");
 
-                //Doppelte tags löschen
 
-                int end = tags.length;
+                LinkedHashSet<String> htags = new LinkedHashSet<String>(Arrays.asList(tags));
 
-                for(int index = 0; index < end; i++){
-                    for(int index2 = i + 1; index2 < end; index2++){
-                        if(tags[index] == tags[index2]){
-                            tags[index2] = tags[end-1];
-                            end--;
-                            index2--;
-                        }
-
-                    }
-
-                }
-                String [] tags2 = new String[end];
-                for(int index = 0; i < end; index++){
-                    tags2[i] = tags[i];
-                }
+                tags = htags.toArray(new String[ htags.size() ]);
 
 
 
+                tag1.setText(tags[0]);
+                tag2.setText(tags[1]);
+                tag3.setText(tags[2]);
+/*              tag4.setText(tags[3]);
+                tag5.setText(tags[4]);
+                tag6.setText(tags[5]);
+                tag7.setText(tags[6]);
+                tag8.setText(tags[7]);
+                tag9.setText(tags[8]);
+                tag10.setText(tags[9]);
+                tag11.setText(tags[10]);
+                tag12.setText(tags[11]);
+                tag13.setText(tags[12]);*/
 
-                tag1.setText(tags2[0]);
-                tag2.setText(tags2[1]);
-                tag3.setText(tags2[2]);
-                tag3.setText(tags2[3]);
-                tag4.setText(tags2[4]);
-                tag5.setText(tags2[5]);
-                tag6.setText(tags2[6]);
-                tag7.setText(tags2[7]);
-                tag8.setText(tags2[8]);
-                tag9.setText(tags2[9]);
-                tag10.setText(tags2[10]);
-                tag11.setText(tags2[11]);
-                tag12.setText(tags2[12]);
-                tag13.setText(tags2[13]);
             }
 
         });
