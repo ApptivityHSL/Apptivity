@@ -26,6 +26,8 @@ import java.util.Set;
 public class Swiping extends AppCompatActivity {
 
     private Button btBackHome;
+    private Button frame;
+
 
     public static final String MATCHES ="match";
     private int matchnum = 0;
@@ -135,6 +137,13 @@ public class Swiping extends AppCompatActivity {
             }
         });
 
+        flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int itemPosition, Object dataObject) {
+                openActivityOverview(dataObject);
+            }
+        });
+
 
         // Optionally add an OnItemClickListener
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
@@ -213,6 +222,12 @@ public class Swiping extends AppCompatActivity {
                 aktuell++;
             }
         });
+    }
+
+
+    public void openActivityOverview(Object dataObject){
+        Intent intent = new Intent(this, ActivityOverview.class);
+        startActivity(intent);
     }
     /*
     public String pullStringFromData(String string, int index, String property){
