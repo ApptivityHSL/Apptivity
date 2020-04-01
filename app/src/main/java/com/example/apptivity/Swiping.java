@@ -121,6 +121,8 @@ public class Swiping extends AppCompatActivity {
                 mEditor.apply();
             }
 
+
+
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
@@ -140,18 +142,15 @@ public class Swiping extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
+
+                Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
+                //getClass zu get actID
+                String activityName = dataObject.getClass().toString();
+                intent.putExtra("choosenActivity", activityName);
                 openActivityOverview(dataObject);
             }
         });
 
-
-        // Optionally add an OnItemClickListener
-        flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(Swiping.this, "Clicked!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btBackHome = findViewById(R.id.btBackHome);
         btBackHome.setOnClickListener(new View.OnClickListener() {
