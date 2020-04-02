@@ -142,10 +142,10 @@ public class Swiping extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-
+                cards cardMatched1 = (cards) dataObject;
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 //getClass zu get actID
-                String activityName = dataObject.getClass().toString();
+                String activityName = cardMatched1.getActID();
                 intent.putExtra("choosenAc" +
                         "tivity", activityName);
                 openActivityOverview(dataObject);
