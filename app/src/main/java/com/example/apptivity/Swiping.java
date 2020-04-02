@@ -146,7 +146,8 @@ public class Swiping extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 //getClass zu get actID
                 String activityName = dataObject.getClass().toString();
-                intent.putExtra("choosenActivity", activityName);
+                intent.putExtra("choosenAc" +
+                        "tivity", activityName);
                 openActivityOverview(dataObject);
             }
         });
