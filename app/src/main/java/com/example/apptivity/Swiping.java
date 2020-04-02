@@ -169,7 +169,7 @@ public class Swiping extends AppCompatActivity {
     }
     public void populateCards(){
         aktuell = 1;
-        connection.pullAllData("Test", new ConnectFirebaseCallback() {
+        connection.queryData("Test", "Ort", "Landshut", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
                 try{
