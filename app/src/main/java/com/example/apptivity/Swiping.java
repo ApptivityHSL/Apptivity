@@ -140,8 +140,7 @@ public class Swiping extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
                 //getClass zu get actID
                 String activityName = cardMatched1.getActID();
-                intent.putExtra("choosenAc" +
-                        "tivity", activityName);
+                intent.putExtra("choosenActivity", activityName);
                 openActivityOverview(dataObject);
             }
         });

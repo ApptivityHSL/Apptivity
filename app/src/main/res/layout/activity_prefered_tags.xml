@@ -30,38 +30,38 @@
 
     <CheckBox
         android:id="@+id/tag1"
-        android:layout_width="103dp"
-        android:layout_height="65dp"
+        android:layout_width="175dp"
+        android:layout_height="117dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="252dp"
-        android:layout_marginBottom="515dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="534dp"
         android:text="Button" />
 
     <CheckBox
         android:id="@+id/tag2"
-        android:layout_width="103dp"
-        android:layout_height="72dp"
+        android:layout_width="181dp"
+        android:layout_height="117dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginBottom="446dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="539dp"
         android:text="Button" />
 
     <CheckBox
         android:id="@+id/tag3"
-        android:layout_width="111dp"
-        android:layout_height="59dp"
+        android:layout_width="171dp"
+        android:layout_height="99dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="63dp"
-        android:layout_marginEnd="237dp"
-        android:layout_marginBottom="388dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="421dp"
         android:text="Button" />
 
 </RelativeLayout>
