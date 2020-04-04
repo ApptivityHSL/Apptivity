@@ -7,15 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
@@ -25,6 +22,8 @@ import java.util.Set;
 
 public class Swiping extends AppCompatActivity {
 
+    private String IM_URL = "https://www.apptivity.com/Apptivity-WebApp/Apptivity-OG-Image.jpg";
+
     private Button btBackHome;
     private Button frame;
 
@@ -32,13 +31,9 @@ public class Swiping extends AppCompatActivity {
     public static final String MATCHES ="match";
     private int matchnum = 0;
 
-    //private ArrayList<String> al;
-    //private ArrayList<String> imArray;
     private int i;
     private ConnectFirebase connection = new ConnectFirebase();
-    //private ArrayList<String> actNames;
-    private Set<String> matches;
-    //private boolean isFirst = true;
+    private Set<String> matches = new HashSet<>();
     private int actAmount;
     private JSONArray countArray;
 
@@ -47,7 +42,6 @@ public class Swiping extends AppCompatActivity {
 
     private int aktuell = 0;
 
-    ListView listView;
     List<cards> rowItems;
 
     @Override
@@ -75,7 +69,7 @@ public class Swiping extends AppCompatActivity {
     */
         populateCards();
 
-        rowItems = new ArrayList<cards>();
+        rowItems = new ArrayList<>();
 
         //matches = new HashSet<String>();
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
@@ -83,7 +77,7 @@ public class Swiping extends AppCompatActivity {
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
 
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -192,17 +186,20 @@ public class Swiping extends AppCompatActivity {
                     }
                 }
                 arrayAdapter.notifyDataSetChanged();
-                Log.d("Whyno2cardLinkPlsNOW", rowItems.get(2).getImURL());
             }
         });
 
     }
     public void getFirstImage(JSONArray ImagePaths, final int indexed){
-            List<String> ImPaStr = new ArrayList<String>();
+            List<String> ImPaStr = new ArrayList<>();
             try{
                 for(int i = 0; i < ImagePaths.length(); i++){
                     Log.d("Imagetest", ImagePaths.get(i).toString());
-                    ImPaStr.add(ImagePaths.get(i).toString());
+                    if(!ImagePaths.get(i).toString().equals(null)){
+                        ImPaStr.add(ImagePaths.get(i).toString());
+                    }else {
+                        ImPaStr.add(IM_URL);
+                    }
                     Log.d("Imageteststr", ImPaStr.get(i));
                 }
             } catch (JSONException e) {

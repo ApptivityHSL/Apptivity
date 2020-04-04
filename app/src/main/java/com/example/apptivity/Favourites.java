@@ -15,7 +15,7 @@ import java.util.Set;
 public class Favourites extends AppCompatActivity {
 
     public static final String MATCHES ="match";
-    private Button btBackHome;
+    private Button btBackToHome;
     private Set<String> matches;
 
     @Override
@@ -42,14 +42,14 @@ public class Favourites extends AppCompatActivity {
         }
 
 
-        btBackHome =  findViewById(R.id.btBackToHome);
-        btBackHome.setOnClickListener(new View.OnClickListener(){
+        /*btBackToHome =  findViewById(R.id.btBackToHome);
+        btBackToHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openHome();
             }
 
-        });
+        });*/
     }
 
     private void openHome(){
