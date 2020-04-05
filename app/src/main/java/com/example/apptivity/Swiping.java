@@ -69,6 +69,7 @@ public class Swiping extends AppCompatActivity {
     */
         populateCards();
 
+
         rowItems = new ArrayList<>();
 
         //matches = new HashSet<String>();
@@ -137,11 +138,21 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 cards cardMatched1 = (cards) dataObject;
-                Intent intent = new Intent(getApplicationContext(), ActivityOverview.class);
-                //getClass zu get actID
-                String activityName = cardMatched1.getActID();
-                intent.putExtra("choosenActivity", activityName);
-                openActivityOverview(dataObject);
+
+                // Zu getDokument falls != getName
+                // String value = "asas";
+              //  value = cardMatched1.getClass().getName();
+
+
+               Intent intent = new Intent(Swiping.this, ActivityOverview.class);
+               Bundle extras = intent.getExtras();
+            //   extras.putString("choosenActivity", "choosenActivity");
+
+                if (extras != null){
+                    extras.putString("choosenActivity", "choosenActivity");
+                }
+                    else
+                ActivityOverview();
             }
         });
 
@@ -160,6 +171,14 @@ public class Swiping extends AppCompatActivity {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
+
+    public void ActivityOverview(){
+        Intent intent = new Intent(this, ActivityOverview.class);
+        startActivity(intent);
+        }
+
+
+
     public void populateCards(){
         aktuell = 1;
         connection.queryData("Test", "Ort", "Landshut", new ConnectFirebaseCallback() {
