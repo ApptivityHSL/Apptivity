@@ -138,21 +138,14 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 cards cardMatched1 = (cards) dataObject;
+                String value = "asd";
+                        value = cardMatched1.getClass().getName();
 
-                // Zu getDokument falls != getName
-                // String value = "asas";
-              //  value = cardMatched1.getClass().getName();
-
-
-               Intent intent = new Intent(Swiping.this, ActivityOverview.class);
-               Bundle extras = intent.getExtras();
-            //   extras.putString("choosenActivity", "choosenActivity");
-
-                if (extras != null){
-                    extras.putString("choosenActivity", "choosenActivity");
-                }
-                    else
-                ActivityOverview();
+                Intent intent = new Intent(Swiping.this, ActivityOverview.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("choosenActivity", value);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 

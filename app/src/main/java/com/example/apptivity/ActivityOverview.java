@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Objects;
 
 public class ActivityOverview extends AppCompatActivity {
 
     private Button btBack;
-
+    private TextView stvName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +29,17 @@ public class ActivityOverview extends AppCompatActivity {
             }
         });
 
+        stvName = (TextView) findViewById(R.id.stvName);
 
 
-    //    Bundle receiveTag = getIntent().getExtras();
-    //    String activityID = receiveTag.getString("choosenActivity");
+
+        Bundle bundle = getIntent().getExtras();
+        String id = bundle.getString("choosenActivity");
+
+
+        stvName.setText(id);
 
     }
-
-
-
     public void openSwiping(){
         Intent intent = new Intent(this, Swiping.class);
         startActivity(intent);
