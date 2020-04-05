@@ -108,7 +108,7 @@ public class Swiping extends AppCompatActivity {
             public void onRightCardExit(Object dataObject) {
                 Toast.makeText(Swiping.this, "Right!", Toast.LENGTH_SHORT).show();
                 cards cardMatched = (cards) dataObject;
-                matches.add(cardMatched.getName());
+                matches.add(cardMatched.getActID());
                 matchnum++;
                 SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
@@ -194,7 +194,7 @@ public class Swiping extends AppCompatActivity {
                 Log.d("anzahl", actAmount+"");
                 for(int i = 0; i < actAmount; i++) {
                     try {
-                        rowItems.add(new cards("" + i,
+                        rowItems.add(new cards(countArray.getJSONObject(i).get("Name").toString(),
                                 countArray.getJSONObject(i).get("Name").toString(),
                                 countArray.getJSONObject(i).get("Bild").toString()));
                                 getFirstImage(countArray.getJSONObject(i).getJSONArray("Bild"), i);
