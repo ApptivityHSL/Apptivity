@@ -2,11 +2,16 @@ package com.example.apptivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.Objects;
 
 public class ActivityOverview extends AppCompatActivity {
+
+    private Button btBack;
 
 
     @Override
@@ -15,9 +20,26 @@ public class ActivityOverview extends AppCompatActivity {
         setContentView(R.layout.activity_overview);
 
 
+        btBack =  findViewById(R.id.btSwiping);
+        btBack.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openSwiping();
+            }
+        });
+
+
 
     //    Bundle receiveTag = getIntent().getExtras();
     //    String activityID = receiveTag.getString("choosenActivity");
 
     }
+
+
+
+    public void openSwiping(){
+        Intent intent = new Intent(this, Swiping.class);
+        startActivity(intent);
+    }
+
 }
