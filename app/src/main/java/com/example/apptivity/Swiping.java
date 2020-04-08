@@ -139,12 +139,40 @@ public class Swiping extends AppCompatActivity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 cards cardMatched1 = (cards) dataObject;
-                String value = "asd";
-                        value = cardMatched1.getClass().getName();
+
+                String cName = cardMatched1.getName();
+                String cActID = cardMatched1.getActID();
+                String cBudget = cardMatched1.getBudget();
+                String cClosed = cardMatched1.getClosed();
+                String cOpen = cardMatched1.getOpen();
+                String cDescription = cardMatched1.getDescription();
+                String cHouseNumber = cardMatched1.getHouseNumber();
+                String cURL = cardMatched1.getImURL();
+                String cWebsite = cardMatched1.getWebsite();
+                String cStreet = cardMatched1.getStreet();
+                String cPostal = cardMatched1.getPostal();
+                String cMailAddress = cardMatched1.getMailAddress();
+                String cLocation = cardMatched1.getLocation();
+                String cPhoneNumber = cardMatched1.getPhoneNumber();
 
                 Intent intent = new Intent(Swiping.this, ActivityOverview.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("choosenActivity", value);
+
+                bundle.putString("cName", cName);
+                bundle.putString("cActID", cActID);
+                bundle.putString("cBudget", cBudget);
+                bundle.putString("cClosed", cClosed);
+                bundle.putString("cOpen", cOpen);
+                bundle.putString("cDescription", cDescription);
+                bundle.putString("cHouseNumber", cHouseNumber);
+                bundle.putString("cURL", cURL);
+                bundle.putString("cWebsite", cWebsite);
+                bundle.putString("cStreet", cStreet);
+                bundle.putString("cPostal", cPostal);
+                bundle.putString("cMailAddress", cMailAddress);
+                bundle.putString("cLocation", cLocation);
+                bundle.putString("cPhoneNumber", cPhoneNumber);
+
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
