@@ -224,7 +224,7 @@ public class Swiping extends AppCompatActivity {
                                 countArray.getJSONObject(i).get("Geschlossen").toString(),
                                 countArray.getJSONObject(i).get("Ort").toString(),
                                 countArray.getJSONObject(i).get("Straße").toString(),
-                                countArray.getJSONObject(i).get("Website").toString(),
+                                countArray.getJSONObject(i).get("Webseite").toString(),
                                 countArray.getJSONObject(i).get("Hausnummer").toString(),
                                 countArray.getJSONObject(i).get("Preis").toString(),
                                 countArray.getJSONObject(i).get("Telefonnummer").toString(),
