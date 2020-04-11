@@ -3,6 +3,7 @@ package com.example.apptivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,9 @@ import com.google.gson.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class WelcomeScreen extends AppCompatActivity {
 
@@ -52,7 +56,6 @@ public class WelcomeScreen extends AppCompatActivity {
                 Log.d("argl", value);
             }
         });
-
     }
 
         public void openPersonalInformation(){
