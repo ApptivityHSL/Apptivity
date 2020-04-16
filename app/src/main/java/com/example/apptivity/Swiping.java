@@ -29,6 +29,10 @@ public class Swiping extends AppCompatActivity {
     private Button btBackHome;
     private Button frame;
 
+    String tags;
+    Intent getName;
+    Bundle extras;
+
 
     public static final String MATCHES ="match";
     private int matchnum = 0;
@@ -83,8 +87,11 @@ public class Swiping extends AppCompatActivity {
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
 
-      String tags = getIntent().getStringExtra("tags");
-      //  Log.d("intent", tags);
+        Bundle bundle = getIntent().getExtras();
+
+        ArrayList<String> listOfTags = (ArrayList<String>) getIntent().getSerializableExtra("tags");
+
+          Log.d("intent", String.valueOf(listOfTags));
 
 
         flingContainer.setAdapter(arrayAdapter);

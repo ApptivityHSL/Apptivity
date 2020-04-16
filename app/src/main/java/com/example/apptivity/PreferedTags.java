@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+
 public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
     private Button btPrefTags;
@@ -52,6 +53,8 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefered_tags);
+
+
         btPrefTags =  findViewById(R.id.btPrefTags);
         cbtag1 = (CheckBox) findViewById(R.id.tag1);
         cbtag2 = (CheckBox) findViewById(R.id.tag2);
@@ -143,14 +146,12 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
             public void onClick(View v){
 
 
-
                 Intent intent = new Intent(PreferedTags.this, Swiping.class);
                 Bundle bundle = new Bundle();
-                String json = new Gson().toJson(listOfClickedTags);
-                bundle.putString("tags", json);
+                bundle.putStringArrayList("tags", listOfClickedTags);
                 intent.putExtras(bundle);
 
-                Log.d("testintent", json);
+                Log.d("testintent", String.valueOf(listOfClickedTags));
 
                 openHome();
             }
