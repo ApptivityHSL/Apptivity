@@ -76,8 +76,6 @@ public class ActivityOverview extends AppCompatActivity {
         cLocation.setText(bundle.getString("cLocation"));
         cPhoneNumber.setText(bundle.getString("cPhoneNumber"));
 
-
-
     }
     public void openSwiping(){
         Intent intent = new Intent(this, Swiping.class);

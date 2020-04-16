@@ -38,6 +38,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginEnd="197dp"
         android:layout_marginBottom="534dp"
+        android:onClick="onCheckboxClicked"
         android:text="Button" />
 
     <CheckBox
@@ -50,6 +51,7 @@
         android:layout_marginTop="75dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="539dp"
+        android:onClick="onCheckboxClicked"
         android:text="Button" />
 
     <CheckBox
@@ -62,6 +64,7 @@
         android:layout_marginStart="43dp"
         android:layout_marginEnd="197dp"
         android:layout_marginBottom="421dp"
+        android:onClick="onCheckboxClicked"
         android:text="Button" />
 
 </RelativeLayout>

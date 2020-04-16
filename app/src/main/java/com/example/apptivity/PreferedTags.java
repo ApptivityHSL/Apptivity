@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
+import com.google.android.gms.common.images.WebImage;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,27 +23,28 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-public class PreferedTags extends AppCompatActivity {
+public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
     private Button btPrefTags;
     private Button btHome;
     private ConnectFirebase a = new ConnectFirebase();
-    private Button tag1;
-    private Button tag2;
-    private Button tag3;
-    private Button tag4;
-    private Button tag5;
-    private Button tag6;
-    private Button tag7;
-    private Button tag8;
-    private Button tag9;
-    private Button tag10;
-    private Button tag11;
-    private Button tag12;
-    private Button tag13;
+    private CheckBox cbtag1;
+    private CheckBox cbtag2;
+    private CheckBox cbtag3;
+    private CheckBox cbtag4;
+    private CheckBox cbtag5;
+    private CheckBox cbtag6;
+    private CheckBox cbtag7;
+    private CheckBox cbtag8;
+    private CheckBox cbtag9;
+    private CheckBox cbtag10;
+    private CheckBox cbtag11;
+    private CheckBox cbtag12;
+    private CheckBox cbtag13;
 
 
 
+    ArrayList<String> listOfClickedTags = new ArrayList<String>();
     public String [] tags;
     public String [] tagsPT;
 
@@ -46,30 +53,19 @@ public class PreferedTags extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefered_tags);
         btPrefTags =  findViewById(R.id.btPrefTags);
-        tag1 = findViewById(R.id.tag1);
-        tag2 = findViewById(R.id.tag2);
-        tag3 = findViewById(R.id.tag3);
-    /*  tag4 = findViewById(R.id.tag4);
-        tag5 = findViewById(R.id.tag5);
-        tag6 = findViewById(R.id.tag6);
-        tag7 = findViewById(R.id.tag7);
-        tag8 = findViewById(R.id.tag8);
-        tag9 = findViewById(R.id.tag9);
-        tag10 = findViewById(R.id.tag10);
-        tag11 = findViewById(R.id.tag11);
-        tag12 = findViewById(R.id.tag12);
-        tag13 = findViewById(R.id.tag13);*/
-
-
-
-
-
-
-
-
-
-
-
+        cbtag1 = (CheckBox) findViewById(R.id.tag1);
+        cbtag2 = (CheckBox) findViewById(R.id.tag2);
+        cbtag3 = (CheckBox) findViewById(R.id.tag3);
+        /*cbtag4 = (CheckBox) findViewById(R.id.tag4);
+        cbtag5 = (CheckBox) findViewById(R.id.tag5);
+        cbtag6 = (CheckBox) findViewById(R.id.tag6);
+        cbtag7 = (CheckBox) findViewById(R.id.tag7);
+        cbtag8 = (CheckBox) findViewById(R.id.tag8);
+        cbtag9 = (CheckBox) findViewById(R.id.tag9);
+        cbtag10 = (CheckBox) findViewById(R.id.tag10);
+        cbtag11 = (CheckBox) findViewById(R.id.tag11);
+        cbtag12 = (CheckBox) findViewById(R.id.tag12);
+        cbtag13 = (CheckBox) findViewById(R.id.tag13);*/
 
 
 
@@ -97,9 +93,13 @@ public class PreferedTags extends AppCompatActivity {
                 String f = e.replace('[', ' ');
                 String g = f.replace(']', ' ');
                 String h = g.replace('|', ' ');
-                String j = h.replace(',', ' ');
+                String k = h.replace(',', ' ');
 
-                tags = j.split("   ");
+
+
+                String j = k.replaceAll("( )+", " ");
+
+                tags = k.split("   ");
 
 
                 LinkedHashSet<String> htags = new LinkedHashSet<String>(Arrays.asList(tags));
@@ -108,19 +108,19 @@ public class PreferedTags extends AppCompatActivity {
 
 
 
-                tag1.setText(tagsPT[0]);
-                tag2.setText(tagsPT[1]);
-                tag3.setText(tagsPT[2]);
-/*              tag4.setText(tagsPT[3]);
-                tag5.setText(tagsPT[4]);
-                tag6.setText(tagsPT[5]);
-                tag7.setText(tagsPT[6]);
-                tag8.setText(tagsPT[7]);
-                tag9.setText(tagsPT[8]);
-                tag10.setText(tagsPT[9]);
-                tag11.setText(tagsPT[10]);
-                tag12.setText(tagsPT[11]);
-                tag13.setText(tagsPT[12]);*/
+                cbtag1.setText(tagsPT[0]);
+                cbtag2.setText(tagsPT[1]);
+                cbtag3.setText(tagsPT[2]);
+/*              cbtag4.setText(tagsPT[3]);
+                cbtag5.setText(tagsPT[4]);
+                cbtag6.setText(tagsPT[5]);
+                cbtag7.setText(tagsPT[6]);
+                cbtag8.setText(tagsPT[7]);
+                cbtag9.setText(tagsPT[8]);
+                cbtag10.setText(tagsPT[9]);
+                cbtag11.setText(tagsPT[10]);
+                cbag12.setText(tagsPT[11]);
+                cbtag13.setText(tagsPT[12]);*/
 
             }
 
@@ -141,6 +141,17 @@ public class PreferedTags extends AppCompatActivity {
         btHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+
+
+                Intent intent = new Intent(PreferedTags.this, Swiping.class);
+                Bundle bundle = new Bundle();
+                String json = new Gson().toJson(listOfClickedTags);
+                bundle.putString("tags", json);
+                intent.putExtras(bundle);
+
+                Log.d("testintent", json);
+
                 openHome();
             }
 
@@ -159,7 +170,6 @@ public class PreferedTags extends AppCompatActivity {
             }
         });
         */
-
 
     }
 
@@ -189,34 +199,44 @@ public class PreferedTags extends AppCompatActivity {
 
     }
 
- /*   private void getAllTags( ConnectFirebase all){
-        all.pullAllData("Test", new ConnectFirebaseCallback(){
-            @Override
-            public void onCallback(String value){
-                String r = "start";
-                String all = "";
-                int i = 0;
-                String property = "Tags";
-               while(!r.equals("")){
-                    r = pullProperty(value, i, "Tags");
-                    all += r;
-                    i++;
-               }
 
 
-                int a = all.length();
-                all.replace('[', '#');
-                all.replace(']', ' ');
-                all.replace('"', '#');
-                all.replace(',', ' ');
-                all.replaceAll("#","");
 
-                 tags = all.split(" ");
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.tag1:
+                if (checked){
+                    listOfClickedTags.add((String) cbtag1.getText() );
                 }
+            else
+                    listOfClickedTags.remove((String) cbtag1.getText() );
+                break;
 
-        });
+            case R.id.tag2:
+                if (checked){
+                    listOfClickedTags.add((String) cbtag2.getText() );
+                }
+                else
+                    listOfClickedTags.remove((String) cbtag2.getText() );
+                break;
 
-    }*/
+            case R.id.tag3:
+                if (checked){
+                    listOfClickedTags.add((String) cbtag3.getText() );
+                }
+                else
+                    listOfClickedTags.remove((String) cbtag3.getText() );
+                break;
+
+        }
+
+
+
+    }
+
 
 
 

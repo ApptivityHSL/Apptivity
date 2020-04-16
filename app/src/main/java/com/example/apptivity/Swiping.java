@@ -14,10 +14,12 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import org.json.JSONException;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Swiping extends AppCompatActivity {
@@ -80,6 +82,11 @@ public class Swiping extends AppCompatActivity {
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
+
+      String tags = getIntent().getStringExtra("tags");
+      //  Log.d("intent", tags);
+
+
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
@@ -117,16 +124,15 @@ public class Swiping extends AppCompatActivity {
             }
 
 
-
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
                 //if(!isFirst) {
-                    rowItems.add(new cards("XML ".concat(String.valueOf(i)), "Bitte weiterswipen!", "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg",
-                            "Bla", "8:00", "20:00", "Landshut", "Schlumpfstraße", "wwww.website.de", "27", "275", "125987", "84034", "mail@address.com"));
-                    arrayAdapter.notifyDataSetChanged();
-                    Log.d("LIST", "notified");
-                    i++;
+                rowItems.add(new cards("XML ".concat(String.valueOf(i)), "Bitte weiterswipen!", "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg",
+                        "Bla", "8:00", "20:00", "Landshut", "Schlumpfstraße", "wwww.website.de", "27", "275", "125987", "84034", "mail@address.com"));
+                arrayAdapter.notifyDataSetChanged();
+                Log.d("LIST", "notified");
+                i++;
                 //}
             }
 
