@@ -71,23 +71,31 @@ public class PersonalInformation extends AppCompatActivity {
     private void storePersonalInfo(String name, int alter, boolean male, boolean female){
         SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.clear();
         mEditor.putString(INPUT_NAME, name);
         mEditor.apply();
+        mEditor.commit();
 
         SharedPreferences mSharedPreferences1 = getSharedPreferences("inputAlter", MODE_PRIVATE);
         SharedPreferences.Editor mEditor1 = mSharedPreferences1.edit();
+        mEditor.clear();
         mEditor1.putInt(INPUT_ALTER, alter);
         mEditor1.apply();
+        mEditor.commit();
 
         SharedPreferences mSharedPreferences2 = getSharedPreferences("inputMale", MODE_PRIVATE);
         SharedPreferences.Editor mEditor2 = mSharedPreferences2.edit();
+        mEditor.clear();
         mEditor2.putBoolean(INPUT_MALE, male);
         mEditor2.apply();
+        mEditor.commit();
 
         SharedPreferences mSharedPreferences3 = getSharedPreferences("inputFemale", MODE_PRIVATE);
         SharedPreferences.Editor mEditor3 = mSharedPreferences3.edit();
+        mEditor.clear();
         mEditor3.putBoolean(INPUT_FEMALE, female);
         mEditor3.apply();
+        mEditor.commit();
     }
 
     public String getInputName(){
