@@ -1,8 +1,11 @@
 package com.example.apptivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -145,13 +148,8 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-
-                Intent intent = new Intent(PreferedTags.this, Swiping.class);
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList("tags", listOfClickedTags);
-                intent.putExtras(bundle);
-
-                Log.d("testintent", String.valueOf(listOfClickedTags));
+                safeTags(listOfClickedTags);
+                Log.d("123prefer", String.valueOf(listOfClickedTags));
 
                 openHome();
             }
@@ -174,6 +172,14 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
     }
 
+    private void safeTags(ArrayList<String> listOfClickedTags) {
+        SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String Json = gson.toJson(listOfClickedTags);
+        editor.putString("tags", Json);
+        editor.apply();
+    }
 
 
     public void openPersonalInformation(){
@@ -237,6 +243,8 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
 
     }
+
+
 
 
 
