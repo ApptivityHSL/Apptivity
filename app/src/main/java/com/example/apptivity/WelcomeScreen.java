@@ -9,12 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,6 +34,11 @@ public class WelcomeScreen extends AppCompatActivity {
         btWelcome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+              /*  SharedPreferences sharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
+                if(!sharedPreferences.equals(null) || !sharedPreferences.equals("")) {
+                    openPersonOverview();
+                }*/
                 openPersonalInformation();
             }
 
@@ -62,6 +71,11 @@ public class WelcomeScreen extends AppCompatActivity {
             Intent intent = new Intent(this, PersonalInformation.class);
             startActivity(intent);
         }
+
+        public void openPersonOverview(){
+         Intent intent = new Intent(this, PersonOverview.class);
+         startActivity(intent);
+    }
 
         public void methode(String string){
             JSONArray array = null;
