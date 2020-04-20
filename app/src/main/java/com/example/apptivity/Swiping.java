@@ -75,13 +75,9 @@ public class Swiping extends  AppCompatActivity {
         Type type = new TypeToken<ArrayList>() {}.getType();
         listOfTags = gson.fromJson(json, type);
 
-        if(listOfTags == null){
-            listOfTags = new ArrayList<>();
-        }
-
         Log.d("123981", String.valueOf(listOfTags));
         Log.d("123981", String.valueOf(json));
-        Log.d("123981", json);
+
 
 
         populateCards();
