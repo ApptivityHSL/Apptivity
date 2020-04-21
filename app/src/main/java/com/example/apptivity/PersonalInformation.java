@@ -69,54 +69,50 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
     private void storePersonalInfo(String name, int alter, boolean male, boolean female){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.clear();
         mEditor.putString(INPUT_NAME, name);
-        mEditor.apply();
         mEditor.commit();
 
-        SharedPreferences mSharedPreferences1 = getSharedPreferences("inputAlter", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences1 = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor1 = mSharedPreferences1.edit();
-        mEditor.clear();
+        mEditor1.clear();
         mEditor1.putInt(INPUT_ALTER, alter);
-        mEditor1.apply();
-        mEditor.commit();
+        mEditor1.commit();
 
-        SharedPreferences mSharedPreferences2 = getSharedPreferences("inputMale", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences2 = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor2 = mSharedPreferences2.edit();
-        mEditor.clear();
+        mEditor2.clear();
         mEditor2.putBoolean(INPUT_MALE, male);
-        mEditor2.apply();
-        mEditor.commit();
+        mEditor2.commit();
 
-        SharedPreferences mSharedPreferences3 = getSharedPreferences("inputFemale", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences3 = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor3 = mSharedPreferences3.edit();
-        mEditor.clear();
+        mEditor3.clear();
         mEditor3.putBoolean(INPUT_FEMALE, female);
-        mEditor3.apply();
-        mEditor.commit();
+        mEditor3.commit();
     }
 
     public String getInputName(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getString(INPUT_NAME, "");
 
     }
 
     private int getInputAlter(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputAlter", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
        return  mSharedPreferences.getInt(INPUT_ALTER, 0);
 
     }
 
     private boolean getInputMale(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputMale", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getBoolean(INPUT_MALE, false);
     }
 
     private boolean getInputFemale(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputFemale", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getBoolean(INPUT_FEMALE, false);
 
     }

@@ -65,7 +65,7 @@ public class Search1 extends AppCompatActivity {
         startActivity(intent);
     }
     private void insertNameintoTextView(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         String text = "Hallo "+mSharedPreferences.getString(INPUT_NAME, "")+"!";
         greetings2 =  findViewById(R.id.tvGreetings2);
         greetings2.setText(text);
