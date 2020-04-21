@@ -1,8 +1,11 @@
 package com.example.apptivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -102,7 +105,9 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
                 String j = k.replaceAll("( )+", " ");
 
-                tags = k.split("   ");
+                Log.d("123prefer", k);
+
+                tags = j.split(" ");
 
 
                 LinkedHashSet<String> htags = new LinkedHashSet<String>(Arrays.asList(tags));
@@ -111,19 +116,19 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
 
 
-                cbtag1.setText(tagsPT[0]);
-                cbtag2.setText(tagsPT[1]);
-                cbtag3.setText(tagsPT[2]);
-/*              cbtag4.setText(tagsPT[3]);
-                cbtag5.setText(tagsPT[4]);
-                cbtag6.setText(tagsPT[5]);
-                cbtag7.setText(tagsPT[6]);
-                cbtag8.setText(tagsPT[7]);
-                cbtag9.setText(tagsPT[8]);
-                cbtag10.setText(tagsPT[9]);
-                cbtag11.setText(tagsPT[10]);
-                cbag12.setText(tagsPT[11]);
-                cbtag13.setText(tagsPT[12]);*/
+                cbtag1.setText(tagsPT[1]);
+                cbtag2.setText(tagsPT[2]);
+                cbtag3.setText(tagsPT[3]);
+/*              cbtag4.setText(tagsPT[4]);
+                cbtag5.setText(tagsPT[5]);
+                cbtag6.setText(tagsPT[6]);
+                cbtag7.setText(tagsPT[7]);
+                cbtag8.setText(tagsPT[8]);
+                cbtag9.setText(tagsPT[9]);
+                cbtag10.setText(tagsPT[10]);
+                cbtag11.setText(tagsPT[11]);
+                cbag12.setText(tagsPT[12]);
+                cbtag13.setText(tagsPT[13]);*/
 
             }
 
@@ -145,13 +150,8 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-
-                Intent intent = new Intent(PreferedTags.this, Swiping.class);
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList("tags", listOfClickedTags);
-                intent.putExtras(bundle);
-
-                Log.d("testintent", String.valueOf(listOfClickedTags));
+                safeTags(listOfClickedTags);
+                Log.d("123prefer", String.valueOf(listOfClickedTags));
 
                 openHome();
             }
@@ -174,6 +174,14 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
     }
 
+    private void safeTags(ArrayList<String> listOfClickedTags) {
+        SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String Json = gson.toJson(listOfClickedTags);
+        editor.putString("tags", Json);
+        editor.apply();
+    }
 
 
     public void openPersonalInformation(){
@@ -237,6 +245,8 @@ public class PreferedTags<ListSpecificCars> extends AppCompatActivity {
 
 
     }
+
+
 
 
 

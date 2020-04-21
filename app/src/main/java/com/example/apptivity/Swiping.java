@@ -1,8 +1,13 @@
 package com.example.apptivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.DirectAction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,19 +15,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import org.json.JSONException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class Swiping extends AppCompatActivity {
+public class Swiping extends  AppCompatActivity {
+
+
 
     private String IM_URL = "https://www.apptivity.com/Apptivity-WebApp/Apptivity-OG-Image.jpg";
 
@@ -45,6 +55,8 @@ public class Swiping extends AppCompatActivity {
 
     private cards cards_data[];
     private arrayAdapter arrayAdapter;
+    private BroadcastReceiver mReceiver;
+    private ArrayList<String> listOfTags = new ArrayList<>();
 
     private int aktuell = 0;
 
@@ -54,25 +66,20 @@ public class Swiping extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swiping);
-    /*
-        connection.pullAllData("Test", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(String value) {
-                try{
-                    countArray = new JSONArray(value);
-                    actAmount = countArray.length();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                actNames = new ArrayList<>();
-                for(int i = 0; i < actAmount; i++) {
-                    Log.d("actMount", actAmount+"");
-                    actNames.add(pullStringFromData(value, i, "Name"));
-                    Log.d("namtest", actNames.get(i));
-                }
-            }
-        });
-    */
+
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("tags",null);
+        Type type = new TypeToken<ArrayList>() {}.getType();
+        listOfTags = gson.fromJson(json, type);
+
+        Log.d("123981", String.valueOf(listOfTags));
+        Log.d("123981", String.valueOf(json));
+
+
+
         populateCards();
 
 
@@ -85,13 +92,6 @@ public class Swiping extends AppCompatActivity {
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
-
-
-        Bundle bundle = getIntent().getExtras();
-
-        ArrayList<String> listOfTags = (ArrayList<String>) getIntent().getSerializableExtra("tags");
-
-          Log.d("intent", String.valueOf(listOfTags));
 
 
         flingContainer.setAdapter(arrayAdapter);
