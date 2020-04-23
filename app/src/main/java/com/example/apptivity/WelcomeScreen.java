@@ -25,6 +25,8 @@ import java.util.Set;
 public class WelcomeScreen extends AppCompatActivity {
 
     private Button btWelcome;
+    public static final String DEFAULT_VALUE = "default";
+    public static final String INPUT_NAME ="name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,14 @@ public class WelcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
-                String username = sharedPreferences.getString("INPUT_NAME",null);
-                if(username != null) {
+                SharedPreferences nameOfPerson = getSharedPreferences("UserIn", MODE_PRIVATE);
+                String username = nameOfPerson.getString(INPUT_NAME,DEFAULT_VALUE);
+               Log.d("1298", username);
+                if(username.equals(DEFAULT_VALUE)) {
+                    openPersonalInformation();
+                } else {
                     openPersonOverview();
-                }
-                openPersonalInformation();
+            }
             }
 
         });
