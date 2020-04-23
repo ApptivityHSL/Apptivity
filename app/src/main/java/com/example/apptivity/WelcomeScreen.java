@@ -35,10 +35,11 @@ public class WelcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-              /*  SharedPreferences sharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
-                if(!sharedPreferences.equals(null) || !sharedPreferences.equals("")) {
+                SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
+                String username = sharedPreferences.getString("INPUT_NAME",null);
+                if(username != null) {
                     openPersonOverview();
-                }*/
+                }
                 openPersonalInformation();
             }
 
