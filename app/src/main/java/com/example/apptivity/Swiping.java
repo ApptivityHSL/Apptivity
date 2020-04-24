@@ -128,7 +128,7 @@ public class Swiping extends  AppCompatActivity {
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
                 mEditor.clear();
                 mEditor.putStringSet(MATCHES, matches);
-                mEditor.commit();
+                mEditor.apply();
             }
 
 
