@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +13,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+
 
 import static com.example.apptivity.PersonalInformation.INPUT_NAME;
 
@@ -23,6 +29,8 @@ public class Search1 extends AppCompatActivity {
     protected static boolean friends;
     protected static int budget;
     private TextView greetings2;
+
+    ArrayList<String> peopleArray = new ArrayList<String>();
 
     private CheckBox inputAlone;
     private CheckBox inputPartner;
@@ -48,6 +56,14 @@ public class Search1 extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
+                int value = inputBudget.getProgress();
+
+                safeMoney(value);
+
+                safePeople(peopleArray);
+
+                Log.d("123981", String.valueOf(peopleArray));
+
                 alone = inputAlone.hasFocus();
                 partner = inputPartner.hasFocus();
                 family = inputFamily.hasFocus();
@@ -70,4 +86,65 @@ public class Search1 extends AppCompatActivity {
         greetings2 =  findViewById(R.id.tvGreetings2);
         greetings2.setText(text);
     }
+
+    private void safePeople(ArrayList<String> people) {
+        SharedPreferences sharedPreferences = getSharedPreferences("people", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String Json = gson.toJson(people);
+        editor.putString("people", Json);
+        editor.apply();
+    }
+
+    private void safeMoney(int i) {
+        SharedPreferences sharedPreferences = getSharedPreferences("money", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("money", i);
+        editor.apply();
+    }
+
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.inputAlone:
+                if (checked){
+                    peopleArray.add((String) inputAlone.getText() );
+                }
+                else
+                    peopleArray.remove((String) inputAlone.getText() );
+                break;
+
+            case R.id.inputPartner:
+                if (checked){
+                    peopleArray.add((String) inputPartner.getText() );
+                }
+                else
+                    peopleArray.remove((String) inputPartner.getText() );
+                break;
+
+            case R.id.inputFamily:
+                if (checked){
+                    peopleArray.add((String) inputFamily.getText() );
+                }
+                else
+                    peopleArray.remove((String) inputFamily.getText() );
+                break;
+
+            case R.id.inputFriend:
+                if (checked){
+                    peopleArray.add((String) inputFriend.getText() );
+                }
+                else
+                    peopleArray.remove((String) inputFriend.getText() );
+                break;
+
+        }
+
+
+
+    }
+
+
 }

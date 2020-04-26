@@ -57,7 +57,10 @@ public class Swiping extends  AppCompatActivity {
     private arrayAdapter arrayAdapter;
     private BroadcastReceiver mReceiver;
     private ArrayList<String> listOfTags = new ArrayList<>();
-
+    private ArrayList<String> listOfPeople = new ArrayList<>();
+    private int money;
+    private String town;
+    private int postCode;
     private int aktuell = 0;
 
     List<cards> rowItems;
@@ -68,15 +71,39 @@ public class Swiping extends  AppCompatActivity {
         setContentView(R.layout.activity_swiping);
 
 
-
+        //list of tags
         SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("tags",null);
         Type type = new TypeToken<ArrayList>() {}.getType();
         listOfTags = gson.fromJson(json, type);
 
-        Log.d("123981", String.valueOf(listOfTags));
-        Log.d("123981", String.valueOf(json));
+        //list of people
+        SharedPreferences sharedPreferences2 = getSharedPreferences("people", MODE_PRIVATE);
+        Gson gson2 = new Gson();
+        String json2 = sharedPreferences2.getString("people",null);
+        Type type2 = new TypeToken<ArrayList>() {}.getType();
+        listOfPeople = gson2.fromJson(json2, type2);
+
+        //money
+        SharedPreferences sharedPreferences3 = getSharedPreferences("money", MODE_PRIVATE);
+        money = sharedPreferences3.getInt("money",0);
+
+        //postcode
+        SharedPreferences sharedPreferences4 = getSharedPreferences("postCode", MODE_PRIVATE);
+        postCode = sharedPreferences4.getInt("postCode",0);
+
+        //town
+        SharedPreferences sharedPreferences5 = getSharedPreferences("town", MODE_PRIVATE);
+        town = sharedPreferences5.getString("town","");
+
+
+
+        Log.d("123986", String.valueOf(listOfTags));
+        Log.d("123986", String.valueOf(listOfPeople));
+        Log.d("123986", String.valueOf(money));
+        Log.d("123986", String.valueOf(postCode));
+        Log.d("123986", String.valueOf(town));
 
 
 
