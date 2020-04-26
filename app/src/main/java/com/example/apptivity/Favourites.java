@@ -46,7 +46,7 @@ public class Favourites extends AppCompatActivity {
         }
 
 
-        /*btBackToHome.setOnClickListener(new View.OnClickListener(){
+        btBackToHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openHome();
@@ -59,7 +59,7 @@ public class Favourites extends AppCompatActivity {
             public void onClick(View v){
 
             }
-        });*/
+        });
     }
 
     private void openHome(){
