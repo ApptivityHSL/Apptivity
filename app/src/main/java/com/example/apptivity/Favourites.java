@@ -16,8 +16,8 @@ import java.util.Set;
 public class Favourites extends AppCompatActivity {
 
     public static final String MATCHES ="match";
-    private Button btBackToHome = findViewById(R.id.btBackToHome);
-    private Button btResetMatches = findViewById(R.id.btResetMatches);
+    private Button btBackToHome;
+    private Button btResetMatches;
     private Set<String> matches;
 
     @Override
@@ -45,7 +45,7 @@ public class Favourites extends AppCompatActivity {
             linearLayout.addView(textView);
         }
 
-
+        btBackToHome = findViewById(R.id.btBackToHome);
         btBackToHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -53,7 +53,7 @@ public class Favourites extends AppCompatActivity {
             }
 
         });
-
+        btResetMatches = findViewById(R.id.btResetMatches);
         btResetMatches.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

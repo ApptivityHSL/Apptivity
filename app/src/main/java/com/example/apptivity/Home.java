@@ -63,7 +63,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void insertNameintoTextView(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         String text = "Hallo "+mSharedPreferences.getString(INPUT_NAME, "")+"!";
         greetings =  findViewById(R.id.greetings);
         greetings.setText(text);
