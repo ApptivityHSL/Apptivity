@@ -71,13 +71,13 @@ public class PersonOverview extends AppCompatActivity {
         startActivity(intent);
     }
     private void insertNameintoTextView(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputName", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         String text = mSharedPreferences.getString(INPUT_NAME, "");
         name =  findViewById(R.id.tvNameOverview);
         name.setText(text);
     }
     private void insertAgeintoTextView(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputAlter", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         int alter =  mSharedPreferences.getInt(INPUT_ALTER, 0);
         age =  findViewById(R.id.tvAgeOverview);
         String alter2 = String.valueOf(alter);
@@ -85,8 +85,8 @@ public class PersonOverview extends AppCompatActivity {
     }
 
     private void insertGenderintoTextView(){
-        SharedPreferences mSharedPreferences = getSharedPreferences("inputMale", MODE_PRIVATE);
-        SharedPreferences mSharedPreferences1 = getSharedPreferences("inputFemale", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
+        SharedPreferences mSharedPreferences1 = getSharedPreferences("UserIn", MODE_PRIVATE);
         boolean text1 = mSharedPreferences.getBoolean(INPUT_MALE, true);
         boolean text2 = mSharedPreferences1.getBoolean(INPUT_FEMALE, true);
         gender =  findViewById(R.id.tvGenderOverview);
