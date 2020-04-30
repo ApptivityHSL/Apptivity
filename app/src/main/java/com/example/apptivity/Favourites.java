@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Favourites extends AppCompatActivity {
@@ -35,9 +36,8 @@ public class Favourites extends AppCompatActivity {
         for (String str : matches)
             matchesToView[index++] = str;
 
-        LinearLayout linearLayout = new LinearLayout(this);
-        setContentView(linearLayout);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout linearLayout = findViewById(R.id.matchLL);
+        //setContentView(linearLayout);
         for( int i = 0; i < matchesToView.length; i++ )
         {
             TextView textView = new TextView(this);
@@ -57,9 +57,18 @@ public class Favourites extends AppCompatActivity {
         btResetMatches.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
+                SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                mEditor.clear();
+                mEditor.putStringSet(MATCHES, new HashSet<String>());
+                mEditor.apply();
+                refreshFav();
             }
         });
+    }
+    private void refreshFav(){
+        Intent intent = new Intent(this, Favourites.class);
+        startActivity(intent);
     }
 
     private void openHome(){
