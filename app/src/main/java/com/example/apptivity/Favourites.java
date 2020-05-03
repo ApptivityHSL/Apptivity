@@ -7,8 +7,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.HashSet;
@@ -36,13 +39,29 @@ public class Favourites extends AppCompatActivity {
         for (String str : matches)
             matchesToView[index++] = str;
 
-        LinearLayout linearLayout = findViewById(R.id.matchLL);
+        TableLayout tLayout = findViewById(R.id.matchLL);
         //setContentView(linearLayout);
         for( int i = 0; i < matchesToView.length; i++ )
         {
-            TextView textView = new TextView(this);
-            textView.setText(matchesToView[i]);
-            linearLayout.addView(textView);
+            TableRow tr = new TableRow(this);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+            Button mButton = new Button(this);
+            Button dButton = new Button(this);
+            mButton.setText(matchesToView[i]);
+            dButton.setText("X");
+            mButton.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            dButton.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            mButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            dButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tr.addView(mButton);
+            tr.addView(dButton);
+            tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
 
         btBackToHome = findViewById(R.id.btBackToHome);
@@ -59,7 +78,7 @@ public class Favourites extends AppCompatActivity {
             public void onClick(View v){
                 SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                mEditor.clear();
+                //mEditor.clear();
                 mEditor.putStringSet(MATCHES, new HashSet<String>());
                 mEditor.apply();
                 refreshFav();
