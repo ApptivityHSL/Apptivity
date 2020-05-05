@@ -47,7 +47,28 @@ public class Favourites extends AppCompatActivity {
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
             Button mButton = new Button(this);
+            mButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button clicked = (Button) v;
+                    String name = (String) clicked.getText();
+                }
+
+            });
             Button dButton = new Button(this);
+            final String matchKey = matchesToView[i];
+            dButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
+                    SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                    //mEditor.clear();
+                    mEditor.remove(matchKey);
+                    mEditor.apply();
+                    refreshFav();
+                }
+
+            });
             mButton.setText(matchesToView[i]);
             dButton.setText("X");
             mButton.setLayoutParams(new LinearLayout.LayoutParams(
