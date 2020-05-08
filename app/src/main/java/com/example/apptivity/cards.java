@@ -1,5 +1,8 @@
 package com.example.apptivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class cards {
     private String actID;
     private String name;
@@ -15,9 +18,10 @@ public class cards {
     private String phoneNumber;
     private String postal;
     private String mailAddress;
+    private List<String> tags;
 
     public cards(String actID, String name, String imURL, String description, String open, String closed, String location, String street, String website, String houseNumber,
-                 String budget, String phoneNumber, String postal, String mailAddress){
+                 String budget, String phoneNumber, String postal, String mailAddress, ArrayList<String> tags){
         this.actID = actID;
         this.name = name;
         this.imURL = imURL;
@@ -32,6 +36,7 @@ public class cards {
         this.phoneNumber = phoneNumber;
         this.postal = postal;
         this.mailAddress = mailAddress;
+        this.tags = tags;
     }
     public String getActID(){
         return actID;
@@ -86,4 +91,8 @@ public class cards {
 
     public String getMailAddress() { return mailAddress; }
     public void setMailAddress(String mailAddress) { this.mailAddress = mailAddress; }
+
+    public List<String> getTags() { return tags; }
+    public void setTags(List<String> tags) { this.tags = tags; }
+    public void addTags(String tag) { this.tags.add(tag);}
 }
