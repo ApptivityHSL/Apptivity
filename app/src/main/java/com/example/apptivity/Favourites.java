@@ -29,9 +29,6 @@ public class Favourites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
 
-        SharedPreferences mSharedPreferences1 = getSharedPreferences("activity_swiping", MODE_PRIVATE);
-        Log.d("FavoritenAnzeigen", mSharedPreferences1.getStringSet("match", matches).toString());
-
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
         String[] matchesToView = new String[matches.size()];
@@ -62,8 +59,10 @@ public class Favourites extends AppCompatActivity {
                 public void onClick(View v) {
                     SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                    //mEditor.clear();
-                    mEditor.remove(matchKey);
+                    matches = mSharedPreferences.getStringSet(MATCHES, matches);
+                    matches.remove(matchKey);
+                    mEditor.clear();
+                    mEditor.putStringSet(MATCHES, matches);
                     mEditor.apply();
                     refreshFav();
                 }
