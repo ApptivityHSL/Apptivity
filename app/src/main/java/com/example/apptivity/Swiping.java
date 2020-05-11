@@ -1,5 +1,6 @@
 package com.example.apptivity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,7 +65,7 @@ public class Swiping extends  AppCompatActivity {
     private int postCode;
     private int aktuell = 0;
 
-    List<cards> rowItems;
+    List<cards> rowItems; //Für sortieren relevant
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,10 @@ public class Swiping extends  AppCompatActivity {
 
 
         populateCards();
+
+
+       // cardFilter();
+
 
 
         rowItems = new ArrayList<>();
@@ -229,6 +235,20 @@ public class Swiping extends  AppCompatActivity {
 
         });
     }
+/*
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<cards> cardFilter(List<cards> rowItems) {
+
+
+
+
+
+
+
+
+
+        return ;
+    }*/
 
     public void openHome(){
         Intent intent = new Intent(this, Home.class);
