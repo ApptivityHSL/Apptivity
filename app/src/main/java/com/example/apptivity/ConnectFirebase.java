@@ -1,7 +1,9 @@
 package com.example.apptivity;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -9,6 +11,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -17,9 +22,33 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
+
 public class ConnectFirebase {
     private String jsonString = "[";
     private String gson = "";
+    private FirebaseAuth mAuth;
+
+    public ConnectFirebase(){}
+
+    public ConnectFirebase(Activity current)
+    {
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(current, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("cfb_auth", "FirebaseAuthErfolg");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            Log.w("cfb_auth", "FirebaseAuthFehler", task.getException());
+                        }
+
+                        // ...
+                    }
+                });
+    }
 
     public void pullAllData(String collection, final ConnectFirebaseCallback callback)
     {
