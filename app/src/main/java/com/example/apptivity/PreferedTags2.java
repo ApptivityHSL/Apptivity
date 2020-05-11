@@ -56,15 +56,30 @@ public class PreferedTags2 extends AppCompatActivity {
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
             CheckBox box = new CheckBox(this);
+            CheckBox box2 = new CheckBox(this);
 
             box.setText(tags.get(i));
             box.setId(Integer.parseInt(tags.get(i)));
             box.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
+            box.setOnClickListener(onCheckboxClicked(box));
+
+            i++;
+
+            box2.setText(tags.get(i));
+            box2.setId(Integer.parseInt(tags.get(i)));
+            box2.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            box2.setOnClickListener(onCheckboxClicked(box2));
 
             box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            box2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
             tr.addView(box);
+            tr.addView(box2);
+
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
 
@@ -74,9 +89,29 @@ public class PreferedTags2 extends AppCompatActivity {
 
 
 
+    }
 
+    View.OnClickListener onCheckboxClicked(final Button button){
+        return new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) v).isChecked();
 
+                for(int index = 0; index < tags.size();index++){
+                    String t = tags.get(index);
+                    String d = String.valueOf(button.getId());
+
+                    if(d.equals(t)){
+                        if (checked) {
+                            listOfClickedTags.add((String) tags.get(index));
+                        } else
+                            listOfClickedTags.remove((String) tags.get(index));
+                        break;
+                    }
+                }
+            }
+        };
     }
 
     public String pullProperty(String string, int index, String property){
@@ -93,19 +128,7 @@ public class PreferedTags2 extends AppCompatActivity {
     }
 
 
-    /*public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-        switch (view.getId()) {
-            for (int i = 0; i <= tags.size()) {
-                case R.id. tags.get(i):
-                    if (checked) {
-                        listOfClickedTags.add((String) tags.get(i).getText());
-                    } else
-                        listOfClickedTags.remove((String) tags.get(i).getText());
-                    break;
-            }
-        }
-    }*/
+
 
 
 }

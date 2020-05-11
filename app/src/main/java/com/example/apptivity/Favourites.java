@@ -56,10 +56,11 @@ public class Favourites extends AppCompatActivity {
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
 
-                    fillBundle(bundle, matchToView);
-
                     Intent intent = new Intent(Favourites.this, ActivityOverview.class);
                     intent.putExtras(bundle);
+
+                    fillBundle(bundle, matchToView);
+
                     startActivity(intent);
                 }
 
