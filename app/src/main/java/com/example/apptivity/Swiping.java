@@ -49,7 +49,7 @@ public class Swiping extends  AppCompatActivity {
     private int matchnum = 0;
 
     private int i;
-    private ConnectFirebase connection = new ConnectFirebase();
+    private ConnectFirebase connection = new ConnectFirebase(this);
     private Set<String> matches = new HashSet<>();
     private int actAmount;
     private JSONArray countArray;
