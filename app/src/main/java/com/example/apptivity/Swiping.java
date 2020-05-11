@@ -1,5 +1,6 @@
 package com.example.apptivity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,7 +66,7 @@ public class Swiping extends  AppCompatActivity {
     private int postCode;
     private int aktuell = 0;
 
-    List<cards> rowItems;
+    List<cards> rowItems; //Für sortieren relevant
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,10 @@ public class Swiping extends  AppCompatActivity {
 
 
         populateCards();
+
+
+       // cardFilter();
+
 
 
         rowItems = new ArrayList<>();
@@ -230,6 +236,20 @@ public class Swiping extends  AppCompatActivity {
 
         });
     }
+/*
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<cards> cardFilter(List<cards> rowItems) {
+
+
+
+
+
+
+
+
+
+        return ;
+    }*/
 
     public void openHome(){
         Intent intent = new Intent(this, Home.class);
@@ -261,9 +281,9 @@ public class Swiping extends  AppCompatActivity {
                         ArrayList<String> ofTags = new ArrayList<>();
                         JSONArray jsonTags = countArray.getJSONObject(i).getJSONArray("Tags");
                         for(int j = 0; j < jsonTags.length(); j++){
-                            ofTags.add(jsonTags.getJSONObject(j).toString());
+                            ofTags.add(jsonTags.get(j).toString());
                         }
-                        rowItems.add(new cards(countArray.getJSONObject(i).get("Name").toString(),
+                        rowItems.add(new cards(countArray.getJSONObject(i).get("id").toString(),
                                 countArray.getJSONObject(i).get("Name").toString(),
                                 countArray.getJSONObject(i).get("Bild").toString(),
                                 countArray.getJSONObject(i).get("Beschreibung").toString(),
@@ -278,8 +298,8 @@ public class Swiping extends  AppCompatActivity {
                                 countArray.getJSONObject(i).get("PLZ").toString(),
                                 countArray.getJSONObject(i).get("Mailadresse").toString(),
                                 ofTags));
-                                getFirstImage(countArray.getJSONObject(i).getJSONArray("Bild"), i);
-                                Log.d("brgl", countArray.get(0).toString());
+                        getFirstImage(countArray.getJSONObject(i).getJSONArray("Bild"), i);
+                        Log.d("brgl", countArray.get(0).toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
