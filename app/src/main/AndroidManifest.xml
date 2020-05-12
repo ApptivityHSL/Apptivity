@@ -18,7 +18,6 @@
         <activity android:name=".Favourites" />
         <activity android:name=".Settings" />
         <activity android:name=".Home" />
-        <activity android:name=".PreferedTags" />
         <activity android:name=".PersonalInformation" />
         <activity android:name=".WelcomeScreen">
             <intent-filter>

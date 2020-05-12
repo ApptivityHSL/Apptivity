@@ -80,6 +80,8 @@ public class Swiping extends  AppCompatActivity {
         Type type = new TypeToken<ArrayList>() {}.getType();
         listOfTags = gson.fromJson(json, type);
 
+        Log.d("sdafsdfsdaf", String.valueOf(listOfTags));
+
         //list of people
         SharedPreferences sharedPreferences2 = getSharedPreferences("people", MODE_PRIVATE);
         Gson gson2 = new Gson();
