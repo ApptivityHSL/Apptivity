@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class Swiping extends  AppCompatActivity {
@@ -80,6 +79,8 @@ public class Swiping extends  AppCompatActivity {
         String json = sharedPreferences.getString("tags",null);
         Type type = new TypeToken<ArrayList>() {}.getType();
         listOfTags = gson.fromJson(json, type);
+
+        Log.d("sdafsdfsdaf", String.valueOf(listOfTags));
 
         //list of people
         SharedPreferences sharedPreferences2 = getSharedPreferences("people", MODE_PRIVATE);
