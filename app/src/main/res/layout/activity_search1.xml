@@ -8,45 +8,49 @@
 
     <TextView
         android:id="@+id/tvWith"
-        android:layout_width="226dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="40dp"
         android:text="@string/WithWho"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGreetings2" />
 
     <Button
         android:id="@+id/btSearch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="@string/continues"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputBudget" />
 
     <TextView
         android:id="@+id/tvGreetings2"
-        android:layout_width="152dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="128dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/greetings"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginTop="0dp" />
 
     <TextView
         android:id="@+id/tvBudget"
-        android:layout_width="227dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="472dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/budget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/inputFriend" />
 
     <CheckBox
         android:id="@+id/inputAlone"
@@ -87,17 +91,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="8dp"
+        android:onClick="onCheckboxClicked"
         android:text="@string/friends"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/inputFamily" />
 
     <SeekBar
         android:id="@+id/inputBudget"
         android:layout_width="228dp"
         android:layout_height="22dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btSearch2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBudget" />
 </androidx.constraintlayout.widget.ConstraintLayout>
