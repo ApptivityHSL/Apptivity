@@ -64,7 +64,7 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
     public void openPreferedTags(){
-            Intent intent = new Intent(this, PreferedTags.class);
+            Intent intent = new Intent(this, PreferedTags2.class);
             startActivity(intent);
     }
 

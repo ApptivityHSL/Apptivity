@@ -43,6 +43,7 @@ public class Favourites extends AppCompatActivity {
 
         TableLayout tLayout = findViewById(R.id.matchLL);
         //setContentView(linearLayout);
+        final Bundle[] bundle = new Bundle[matchesToView.length];
         for( int i = 0; i < matchesToView.length; i++ )
         {
             TableRow tr = new TableRow(this);
@@ -51,15 +52,14 @@ public class Favourites extends AppCompatActivity {
             final Button mButton = new Button(this);
             mButton.setTag(matchesToView[i]);
             final String matchToView = matchesToView[i];
+            final int indeXX = i;
+            bundle[i] = new Bundle();
+            fillBundle(bundle[i], matchToView);
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-
-                    fillBundle(bundle, matchToView);
-
                     Intent intent = new Intent(Favourites.this, ActivityOverview.class);
-                    intent.putExtras(bundle);
+                    intent.putExtras(bundle[indeXX]);
                     startActivity(intent);
                 }
 
@@ -82,9 +82,10 @@ public class Favourites extends AppCompatActivity {
             });
             connection.queryData("Test", "id", matchToView, new ConnectFirebaseCallback() {
                 @Override
-                public void onCallback(String value) {
+                public void onCallback(String value) {                  //Gibt Collection und nicht Dokument
                     try {
-                        JSONObject name = new JSONObject(value);
+                        JSONArray name1 = new JSONArray(value);         //Fehler ???
+                        JSONObject name = name1.getJSONObject(0);  //Nja Fast !!!
                         mButton.setText(name.getString("Name"));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -143,7 +144,8 @@ public class Favourites extends AppCompatActivity {
             @Override
             public void onCallback(String value) {
                 try {
-                    JSONObject activity = new JSONObject(value);
+                    JSONArray activity1 = new JSONArray(value);
+                    JSONObject activity = activity1.getJSONObject(0);
 
                     String cName = activity.get("Name").toString();
                     String cActID = activity.get("id").toString();
