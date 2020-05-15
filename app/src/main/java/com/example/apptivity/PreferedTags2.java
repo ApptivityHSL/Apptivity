@@ -9,14 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
+
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.CheckBox;
 
-import com.google.common.collect.Iterables;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;

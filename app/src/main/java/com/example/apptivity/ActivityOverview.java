@@ -3,11 +3,18 @@ package com.example.apptivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ActivityOverview extends AppCompatActivity {
@@ -78,8 +85,18 @@ public class ActivityOverview extends AppCompatActivity {
 
     }
     public void openSwiping(){
-        Intent intent = new Intent(this, Swiping.class);
-        startActivity(intent);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
+        boolean fromFavos = sharedPreferences.getBoolean("FROM_FAVOS",true);
+        Log.d("123214124", String.valueOf(fromFavos));
+
+        if(fromFavos){
+            Intent intent1 = new Intent(this, Favourites.class);
+            startActivity(intent1);
+        } else {
+            Intent intent2 = new Intent(this, Swiping.class);
+            startActivity(intent2);
+        }
+
     }
 
 }

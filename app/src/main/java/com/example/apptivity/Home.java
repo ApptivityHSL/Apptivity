@@ -69,11 +69,23 @@ public class Home extends AppCompatActivity {
         greetings.setText(text);
     }
     public void openSearch(){
+
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("FROM_FAVOS", false);
+        mEditor.apply();
+
         Intent intent = new Intent(this, Search1.class);
         startActivity(intent);
     }
 
     public void openFavos(){
+
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("FROM_FAVOS", true);
+        mEditor.apply();
+
         Intent intent = new Intent(this, Favourites.class);
         startActivity(intent);
     }
