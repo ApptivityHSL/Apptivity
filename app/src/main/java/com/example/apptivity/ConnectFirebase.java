@@ -24,7 +24,6 @@ import com.google.gson.Gson;
 
 
 public class ConnectFirebase {
-    private String jsonString = "[";
     private String gson = "";
     private FirebaseAuth mAuth;
 
@@ -60,6 +59,7 @@ public class ConnectFirebase {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        String jsonString = "[";
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 gson =  new Gson().toJson(document.getData());
@@ -84,6 +84,7 @@ public class ConnectFirebase {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        String jsonString = "[";
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 gson =  new Gson().toJson(document.getData());
@@ -92,6 +93,7 @@ public class ConnectFirebase {
                         } else {
                             Log.d("argl", "Error getting documents: ", task.getException());
                         }
+                        Log.d("gnarfl", jsonString);
                         jsonString = jsonString.substring(0, jsonString.length()-1) + "]";
                         callback.onCallback(jsonString);
                     }

@@ -162,6 +162,7 @@ public class Favourites extends AppCompatActivity {
                     String cLocation = activity.get("Ort").toString();
                     String cPhoneNumber = activity.get("Telefonnummer").toString();
 
+
                     bundle.putString("cName", cName);
                     bundle.putString("cActID", cActID);
                     bundle.putString("cBudget", cBudget);
