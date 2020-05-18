@@ -98,8 +98,10 @@
 
     <SeekBar
         android:id="@+id/inputBudget"
-        android:layout_width="228dp"
-        android:layout_height="22dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="150"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btSearch2"
