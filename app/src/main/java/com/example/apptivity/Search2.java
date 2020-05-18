@@ -48,7 +48,7 @@ public class Search2 extends AppCompatActivity {
         });
     }
     public void openSwipe(){
-        Intent intent = new Intent(this, Swiping.class);
+        Intent intent = new Intent(this, loadingFromDatabase.class);
         startActivity(intent);
     }
 

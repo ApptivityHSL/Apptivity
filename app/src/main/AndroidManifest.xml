@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PreferedTags2"></activity>
+        <activity android:name=".loadingFromDatabase"></activity>
+        <activity android:name=".PreferedTags2" />
         <activity android:name=".ActivityOverview" />
         <activity android:name=".Swiping" />
         <activity android:name=".PersonOverview" />

@@ -52,8 +52,6 @@ public class Swiping extends  AppCompatActivity {
     private int i;
     private ConnectFirebase connection = new ConnectFirebase(this);
     private Set<String> matches = new HashSet<>();
-    private int actAmount;
-    private JSONArray countArray;
 
     private cards cards_data[];
     private arrayAdapter arrayAdapter;
@@ -63,9 +61,6 @@ public class Swiping extends  AppCompatActivity {
     private int money;
     private String town;
     private int postCode;
-    private int aktuell = 0;
-
-    List<cards> rowItems; //Für sortieren relevant
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,20 +106,13 @@ public class Swiping extends  AppCompatActivity {
 
 
 
-        populateCards();
-
-
        // cardFilter();
-
-
-
-        rowItems = new ArrayList<>();
 
         //matches = new HashSet<String>();
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
 
-        arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
+        arrayAdapter = new arrayAdapter(this, R.layout.item, loadingFromDatabase.rowItems);
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
@@ -141,7 +129,7 @@ public class Swiping extends  AppCompatActivity {
                     }
                     isFirst = false;
                 }*/
-                rowItems.remove(0);
+                loadingFromDatabase.rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -240,18 +228,8 @@ public class Swiping extends  AppCompatActivity {
 /*
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<cards> cardFilter(List<cards> rowItems) {
-
-
-
-
-
-
-
-
-
         return ;
     }*/
-
     public void openHome(){
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
@@ -261,86 +239,6 @@ public class Swiping extends  AppCompatActivity {
         Intent intent = new Intent(this, ActivityOverview.class);
         startActivity(intent);
         }
-
-
-
-    public void populateCards(){
-        aktuell = 0;
-        connection.queryData("Test", "Ort", "Landshut", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(String value) {
-                try{
-                    countArray = new JSONArray(value);
-                    actAmount = countArray.length();
-                    Log.d("ObjektZahl",actAmount+"");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.d("anzahl", actAmount+"");
-                for(int i = 0; i < actAmount; i++) {
-                    try {
-                        ArrayList<String> ofTags = new ArrayList<>();
-                        JSONArray jsonTags = countArray.getJSONObject(i).getJSONArray("Tags");
-                        for(int j = 0; j < jsonTags.length(); j++){
-                            ofTags.add(jsonTags.get(j).toString());
-                        }
-                        rowItems.add(new cards(countArray.getJSONObject(i).get("id").toString(),
-                                countArray.getJSONObject(i).get("Name").toString(),
-                                countArray.getJSONObject(i).get("Bild").toString(),
-                                countArray.getJSONObject(i).get("Beschreibung").toString(),
-                                countArray.getJSONObject(i).get("Offen").toString(),
-                                countArray.getJSONObject(i).get("Geschlossen").toString(),
-                                countArray.getJSONObject(i).get("Ort").toString(),
-                                countArray.getJSONObject(i).get("Straße").toString(),
-                                countArray.getJSONObject(i).get("Webseite").toString(),
-                                countArray.getJSONObject(i).get("Hausnummer").toString(),
-                                countArray.getJSONObject(i).get("Preis").toString(),
-                                countArray.getJSONObject(i).get("Telefonnummer").toString(),
-                                countArray.getJSONObject(i).get("PLZ").toString(),
-                                countArray.getJSONObject(i).get("Mailadresse").toString(),
-                                ofTags));
-                        getFirstImage(countArray.getJSONObject(i).getJSONArray("Bild"), i);
-                        Log.d("brgl", countArray.get(0).toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                arrayAdapter.notifyDataSetChanged();
-            }
-        });
-
-    }
-    public void getFirstImage(JSONArray ImagePaths, final int indexed){
-            List<String> ImPaStr = new ArrayList<>();
-            try{
-                for(int i = 0; i < ImagePaths.length(); i++){
-                    Log.d("Imagetest", ImagePaths.get(i).toString());
-                    if(!ImagePaths.get(i).toString().equals(null)){
-                        ImPaStr.add(ImagePaths.get(i).toString());
-                    }else {
-                        ImPaStr.add(IM_URL);
-                    }
-                    Log.d("Imageteststr", ImPaStr.get(i));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String im = ImPaStr.get(0);
-            Log.d("testingerIM", im);
-            connection.getImageURL(im, new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(String value) {
-                Log.d("Whyno2cardStillNothing", rowItems.get(2).getImURL());
-                Log.d("testinger", value);
-                Log.d("aktuell", aktuell+"");
-                rowItems.get(aktuell).setImURL(value);
-                arrayAdapter.notifyDataSetChanged();
-                Log.d("Whyno2cardLinkPls", rowItems.get(2).getImURL());
-                aktuell++;
-            }
-        });
-    }
-
 
     public void openActivityOverview(Object dataObject){
         Intent intent = new Intent(this, ActivityOverview.class);

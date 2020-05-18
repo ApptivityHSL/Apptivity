@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,8 @@ import java.util.Set;
 
 public class WelcomeScreen extends AppCompatActivity {
 
+    private static int SPLASH_TIME_OUT = 3000;
+
     private Button btWelcome;
     public static final String DEFAULT_VALUE = "default";
     public static final String INPUT_NAME ="name";
@@ -32,7 +35,22 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
-        btWelcome =  findViewById(R.id.btWelcome);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences nameOfPerson = getSharedPreferences("UserIn", MODE_PRIVATE);
+                String username = nameOfPerson.getString(INPUT_NAME,DEFAULT_VALUE);
+                Log.d("1298", username);
+                if(username.equals(DEFAULT_VALUE)) {
+                    openPersonalInformation();
+                } else {
+                    openPersonOverview();
+                }
+            }
+        },SPLASH_TIME_OUT);
+
+        /*btWelcome =  findViewById(R.id.btWelcome);
         btWelcome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -44,10 +62,10 @@ public class WelcomeScreen extends AppCompatActivity {
                     openPersonalInformation();
                 } else {
                     openPersonOverview();
-            }
+                }
             }
 
-        });
+        });*/
 
         ConnectFirebase cf = new ConnectFirebase();
         /*cf.pullAllData("Tag", new ConnectFirebaseCallback() {
@@ -73,13 +91,15 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
         public void openPersonalInformation(){
-            Intent intent = new Intent(this, PersonalInformation.class);
+            Intent intent = new Intent(WelcomeScreen.this, PersonalInformation.class);
             startActivity(intent);
+            finish();
         }
 
         public void openPersonOverview(){
-         Intent intent = new Intent(this, PersonOverview.class);
+         Intent intent = new Intent(WelcomeScreen.this, PersonOverview.class);
          startActivity(intent);
+         finish();
     }
 
         public void methode(String string){
