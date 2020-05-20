@@ -115,28 +115,29 @@ public class loadingFromDatabase extends AppCompatActivity {
                     }
                 }
             });
-            return null;
-        }
-
-        public void getFirstImage(JSONArray ImagePaths, final int indexed){
-            final loadingFromDatabase activity = activityWeakReference.get();
-            if(activity == null || activity.isFinishing()){
-                return;
-            }
-            List<String> ImPaStr = new ArrayList<>();
-                try{
-                    for(int i = 0; i < ImagePaths.length(); i++){
+            /*
+            for (int i = 0; i < activity.actAmount; i++) {
+                JSONArray ImagePaths = null;
+                try {
+                    ImagePaths = activity.countArray.getJSONObject(i).getJSONArray("Bild");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                List<String> ImPaStr = new ArrayList<>();
+                try {
+                    for (int j = 0; j < ImagePaths.length(); j++) {
                         Log.d("Imagetest", ImagePaths.get(i).toString());
-                        if(!ImagePaths.get(i).toString().equals(null)){
-                            ImPaStr.add(ImagePaths.get(i).toString());
-                        }else {
+                        if (!ImagePaths.get(j).toString().equals(null)) {
+                            ImPaStr.add(ImagePaths.get(j).toString());
+                        } else {
                             ImPaStr.add(activity.IM_URL);
                         }
-                        Log.d("Imageteststr", ImPaStr.get(i));
+                        Log.d("Imageteststr", ImPaStr.get(j));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                Log.d("nixFunc", String.valueOf(ImPaStr));
                 String im = ImPaStr.get(0);
                 Log.d("testingerIM", im);
                 activity.connection.getImageURL(im, new ConnectFirebaseCallback() {
@@ -144,12 +145,47 @@ public class loadingFromDatabase extends AppCompatActivity {
                     public void onCallback(String value) {
                         Log.d("Whyno2cardStillNothing", rowItems.get(1).getImURL());
                         Log.d("testinger", value);
-                        Log.d("aktuell", activity.aktuell+"");
+                        Log.d("aktuell", activity.aktuell + "");
                         rowItems.get(activity.aktuell).setImURL(value);
                         Log.d("Whyno2cardLinkPls", rowItems.get(1).getImURL());
                         activity.aktuell++;
                     }
                 });
+            }*/
+            return null;
+        }
+        public void getFirstImage(JSONArray ImagePaths, final int indexed){
+            final loadingFromDatabase activity = activityWeakReference.get();
+            if(activity == null || activity.isFinishing()){
+                return;
+            }
+            List<String> ImPaStr = new ArrayList<>();
+            try{
+                for(int i = 0; i < ImagePaths.length(); i++){
+                    Log.d("Imagetest", ImagePaths.get(i).toString());
+                    if(!ImagePaths.get(i).toString().equals(null)){
+                        ImPaStr.add(ImagePaths.get(i).toString());
+                    }else {
+                        ImPaStr.add(activity.IM_URL);
+                    }
+                    Log.d("Imageteststr", ImPaStr.get(i));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String im = ImPaStr.get(0);
+            Log.d("testingerIM", im);
+            activity.connection.getImageURL(im, new ConnectFirebaseCallback() {
+                @Override
+                public void onCallback(String value) {
+                    Log.d("Whyno2cardStillNothing", rowItems.get(1).getImURL());
+                    Log.d("testinger", value);
+                    Log.d("aktuell", activity.aktuell+"");
+                    rowItems.get(activity.aktuell).setImURL(value);
+                    Log.d("Whyno2cardLinkPls", rowItems.get(1).getImURL());
+                    activity.aktuell++;
+                }
+            });
         }
 
         @Override
