@@ -29,6 +29,8 @@ public class Search1 extends AppCompatActivity {
     protected static boolean friends;
     protected static int budget;
     private TextView greetings2;
+    private SeekBar budgetBar;
+    private TextView money;
 
     ArrayList<String> peopleArray = new ArrayList<String>();
 
@@ -43,7 +45,11 @@ public class Search1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search1);
+
         insertNameintoTextView();
+        seekbar();
+
+
 
         inputAlone =  findViewById(R.id.inputAlone);
         inputPartner =  findViewById(R.id.inputPartner);
@@ -57,7 +63,6 @@ public class Search1 extends AppCompatActivity {
             public void onClick(View v){
 
                 int value = inputBudget.getProgress();
-
                 safeMoney(value);
 
                 safePeople(peopleArray);
@@ -80,6 +85,35 @@ public class Search1 extends AppCompatActivity {
         Intent intent = new Intent(this, Search2.class);
         startActivity(intent);
     }
+
+    private void seekbar(){
+        budgetBar = findViewById(R.id. inputBudget);
+        money = findViewById(R.id. money);
+        money.setText(budgetBar.getProgress() + "€" + " / " + budgetBar.getMax() + "€");
+
+
+        budgetBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        budget = progress;
+                        money.setText(progress + "€" + " / " + budgetBar.getMax() + "€");
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        money.setText(budget + "€" + " / " + budgetBar.getMax() + "€");
+                    }
+                }
+        );
+    };
+
+
     private void insertNameintoTextView(){
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         String text = "Hallo "+mSharedPreferences.getString(INPUT_NAME, "")+"!";
