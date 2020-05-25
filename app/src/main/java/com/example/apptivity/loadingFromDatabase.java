@@ -94,7 +94,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                             }
                             rowItems.add(new cards(activity.countArray.getJSONObject(i).get("id").toString(),
                                     activity.countArray.getJSONObject(i).get("Name").toString(),
-                                    activity.countArray.getJSONObject(i).get("Bild").toString(),
+                                    activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString(),
                                     activity.countArray.getJSONObject(i).get("Beschreibung").toString(),
                                     activity.countArray.getJSONObject(i).get("Offen").toString(),
                                     activity.countArray.getJSONObject(i).get("Geschlossen").toString(),
@@ -107,7 +107,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                                     activity.countArray.getJSONObject(i).get("PLZ").toString(),
                                     activity.countArray.getJSONObject(i).get("Mailadresse").toString(),
                                     ofTags));
-                            getFirstImage(activity.countArray.getJSONObject(i).getJSONArray("Bild"), i);
+                            //getFirstImage(activity.countArray.getJSONObject(i).getJSONArray("Bild"), i);
                             Log.d("brgl", activity.countArray.get(0).toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -182,7 +182,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                     Log.d("testinger", value);
                     Log.d("aktuell", activity.aktuell+"");
                     rowItems.get(activity.aktuell).setImURL(value);
-                    Log.d("Whyno2cardLinkPls", rowItems.get(1).getImURL());
+                    Log.d("Whyno2cardLinkPls", rowItems.get(activity.aktuell).getImURL());
                     activity.aktuell++;
                 }
             });
