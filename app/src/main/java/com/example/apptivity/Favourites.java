@@ -80,7 +80,6 @@ public class Favourites extends AppCompatActivity {
                 }
 
             });
-
             connection.queryData("Test", "id", matchToView, new ConnectFirebaseCallback() {
                 @Override
                 public void onCallback(String value) {                  //Gibt Collection und nicht Dokument
