@@ -94,7 +94,8 @@ public class loadingFromDatabase extends AppCompatActivity {
                             }
                             rowItems.add(new cards(activity.countArray.getJSONObject(i).get("id").toString(),
                                     activity.countArray.getJSONObject(i).get("Name").toString(),
-                                    activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString(),
+                                    activity.countArray.getJSONObject(i).get("Bild").toString(),
+                                    //activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString(),
                                     activity.countArray.getJSONObject(i).get("Beschreibung").toString(),
                                     activity.countArray.getJSONObject(i).get("Offen").toString(),
                                     activity.countArray.getJSONObject(i).get("Geschlossen").toString(),
