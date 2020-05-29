@@ -92,9 +92,13 @@ public class loadingFromDatabase extends AppCompatActivity {
                             for (int j = 0; j < jsonTags.length(); j++) {
                                 ofTags.add(jsonTags.get(j).toString());
                             }
+                            /*String s = activity.countArray.getJSONObject(i).get("Bild").toString();
+                            s = s.replace("\\", "/").replace("//", "/");
+                            Log.d("BildS", s);*/
                             rowItems.add(new cards(activity.countArray.getJSONObject(i).get("id").toString(),
                                     activity.countArray.getJSONObject(i).get("Name").toString(),
-                                    activity.countArray.getJSONObject(i).get("Bild").toString(),
+                                    //s,
+                                    activity.countArray.getJSONObject(i).get("Bild").toString().replace("\\", "/").replace("//", "/"),
                                     //activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString(),
                                     activity.countArray.getJSONObject(i).get("Beschreibung").toString(),
                                     activity.countArray.getJSONObject(i).get("Offen").toString(),
@@ -108,8 +112,11 @@ public class loadingFromDatabase extends AppCompatActivity {
                                     activity.countArray.getJSONObject(i).get("PLZ").toString(),
                                     activity.countArray.getJSONObject(i).get("Mailadresse").toString(),
                                     ofTags));
+                            Log.d("BildS", activity.countArray.getJSONObject(i).get("Bild").toString().replace("\\", "/").replace("//", "/"));
+                            //Log.d("BildSoll", activity.countArray.getJSONObject(i).get("Bild").toString());
+                            //Log.d("BildSoll", activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString());
                             //getFirstImage(activity.countArray.getJSONObject(i).getJSONArray("Bild"), i);
-                            Log.d("brgl", activity.countArray.get(0).toString());
+                            //Log.d("brgl", activity.countArray.get(0).toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -155,6 +162,7 @@ public class loadingFromDatabase extends AppCompatActivity {
             }*/
             return null;
         }
+        /*
         public void getFirstImage(JSONArray ImagePaths, final int indexed){
             final loadingFromDatabase activity = activityWeakReference.get();
             if(activity == null || activity.isFinishing()){
@@ -187,7 +195,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                     activity.aktuell++;
                 }
             });
-        }
+        }*/
 
         @Override
         protected void onPostExecute(String s) {
