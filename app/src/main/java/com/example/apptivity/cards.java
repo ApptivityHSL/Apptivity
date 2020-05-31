@@ -1,5 +1,10 @@
 package com.example.apptivity;
 
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +26,18 @@ public class cards {
     private List<String> tags;
 
     public cards(String actID, String name, String imURL, String description, String open, String closed, String location, String street, String website, String houseNumber,
-                 String budget, String phoneNumber, String postal, String mailAddress, ArrayList<String> tags){
+                 String budget, String phoneNumber, String postal, String mailAddress, ArrayList<String> tags) {
         this.actID = actID;
         this.name = name;
-        this.imURL = imURL;
+        int iend = imURL.indexOf(",");
+        String subString = imURL;
+        if (iend != -1)
+        {
+            subString= imURL.substring(0 , iend)+"]";
+        }
+        //subString.replace("\"", "").replace("[", "").replace("]", "");
+        Log.d("jArray", subString);
+        this.imURL = subString;
         this.description = description;
         this.open = open;
         this.closed = closed;

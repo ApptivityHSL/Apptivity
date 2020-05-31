@@ -112,7 +112,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                                     activity.countArray.getJSONObject(i).get("PLZ").toString(),
                                     activity.countArray.getJSONObject(i).get("Mailadresse").toString(),
                                     ofTags));
-                            Log.d("BildS", activity.countArray.getJSONObject(i).get("Bild").toString().replace("\\", "/").replace("//", "/"));
+                            //Log.d("BildS", activity.countArray.getJSONObject(i).get("Bild").toString().replace("\\", "/").replace("//", "/"));
                             //Log.d("BildSoll", activity.countArray.getJSONObject(i).get("Bild").toString());
                             //Log.d("BildSoll", activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString());
                             //getFirstImage(activity.countArray.getJSONObject(i).getJSONArray("Bild"), i);

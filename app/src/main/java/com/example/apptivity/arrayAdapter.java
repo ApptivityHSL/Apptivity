@@ -1,6 +1,7 @@
 package com.example.apptivity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,9 @@ public class arrayAdapter extends ArrayAdapter<cards> {
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
 
         name.setText(card_item.getName());
+        Log.d("Glidinger", card_item.getImURL().replace("\"", "").replace("[", "").replace("]", ""));
         Glide.with(getContext())
-                .load(card_item.getImURL())
+                .load(card_item.getImURL().replace("\"", "").replace("[", "").replace("]", ""))
                 .into(image);
         //image.setImageResource(R.mipmap.ic_launcher);
 
