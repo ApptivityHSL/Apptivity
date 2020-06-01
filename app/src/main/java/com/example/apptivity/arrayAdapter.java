@@ -21,22 +21,24 @@ public class arrayAdapter extends ArrayAdapter<cards> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
+        Log.d("arrayA", "1");
         cards card_item = getItem(position);
-
+        Log.d("arrayA", "2");
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
-
+        Log.d("arrayA", "3");
         TextView name = (TextView) convertView.findViewById(R.id.nameC);
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
-
+        Log.d("arrayA", "4");
         name.setText(card_item.getName());
+        Log.d("arrayA", "5");
         Log.d("Glidinger", card_item.getImURL().replace("\"", "").replace("[", "").replace("]", ""));
         Glide.with(getContext())
                 .load(card_item.getImURL().replace("\"", "").replace("[", "").replace("]", ""))
                 .into(image);
         //image.setImageResource(R.mipmap.ic_launcher);
-
+        Log.d("arrayA", "6");
         return convertView;
     }
 }

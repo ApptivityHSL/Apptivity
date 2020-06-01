@@ -109,6 +109,9 @@ public class Swiping extends  AppCompatActivity {
        // cardFilter();
 
         //matches = new HashSet<String>();
+
+        Log.d("noSwipeS", "Before");
+
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
 
@@ -116,8 +119,10 @@ public class Swiping extends  AppCompatActivity {
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
+        Log.d("noSwipeS", "After");
 
         flingContainer.setAdapter(arrayAdapter);
+        Log.d("noSwipeS", "After2");
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
@@ -171,7 +176,7 @@ public class Swiping extends  AppCompatActivity {
             public void onScroll(float scrollProgressPercent) {
             }
         });
-
+        Log.d("noSwipeS", "After3");
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
@@ -214,7 +219,7 @@ public class Swiping extends  AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        Log.d("noSwipeS", "After4");
 
         btBackHome = findViewById(R.id.btBackHome);
         btBackHome.setOnClickListener(new View.OnClickListener() {
@@ -224,6 +229,7 @@ public class Swiping extends  AppCompatActivity {
             }
 
         });
+        Log.d("noSwipeS", "After5");
     }
 /*
     @RequiresApi(api = Build.VERSION_CODES.N)

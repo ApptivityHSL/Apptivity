@@ -27,6 +27,7 @@ public class cards {
 
     public cards(String actID, String name, String imURL, String description, String open, String closed, String location, String street, String website, String houseNumber,
                  String budget, String phoneNumber, String postal, String mailAddress, ArrayList<String> tags) {
+        Log.d("noSwipe", imURL);
         this.actID = actID;
         this.name = name;
         int iend = imURL.indexOf(",");

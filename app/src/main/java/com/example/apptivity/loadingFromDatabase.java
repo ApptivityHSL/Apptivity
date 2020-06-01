@@ -33,11 +33,6 @@ public class loadingFromDatabase extends AppCompatActivity {
 
         rowItems = new ArrayList<>();
 
-
-
-
-
-
         startAsyncTask();
         /*new Handler().postDelayed(new Runnable() {
             @Override
