@@ -36,6 +36,7 @@ public class Favourites extends AppCompatActivity {
 
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
+        if (matches != null) {
         String[] matchesToView = new String[matches.size()];
         int index = 0;
         for (String str : matches)
@@ -44,18 +45,17 @@ public class Favourites extends AppCompatActivity {
         TableLayout tLayout = findViewById(R.id.matchLL);
         //setContentView(linearLayout);
         final Bundle[] bundle = new Bundle[matchesToView.length];
-        for( int i = 0; i < matchesToView.length; i++ )
-        {
-            TableRow tr = new TableRow(this);
-            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            for (int i = 0; i < matchesToView.length; i++) {
+                TableRow tr = new TableRow(this);
+                tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
-            final Button mButton = new Button(this);
-            mButton.setTag(matchesToView[i]);
-            final String matchToView = matchesToView[i];
-            final int indeXX = i;
-            bundle[i] = new Bundle();
-            fillBundle(bundle[i], matchToView);
-            mButton.setOnClickListener(new View.OnClickListener() {
+                final Button mButton = new Button(this);
+                mButton.setTag(matchesToView[i]);
+                final String matchToView = matchesToView[i];
+                final int indeXX = i;
+                bundle[i] = new Bundle();
+                fillBundle(bundle[i], matchToView);
+                mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Favourites.this, ActivityOverview.class);
@@ -106,8 +106,8 @@ public class Favourites extends AppCompatActivity {
             tr.addView(mButton);
             tr.addView(dButton);
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            }
         }
-
         btBackToHome = findViewById(R.id.btBackToHome);
         btBackToHome.setOnClickListener(new View.OnClickListener(){
             @Override
