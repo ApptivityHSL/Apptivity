@@ -10,12 +10,12 @@
         android:id="@+id/btSwipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:text="@string/showme"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPostal" />
+        app:layout_constraintTop_toBottomOf="@+id/getLocation"
+        app:layout_constraintVertical_bias="0.279" />
 
     <TextView
         android:id="@+id/tvWhere"
@@ -31,26 +31,52 @@
 
     <EditText
         android:id="@+id/inputPostal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="244dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/postalcode"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTown" />
 
     <EditText
         android:id="@+id/inputTown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="244dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="96dp"
         android:ems="10"
         android:hint="@string/city"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWhere" />
+
+    <Button
+        android:id="@+id/getLocation"
+        android:layout_width="214dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
+        android:text="@string/getLocation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPostal"
+        app:layout_constraintVertical_bias="0.427" />
+
+    <ProgressBar
+        android:id="@+id/progressBarGps"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="110dp"
+        android:layout_height="112dp"
+        app:layout_constraintBottom_toTopOf="@+id/getLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPostal"
+        app:layout_constraintVertical_bias="0.325" />
 </androidx.constraintlayout.widget.ConstraintLayout>
