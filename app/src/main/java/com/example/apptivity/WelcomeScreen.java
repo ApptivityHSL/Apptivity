@@ -27,6 +27,8 @@ public class WelcomeScreen extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
 
+    private ConnectFirebase a = new ConnectFirebase(this);
+
     private Button btWelcome;
     public static final String DEFAULT_VALUE = "default";
     public static final String INPUT_NAME ="name";
@@ -35,6 +37,18 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+
+
+
+      /*  a.pullAllData("Tag", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+            }
+        });*/
+
+
+
 
         new Handler().postDelayed(new Runnable() {
             @Override

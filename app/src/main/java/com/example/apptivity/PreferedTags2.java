@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.CheckBox;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +30,10 @@ public class PreferedTags2 extends AppCompatActivity {
     private ArrayList<String> tags = new ArrayList<>();
     private ArrayList<String> listOfClickedTags = new ArrayList<>();
 
+
     private Button btPrefTags;
     private Button btHome;
+    private ProgressBar progressPullAllData;
 
 
     @Override
@@ -37,6 +41,9 @@ public class PreferedTags2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefered_tags2);
 
+        progressPullAllData = findViewById(R.id.progressPullAllData);
+
+        progressPullAllData.setVisibility(View.VISIBLE);
 
         a.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
@@ -53,6 +60,7 @@ public class PreferedTags2 extends AppCompatActivity {
                 }
                 tags.remove("");
                 checkBoxes();
+                progressPullAllData.setVisibility(View.GONE);
 
             }
         });
@@ -76,6 +84,7 @@ public class PreferedTags2 extends AppCompatActivity {
         });
 
     }
+
 
     private void checkBoxes() {
       //  String lastElement = Iterables.getLast(tags);
@@ -179,6 +188,10 @@ public class PreferedTags2 extends AppCompatActivity {
         }
         Log.d("testtest", information);
         return information;
+    }
+
+    public void onAuthStateChanged (FirebaseAuth auth){
+
     }
 
 }

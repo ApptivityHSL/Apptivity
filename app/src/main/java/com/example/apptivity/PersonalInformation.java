@@ -56,17 +56,18 @@ public class PersonalInformation extends AppCompatActivity {
                     femalefuerfunc = inputFemale.isChecked();
 
                     storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
-                    openPreferedTags();
+                    openPreferredTags();
                 }
             }
 
         });
     }
 
-    public void openPreferedTags(){
-            Intent intent = new Intent(this, PreferedTags2.class);
-            startActivity(intent);
+    private void openPreferredTags() {
+        Intent intent = new Intent(this, PreferedTags2.class);
+        startActivity(intent);
     }
+
 
     private void storePersonalInfo(String name, int alter, boolean male, boolean female){
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
