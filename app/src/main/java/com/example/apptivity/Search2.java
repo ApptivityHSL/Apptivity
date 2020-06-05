@@ -10,8 +10,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.ResultReceiver;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +41,7 @@ public class Search2 extends AppCompatActivity {
     private EditText inputPostal;
     private Button getLocation;
     private ProgressBar progressGPS;
+    private ResultReceiver resultReceiver;
 
 
     @Override
@@ -51,6 +55,8 @@ public class Search2 extends AppCompatActivity {
         progressGPS = findViewById(R.id. progressBarGps);
 
         progressGPS.setVisibility(View.INVISIBLE);
+
+        resultReceiver = new AddressResultReceiver(new Handler());
 
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +111,15 @@ public class Search2 extends AppCompatActivity {
         editor.apply();
     }
 
+    private void fetchAddressFromLatLong(Location location){
+        Intent intent = new Intent(this, FetchAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA,location);
+        startService(intent);
+
+
+    }
+
     @SuppressLint("MissingPermission")
     private void getCurrentLocation(){
 
@@ -130,8 +145,15 @@ public class Search2 extends AppCompatActivity {
                                     locationResult.getLocations().get(latestLocationIndex).getLatitude();
                             longitude =
                                     locationResult.getLocations().get(latestLocationIndex).getLongitude();
+
+                            Location location = new Location("providerNA");
+                            location.setLatitude(latitude);
+                            location.setLongitude(longitude);
+                            fetchAddressFromLatLong(location);
+                        } else {
+                            progressGPS.setVisibility(View.GONE);
                         }
-                        progressGPS.setVisibility(View.GONE);
+
                         Log.d("gps", String.valueOf(latitude));
                         Log.d("gps", String.valueOf(longitude));
                     }
@@ -150,6 +172,47 @@ public class Search2 extends AppCompatActivity {
 
             }
         }
+    }
+
+    private class AddressResultReceiver extends ResultReceiver{
+
+
+        /**
+         * Create a new ResultReceive to receive results.  Your
+         * {@link #onReceiveResult} method will be called from the thread running
+         * <var>handler</var> if given, or from an arbitrary thread if null.
+         *
+         * @param handler
+         */
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        protected void onReceiveResult(int resultCode, Bundle resultData){
+            super.onReceiveResult(resultCode,resultData);
+            if(resultCode == Constants.SUCCESS_RESULT){
+                String result  = resultData.getString(Constants.RESULT_DATA_KEY);
+                String [] parts = result.split(", ");
+                String address = parts[0];
+                String city = parts[1];
+                String county = parts[2];
+
+                String [] postalAndCity = city.split(" ");
+                String postalCodeString = postalAndCity[0];
+                postalCode = Integer.parseInt(postalAndCity[0]);
+                town = postalAndCity[1];
+                inputTown.setText(town);
+                inputPostal.setText(postalCodeString);
+                Log.d("gps",town);
+                Log.d("gps", String.valueOf(postalCode));
+
+            } else {
+
+            }
+            progressGPS.setVisibility(View.GONE);
+        }
+
+
     }
 
 }

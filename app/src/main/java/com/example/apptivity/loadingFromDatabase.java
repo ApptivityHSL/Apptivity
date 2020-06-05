@@ -80,7 +80,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Log.d("anzahl", activity.actAmount + "");
-                    for (int i = 0; i < activity.actAmount; i++) {
+                    for (int i = 0; i < activity.actAmount; i++) { //
                         try {
                             ArrayList<String> ofTags = new ArrayList<>();
                             JSONArray jsonTags = activity.countArray.getJSONObject(i).getJSONArray("Tags");
