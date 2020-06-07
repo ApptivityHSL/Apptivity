@@ -31,9 +31,13 @@ public class loadingFromDatabase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_from_database);
 
+        Log.d("doShit", "doing1");
         rowItems = new ArrayList<>();
+        Log.d("doShit", "doing2");
+        //startAsyncTask();
 
-        startAsyncTask();
+        new AsyncTaskLoad(this).execute();
+        Log.d("doShit", "doing3");
         /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -43,18 +47,19 @@ public class loadingFromDatabase extends AppCompatActivity {
             }
         },SPLASH_TIME_OUT);*/
     }
-
+    /*
     public void startAsyncTask(){
         AsyncTaskLoad task = new AsyncTaskLoad(this);
         task.execute();
-    }
+    }*/
 
-    private static class AsyncTaskLoad extends android.os.AsyncTask<Integer, Void, String>{
+    private static class AsyncTaskLoad extends android.os.AsyncTask<Integer, Integer, String>{
         private WeakReference<loadingFromDatabase> activityWeakReference;
 
         AsyncTaskLoad(loadingFromDatabase activity){
             activityWeakReference = new WeakReference<loadingFromDatabase>(activity);
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -62,13 +67,19 @@ public class loadingFromDatabase extends AppCompatActivity {
         }
 
         @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
         protected String doInBackground(Integer... integers) {
+            Log.d("doShit", "doing4");
             final loadingFromDatabase activity = activityWeakReference.get();
             if(activity == null || activity.isFinishing()){
                 return null;
             }
             activity.aktuell = 0;
-            Log.d("doing?", "doing2");
+            Log.d("doShit", "doing5");
             activity.connection.queryData("Test", "Ort", "Landshut", new ConnectFirebaseCallback() {
                 @Override
                 public void onCallback(String value) {
@@ -76,12 +87,15 @@ public class loadingFromDatabase extends AppCompatActivity {
                         activity.countArray = new JSONArray(value);
                         activity.actAmount = activity.countArray.length();
                         Log.d("ObjektZahl", activity.actAmount + "");
+                        Log.d("doShit", "doing6");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    Log.d("doShit", "doing7");
                     Log.d("anzahl", activity.actAmount + "");
                     for (int i = 0; i < activity.actAmount; i++) { //
                         try {
+                            Log.d("doShit", "doing8");
                             ArrayList<String> ofTags = new ArrayList<>();
                             JSONArray jsonTags = activity.countArray.getJSONObject(i).getJSONArray("Tags");
                             for (int j = 0; j < jsonTags.length(); j++) {
@@ -90,6 +104,8 @@ public class loadingFromDatabase extends AppCompatActivity {
                             /*String s = activity.countArray.getJSONObject(i).get("Bild").toString();
                             s = s.replace("\\", "/").replace("//", "/");
                             Log.d("BildS", s);*/
+                            Log.d("doShit", "doing9");
+                            Log.d("doShit", rowItems.size()+"");
                             rowItems.add(new cards(activity.countArray.getJSONObject(i).get("id").toString(),
                                     activity.countArray.getJSONObject(i).get("Name").toString(),
                                     //s,
@@ -112,6 +128,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                             //Log.d("BildSoll", activity.countArray.getJSONObject(i).getJSONArray("Bild").getJSONObject(0).toString());
                             //getFirstImage(activity.countArray.getJSONObject(i).getJSONArray("Bild"), i);
                             //Log.d("brgl", activity.countArray.get(0).toString());
+                            Log.d("doShit", "doing10");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -155,6 +172,7 @@ public class loadingFromDatabase extends AppCompatActivity {
                     }
                 });
             }*/
+            Log.d("doShit", "doing11");
             return null;
         }
         /*
