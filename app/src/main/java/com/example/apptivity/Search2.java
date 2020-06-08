@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
@@ -198,13 +199,49 @@ public class Search2 extends AppCompatActivity {
                 String county = parts[2];
 
                 String [] postalAndCity = city.split(" ");
-                String postalCodeString = postalAndCity[0];
-                postalCode = Integer.parseInt(postalAndCity[0]);
-                town = postalAndCity[1];
-                inputTown.setText(town);
-                inputPostal.setText(postalCodeString);
-                Log.d("gps",town);
-                Log.d("gps", String.valueOf(postalCode));
+                int x = postalAndCity.length;
+                String postalCodeString;
+
+                switch(x){
+                    case 2:
+                        postalCodeString = postalAndCity[0];
+                        postalCode = Integer.parseInt(postalAndCity[0]);
+                        town = postalAndCity[1];
+                        inputTown.setText(town);
+                        inputPostal.setText(postalCodeString);
+                        Log.d("gps",town);
+                        Log.d("gps",postalCodeString);
+
+                    case 3:
+
+                        postalCodeString = postalAndCity[0];
+                        postalCode = Integer.parseInt(postalAndCity[0]);
+                        town = postalAndCity[1];
+                        town = town + " " + postalAndCity[2];
+                        inputTown.setText(town);
+                        inputPostal.setText(postalCodeString);
+
+                    case 4:
+
+                        postalCodeString = postalAndCity[0];
+                        postalCode = Integer.parseInt(postalAndCity[0]);
+                        town = postalAndCity[1];
+                        town = town+ " " + postalAndCity[2];
+                        town = town+ " " + postalAndCity[3];
+                        inputTown.setText(town);
+                        inputPostal.setText(postalCodeString);
+
+                    case 5:
+
+                        postalCodeString = postalAndCity[0];
+                        postalCode = Integer.parseInt(postalAndCity[0]);
+                        town = postalAndCity[1];
+                        town = town+ " " + postalAndCity[2];
+                        town = town+ " " + postalAndCity[3];
+                        town = town+ " " + postalAndCity[4];
+                        inputTown.setText(town);
+                        inputPostal.setText(postalCodeString);
+                }
 
             } else {
 
