@@ -81,7 +81,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         });*/
 
-        ConnectFirebase cf = new ConnectFirebase();
+        ConnectFirebase cf = new ConnectFirebase(this);
         /*cf.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {

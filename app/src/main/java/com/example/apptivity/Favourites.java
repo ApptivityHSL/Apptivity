@@ -27,7 +27,7 @@ public class Favourites extends AppCompatActivity {
     private Button btBackToHome;
     private Button btResetMatches;
     private Set<String> matches;
-    private ConnectFirebase connection = new ConnectFirebase();
+    private ConnectFirebase connection = new ConnectFirebase(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
