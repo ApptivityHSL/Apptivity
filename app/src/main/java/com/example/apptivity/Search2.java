@@ -211,6 +211,8 @@ public class Search2 extends AppCompatActivity {
                 postalCodeString = postalAndCity[0];
                 postalCode = Integer.parseInt(postalAndCity[0]);
 
+                town = "";
+
                 for(int i = 1; i < x; i ++){
 
                     town = town + " " + postalAndCity[i];
