@@ -27,8 +27,6 @@ public class ConnectFirebase {
     private String gson = "";
     private FirebaseAuth mAuth;
 
-    public ConnectFirebase(){}
-
     public ConnectFirebase(Activity current)
     {
         mAuth = FirebaseAuth.getInstance();
