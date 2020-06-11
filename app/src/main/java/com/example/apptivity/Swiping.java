@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -116,6 +117,8 @@ public class Swiping extends  AppCompatActivity {
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, loadingFromDatabase.rowItems);
+
+        SystemClock.sleep(250);
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 

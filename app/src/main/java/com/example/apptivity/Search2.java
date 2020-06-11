@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
@@ -31,7 +32,7 @@ import com.google.android.gms.location.LocationServices;
 
 public class Search2 extends AppCompatActivity {
     private Button btSwipe;
-    protected static String town;
+    protected static String town = "";
     protected static int postalCode;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     private double longitude;
@@ -197,14 +198,29 @@ public class Search2 extends AppCompatActivity {
                 String city = parts[1];
                 String county = parts[2];
 
+
                 String [] postalAndCity = city.split(" ");
-                String postalCodeString = postalAndCity[0];
+                int x = postalAndCity.length;
+                String postalCodeString;
+
+                Log.d("gps", String.valueOf(x));
+                Log.d("gps", postalAndCity[0]);
+                Log.d("gps", postalAndCity[1]);
+
+
+                postalCodeString = postalAndCity[0];
                 postalCode = Integer.parseInt(postalAndCity[0]);
-                town = postalAndCity[1];
+
+                town = "";
+
+                for(int i = 1; i < x; i ++){
+
+                    town = town + " " + postalAndCity[i];
+                }
+                town = town.trim();
+
                 inputTown.setText(town);
                 inputPostal.setText(postalCodeString);
-                Log.d("gps",town);
-                Log.d("gps", String.valueOf(postalCode));
 
             } else {
 
