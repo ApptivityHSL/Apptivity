@@ -5,7 +5,7 @@
     android:id="@+id/back"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#4285f4 "
+    android:background="#1c89ef"
     tools:context=".WelcomeScreen"
     tools:ignore="ExtraText">
 
@@ -18,10 +18,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="34dp"
         android:backgroundTint="#FFFFFF"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
