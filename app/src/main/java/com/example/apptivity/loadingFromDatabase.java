@@ -25,6 +25,7 @@ public class loadingFromDatabase extends AppCompatActivity {
     private int actAmount;
     private int aktuell = 0;
     public static List<cards> rowItems; //Für sortieren relevant
+    private static boolean warten = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +133,9 @@ public class loadingFromDatabase extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
+                    warten = false;
                 }
             });
             /*
@@ -172,7 +175,9 @@ public class loadingFromDatabase extends AppCompatActivity {
                     }
                 });
             }*/
-            Log.d("doShit", "doing11");
+            while(warten){
+            Log.d("doShit", "doing11");}
+            warten = true;
             return null;
         }
         /*
