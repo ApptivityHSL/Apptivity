@@ -12,7 +12,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -118,17 +118,9 @@ public class Swiping extends  AppCompatActivity {
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, loadingFromDatabase.rowItems);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //Do something after 100ms
-            }
-        }, 200);
+        SystemClock.sleep(250);
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
-
-
 
         Log.d("noSwipeS", "After");
 
