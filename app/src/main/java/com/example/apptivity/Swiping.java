@@ -118,7 +118,7 @@ public class Swiping extends  AppCompatActivity {
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, loadingFromDatabase.rowItems);
 
-        SystemClock.sleep(250);
+        SystemClock.sleep(250); //hmm
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
