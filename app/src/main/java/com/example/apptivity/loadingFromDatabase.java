@@ -47,6 +47,14 @@ public class loadingFromDatabase extends AppCompatActivity {
             }
         },SPLASH_TIME_OUT);*/
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(this, Search2.class);
+        startActivity(intent);
+    }
+
     /*
     public void startAsyncTask(){
         AsyncTaskLoad task = new AsyncTaskLoad(this);
