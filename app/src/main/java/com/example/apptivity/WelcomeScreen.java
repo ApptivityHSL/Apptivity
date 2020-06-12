@@ -48,7 +48,7 @@ public class WelcomeScreen extends AppCompatActivity {
         });*/
 
 
-
+        //Test
 
         new Handler().postDelayed(new Runnable() {
             @Override
