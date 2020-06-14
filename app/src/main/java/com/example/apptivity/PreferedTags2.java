@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -45,7 +46,28 @@ public class PreferedTags2 extends AppCompatActivity {
 
         progressPullAllData.setVisibility(View.VISIBLE);
 
-        a.pullAllData("Tag", new ConnectFirebaseCallback() {
+        a.queryData("Tag", "Kategorie", "0", new ConnectFirebaseCallback() {
+            @Override
+            public void onCallback(String value) {
+                String r = "start";
+                int tagCounter = 0;
+                while(!r.equals("")){
+                    r = pullProperty(value, tagCounter, "Name");
+                    if(!r.equals(null) || !r.equals("")){
+                        tags.add(r);
+                    }
+                    Log.d("tag", String.valueOf(tags));
+                    tagCounter++;
+                }
+                tags.remove("");
+                checkBoxes();
+                progressPullAllData.setVisibility(View.GONE);
+            }
+        });
+
+
+
+      /*  a.pullAllData("Tag", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {
                 String r = "start";
@@ -63,7 +85,7 @@ public class PreferedTags2 extends AppCompatActivity {
                 progressPullAllData.setVisibility(View.GONE);
 
             }
-        });
+        });*/
 
         btPrefTags = findViewById(R.id.btPrefTags);
         btPrefTags.setOnClickListener(new View.OnClickListener(){
@@ -91,6 +113,8 @@ public class PreferedTags2 extends AppCompatActivity {
         for( int i = 0; i < tags.size(); i++ )
         {
             TableLayout tLayout = findViewById(R.id.matchLL);
+            //tLayout
+
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
@@ -103,6 +127,7 @@ public class PreferedTags2 extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             box.setOnClickListener(onCheckboxClicked(box));
+            box.setGravity(Gravity.CENTER);
 
             i++;
 
@@ -120,13 +145,13 @@ public class PreferedTags2 extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             box2.setOnClickListener(onCheckboxClicked(box2));
+            box2.setGravity(Gravity.CENTER);
 
             box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             box2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
             tr.addView(box);
             tr.addView(box2);
-
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }}
     }
