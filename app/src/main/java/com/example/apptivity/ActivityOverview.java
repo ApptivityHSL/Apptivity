@@ -20,6 +20,9 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
@@ -78,29 +81,43 @@ public class ActivityOverview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-       cName.setText(bundle.getString("cName"));
+        try {
+            JSONArray picArray = new JSONArray(bundle.getString("cURL"));
+            Log.d("NoPic1", picArray.toString());
+            String url = picArray.toString().replace("\"", "").replace("[", "").replace("]", "").replace("\\", "/").replace("//", "/");
+            Log.d("NoPic2", url);
+            if(url.contains(",")) {
+                url.substring(0, url.indexOf(","));
+                String picaArray[] = url.split(",");
+                Log.d("NoPic5", picaArray[0]);
+                Log.d("NoPic3", url);
+                //picaArray[0].replace("\"", "");
+                Log.d("NoPic4", picaArray[0]);
+                Glide.with(this)
+                        .load(picaArray[0])
+                        .into(cURL);
+            }else{
+                Glide.with(this)
+                        .load(url)
+                        .into(cURL);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        cName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
         cBudget.setText("Budget: "+bundle.getString("cBudget"));
         cClosed.setText(" bis "+bundle.getString("cClosed"));
         cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));
         cDescription.setText(bundle.getString("cDescription"));
-        cHouseNumber.setText(bundle.getString("cHouseNumber"));
+        cHouseNumber.setText(" "+bundle.getString("cHouseNumber"));
         cWebsite.setText("Website: "+bundle.getString("cWebsite"));
         cStreet.setText("Anschrift: "+bundle.getString("cStreet"));
         cPostal.setText("           "+bundle.getString("cPostal"));
         cMailAddress.setText("Email: "+bundle.getString("cMailAddress"));
-        cLocation.setText(bundle.getString("cLocation"));
+        cLocation.setText(" "+bundle.getString("cLocation"));
         cPhoneNumber.setText("Telefonnummer: "+bundle.getString("cPhoneNumber"));
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        try {
-            URL url = new URL(bundle.getString("cURL"));
-            cURL.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
-        } catch (IOException e) {
-            //Log.e(TAG, e.getMessage());
-        }
-        //cURL.setText(bundle.getString("cURL"));
     }
 
     public void openSwiping(){
