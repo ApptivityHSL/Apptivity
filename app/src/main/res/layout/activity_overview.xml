@@ -36,9 +36,12 @@
             <TableRow>
                 <ImageView
                     android:id="@+id/actImage"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:contentDescription="@string/my_image_description"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:contentDescription="@string/my_image_description"
+                    android:layout_weight="1"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"/>
             </TableRow>
 
             <TableRow>
@@ -46,8 +49,11 @@
                     android:id="@+id/cName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
             </TableRow>
 
             <TableRow>
@@ -55,92 +61,115 @@
                     android:id="@+id/cDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="25dp"/>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
                 <TextView
                     android:id="@+id/cOpen"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
                     android:text="TextView"
-                    android:layout_weight="0.4"/>
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
                 <TextView
                     android:id="@+id/cClosed"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:text="TextView"
-                    android:layout_weight="0.4"/>
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/cStreet"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:gravity="right"
+                    android:layout_weight="0.5"/>
                 <TextView
                     android:id="@+id/cHouseNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:layout_weight="0.5"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/cPostal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:gravity="right"
+                    android:layout_weight="0.5"
+                    android:layout_marginBottom="5dp"/>
                 <TextView
                     android:id="@+id/cLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:layout_weight="0.5"
+                    android:layout_marginBottom="5dp"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/cBudget"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/cPhoneNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/cMailAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:id="@+id/cWebsite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="TextView"/>
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:layout_weight="1"/>
             </TableRow>
 
         </TableLayout>
