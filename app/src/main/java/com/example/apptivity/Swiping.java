@@ -112,7 +112,7 @@ public class Swiping extends  AppCompatActivity {
 
 
 
-        filterdCards = cardFilter(listOfTags,listOfPeople,loadingFromDatabase.rowItems);
+        filterdCards = cardFilter(listOfTags,listOfPeople,money,loadingFromDatabase.rowItems);
         //matches = new HashSet<String>();
 
         Log.d("noSwipeS", "Before");
@@ -273,7 +273,7 @@ public class Swiping extends  AppCompatActivity {
 
     }*/
 
-    public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople, List<cards> rowItems){
+    public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople,int money, List<cards> rowItems){
 
         ArrayList<cards> result = new ArrayList<cards>();
 
@@ -283,6 +283,10 @@ public class Swiping extends  AppCompatActivity {
         if(listOfPeople.isEmpty()){
             samePeople = true;
         };
+
+        if(money == 1){
+            money = 50;
+        }
 
         for (int i = 0; i < rowItems.size(); i++) {
             cards item = rowItems.get(i);
