@@ -166,6 +166,7 @@ public class Swiping extends  AppCompatActivity {
                 mEditor.apply();
             }
 
+            
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
