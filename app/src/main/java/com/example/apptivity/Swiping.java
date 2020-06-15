@@ -1,9 +1,6 @@
 package com.example.apptivity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.app.DirectAction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -93,6 +90,7 @@ public class Swiping extends  AppCompatActivity {
         //money
         SharedPreferences sharedPreferences3 = getSharedPreferences("money", MODE_PRIVATE);
         money = sharedPreferences3.getInt("money",0);
+        Double moneyDouble = Double.parseDouble(String.valueOf(money));
 
         //postcode
         SharedPreferences sharedPreferences4 = getSharedPreferences("postCode", MODE_PRIVATE);
@@ -273,22 +271,29 @@ public class Swiping extends  AppCompatActivity {
 
     }*/
 
-    public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople,int money, List<cards> rowItems){
+    public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople,double money, List<cards> rowItems){
 
         ArrayList<cards> result = new ArrayList<cards>();
 
         boolean sameTag = false;
         boolean samePeople = false;
 
-        if(listOfPeople.isEmpty()){
-            samePeople = true;
-        };
-
-        if(money == 1){
+        if(money == 0){
             money = 50;
         }
 
         for (int i = 0; i < rowItems.size(); i++) {
+             sameTag = false;
+             samePeople = false;
+
+            if(listOfPeople.isEmpty()){
+                samePeople = true;
+            };
+
+            if(listOfTags.isEmpty()){
+                sameTag = true;
+            };
+
             cards item = rowItems.get(i);
 
             
@@ -304,7 +309,7 @@ public class Swiping extends  AppCompatActivity {
                 }
             }
 
-            int budget = Integer.parseInt(item.getBudget().replace(","," "));
+            double budget = Double.parseDouble(item.getBudget().replace(",","."));
 
             if(budget < money && sameTag  && samePeople)
                 result.add(item);
