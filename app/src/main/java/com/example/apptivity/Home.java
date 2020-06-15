@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
         btSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openSearch();
+                openPrefTags2();
             }
 
         });
@@ -92,6 +92,11 @@ public class Home extends AppCompatActivity {
 
     public void openPersonOverview(){
         Intent intent = new Intent(this, PersonOverview.class);
+        startActivity(intent);
+    }
+
+    public void openPrefTags2(){
+        Intent intent = new Intent(this, PreferedTags2.class);
         startActivity(intent);
     }
 
