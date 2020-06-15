@@ -29,9 +29,13 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import static com.example.apptivity.cards.*;
 
 public class Swiping extends  AppCompatActivity {
 
@@ -59,6 +63,7 @@ public class Swiping extends  AppCompatActivity {
     private BroadcastReceiver mReceiver;
     private ArrayList<String> listOfTags = new ArrayList<>();
     private ArrayList<String> listOfPeople = new ArrayList<>();
+    private ArrayList<cards> filterdCards = new ArrayList<cards>();
     private int money;
     private String town;
     private int postCode;
@@ -107,8 +112,7 @@ public class Swiping extends  AppCompatActivity {
 
 
 
-       // cardFilter();
-
+        filterdCards = cardFilter(listOfTags,listOfPeople,loadingFromDatabase.rowItems);
         //matches = new HashSet<String>();
 
         Log.d("noSwipeS", "Before");
@@ -116,7 +120,7 @@ public class Swiping extends  AppCompatActivity {
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
 
-        arrayAdapter = new arrayAdapter(this, R.layout.item, loadingFromDatabase.rowItems);
+        arrayAdapter = new arrayAdapter(this, R.layout.item, filterdCards);
 
         SystemClock.sleep(250); //hmm
 
@@ -137,7 +141,7 @@ public class Swiping extends  AppCompatActivity {
                     }
                     isFirst = false;
                 }*/
-                loadingFromDatabase.rowItems.remove(0);
+                filterdCards.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -267,5 +271,43 @@ public class Swiping extends  AppCompatActivity {
         return information;
 
     }*/
+
+    public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople, List<cards> rowItems){
+
+        ArrayList<cards> result = new ArrayList<cards>();
+
+        boolean sameTag = false;
+        boolean samePeople = false;
+
+        if(listOfPeople.isEmpty()){
+            samePeople = true;
+        };
+
+        for (int i = 0; i < rowItems.size(); i++) {
+            cards item = rowItems.get(i);
+
+            
+            for(int i1 = 0; i1 < listOfTags.size(); i1++){
+               if(item.getTags().contains(listOfTags.get(i1))){
+                   sameTag = true;
+               }
+            }
+
+            for(int i2 = 0; i2 < listOfPeople.size(); i2++){
+                if(item.getTags().contains(listOfPeople.get(i2))){
+                    samePeople = true;
+                }
+            }
+
+            int budget = Integer.parseInt(item.getBudget().replace(","," "));
+
+            if(budget < money && sameTag  && samePeople)
+                result.add(item);
+            }
+        
+        return result;
+    }
+
+
 }
 
