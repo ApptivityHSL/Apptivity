@@ -36,5 +36,6 @@
     <string name="test3">[|</string>
     <string name="getLocation">Finde deinen Standort!"</string>
     <string name="loading">loading ...</string>
+    <string name="my_image_description">image</string>
 
 </resources>

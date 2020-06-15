@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class cards {
@@ -52,6 +53,8 @@ public class cards {
         this.mailAddress = mailAddress;
         this.tags = tags;
     }
+
+
     public String getActID(){
         return actID;
     }

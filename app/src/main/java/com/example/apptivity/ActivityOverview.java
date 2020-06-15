@@ -4,16 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -28,7 +41,7 @@ public class ActivityOverview extends AppCompatActivity {
     private TextView cOpen;
     private TextView cDescription;
     private TextView cHouseNumber;
-    private TextView cURL;
+    private ImageView cURL;
     private TextView cWebsite;
     private TextView cStreet;
     private TextView cPostal;
@@ -52,13 +65,13 @@ public class ActivityOverview extends AppCompatActivity {
         });
 
         cName = (TextView) findViewById(R.id.cName);
-        cActID = (TextView) findViewById(R.id.cActID);
+        //cActID = (TextView) findViewById(R.id.cActID);
         cBudget = (TextView) findViewById(R.id.cBudget);
         cClosed = (TextView) findViewById(R.id.cClosed);
         cOpen = (TextView) findViewById(R.id.cOpen);
         cDescription = (TextView) findViewById(R.id.cDescription);
         cHouseNumber = (TextView) findViewById(R.id.cHouseNumber);
-        cURL = (TextView) findViewById(R.id.cURL);
+        cURL = (ImageView) findViewById(R.id.actImage);
         cWebsite = (TextView) findViewById(R.id.cWebsite);
         cStreet = (TextView) findViewById(R.id.cStreet);
         cPostal = (TextView) findViewById(R.id.cPostal);
@@ -68,22 +81,45 @@ public class ActivityOverview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-       cName.setText(bundle.getString("cName"));
-        cActID.setText(bundle.getString("cActID"));
-        cBudget.setText(bundle.getString("cBudget"));
-        cClosed.setText(bundle.getString("cClosed"));
-        cOpen.setText(bundle.getString("cOpen"));
-        cDescription.setText(bundle.getString("cDescription"));
-        cHouseNumber.setText(bundle.getString("cHouseNumber"));
-        cURL.setText(bundle.getString("cURL"));
-        cWebsite.setText(bundle.getString("cWebsite"));
-        cStreet.setText(bundle.getString("cStreet"));
-        cPostal.setText(bundle.getString("cPostal"));
-        cMailAddress.setText(bundle.getString("cMailAddress"));
-        cLocation.setText(bundle.getString("cLocation"));
-        cPhoneNumber.setText(bundle.getString("cPhoneNumber"));
+        try {
+            JSONArray picArray = new JSONArray(bundle.getString("cURL"));
+            Log.d("NoPic1", picArray.toString());
+            String url = picArray.toString().replace("\"", "").replace("[", "").replace("]", "").replace("\\", "/").replace("//", "/");
+            Log.d("NoPic2", url);
+            if(url.contains(",")) {
+                url.substring(0, url.indexOf(","));
+                String picaArray[] = url.split(",");
+                Log.d("NoPic5", picaArray[0]);
+                Log.d("NoPic3", url);
+                //picaArray[0].replace("\"", "");
+                Log.d("NoPic4", picaArray[0]);
+                Glide.with(this)
+                        .load(picaArray[0])
+                        .into(cURL);
+            }else{
+                Glide.with(this)
+                        .load(url)
+                        .into(cURL);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        cName.setText(bundle.getString("cName"));
+        //cActID.setText(bundle.getString("cActID"));
+        cBudget.setText("Budget: "+bundle.getString("cBudget"));
+        cClosed.setText(" bis "+bundle.getString("cClosed"));
+        cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));
+        cDescription.setText(bundle.getString("cDescription"));
+        cHouseNumber.setText(" "+bundle.getString("cHouseNumber"));
+        cWebsite.setText("Website: "+bundle.getString("cWebsite"));
+        cStreet.setText("Anschrift: "+bundle.getString("cStreet"));
+        cPostal.setText("           "+bundle.getString("cPostal"));
+        cMailAddress.setText("Email: "+bundle.getString("cMailAddress"));
+        cLocation.setText(" "+bundle.getString("cLocation"));
+        cPhoneNumber.setText("Telefonnummer: "+bundle.getString("cPhoneNumber"));
     }
+
     public void openSwiping(){
         SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         boolean fromFavos = sharedPreferences.getBoolean("FROM_FAVOS",true);
