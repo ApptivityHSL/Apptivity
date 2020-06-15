@@ -275,8 +275,15 @@ public class Swiping extends  AppCompatActivity {
 
         ArrayList<cards> result = new ArrayList<cards>();
 
+        SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
+        matches = mSharedPreferences.getStringSet(MATCHES, matches);
+
+        String[] matchesFav = convert(matches);
+        Log.d("matches", String.valueOf(matches));
+
         boolean sameTag = false;
         boolean samePeople = false;
+        boolean stillInFav = false;
 
         if(money == 0){
             money = 50;
@@ -285,6 +292,7 @@ public class Swiping extends  AppCompatActivity {
         for (int i = 0; i < rowItems.size(); i++) {
              sameTag = false;
              samePeople = false;
+            stillInFav = false;
 
             if(listOfPeople.isEmpty()){
                 samePeople = true;
@@ -294,9 +302,19 @@ public class Swiping extends  AppCompatActivity {
                 sameTag = true;
             };
 
+            if(matches.isEmpty()){
+                stillInFav = false;
+            };
+
             cards item = rowItems.get(i);
 
-            
+
+            for(int i3 = 0; i3 < matches.size(); i3++){
+                if(item.getActID().contains(matchesFav[i3])){
+                    stillInFav = true;
+                }
+            }
+
             for(int i1 = 0; i1 < listOfTags.size(); i1++){
                if(item.getTags().contains(listOfTags.get(i1))){
                    sameTag = true;
@@ -311,11 +329,21 @@ public class Swiping extends  AppCompatActivity {
 
             double budget = Double.parseDouble(item.getBudget().replace(",","."));
 
-            if(budget < money && sameTag  && samePeople)
+            if(budget < money && sameTag  && samePeople && !stillInFav)
                 result.add(item);
             }
         
         return result;
+    }
+
+    public static String[] convert(Set<String> setOfString)
+    {
+        String[] arrayOfString = new String[setOfString.size()];
+
+        int index = 0;
+        for (String str : setOfString)
+            arrayOfString[index++] = str;
+        return arrayOfString;
     }
 
 
