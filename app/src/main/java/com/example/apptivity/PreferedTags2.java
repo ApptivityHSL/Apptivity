@@ -91,7 +91,7 @@ public class PreferedTags2 extends AppCompatActivity {
         btPrefTags.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openPersonalInformation();
+                openHome();
             }
         });
 
@@ -101,7 +101,7 @@ public class PreferedTags2 extends AppCompatActivity {
             public void onClick(View v){
                 safeTags(listOfClickedTags);
                 Log.d("123prefer", String.valueOf(listOfClickedTags));
-                openHome();
+                openSearch1();
             }
         });
 
@@ -176,6 +176,12 @@ public class PreferedTags2 extends AppCompatActivity {
     public void openHome(){
         safeTags(listOfClickedTags);
         Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
+
+    public void openSearch1(){
+        safeTags(listOfClickedTags);
+        Intent intent = new Intent(this, Search1.class);
         startActivity(intent);
     }
 

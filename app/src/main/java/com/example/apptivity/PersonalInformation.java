@@ -56,7 +56,7 @@ public class PersonalInformation extends AppCompatActivity {
                     femalefuerfunc = inputFemale.isChecked();
 
                     storePersonalInfo(namefuerfunc, alterfuerfunc, malefuerfunc, femalefuerfunc);
-                    openPreferredTags();
+                    openHome();
                 }
             }
 
@@ -65,6 +65,11 @@ public class PersonalInformation extends AppCompatActivity {
 
     private void openPreferredTags() {
         Intent intent = new Intent(this, PreferedTags2.class);
+        startActivity(intent);
+    }
+
+    private void openHome() {
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
