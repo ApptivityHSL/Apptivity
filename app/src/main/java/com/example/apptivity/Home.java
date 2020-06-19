@@ -96,6 +96,10 @@ public class Home extends AppCompatActivity {
     }
 
     public void openPrefTags2(){
+        SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("FROM_FAVOS", false);
+        mEditor.apply();
         Intent intent = new Intent(this, PreferedTags2.class);
         startActivity(intent);
     }
