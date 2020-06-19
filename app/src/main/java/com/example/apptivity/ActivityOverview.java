@@ -68,13 +68,13 @@ public class ActivityOverview extends AppCompatActivity {
         //cActID = (TextView) findViewById(R.id.cActID);
         cBudget = (TextView) findViewById(R.id.cBudget);
         cClosed = (TextView) findViewById(R.id.cClosed);
-        cOpen = (TextView) findViewById(R.id.cOpen);
+        //cOpen = (TextView) findViewById(R.id.cOpen);
         cDescription = (TextView) findViewById(R.id.cDescription);
         cHouseNumber = (TextView) findViewById(R.id.cHouseNumber);
         cURL = (ImageView) findViewById(R.id.actImage);
         cWebsite = (TextView) findViewById(R.id.cWebsite);
-        cStreet = (TextView) findViewById(R.id.cStreet);
-        cPostal = (TextView) findViewById(R.id.cPostal);
+        //cStreet = (TextView) findViewById(R.id.cStreet);
+        //cPostal = (TextView) findViewById(R.id.cPostal);
         cMailAddress = (TextView) findViewById(R.id.cMailAddress);
         cLocation = (TextView) findViewById(R.id.cLocation);
         cPhoneNumber = (TextView) findViewById(R.id.cPhoneNumber);
@@ -108,15 +108,15 @@ public class ActivityOverview extends AppCompatActivity {
         cName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
         cBudget.setText("Budget: "+bundle.getString("cBudget"));
-        cClosed.setText(" bis "+bundle.getString("cClosed"));
-        cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));
+        cClosed.setText("Geöffnet von "+bundle.getString("cOpen")+" bis "+bundle.getString("cClosed"));
+        //cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));
         cDescription.setText(bundle.getString("cDescription"));
-        cHouseNumber.setText(" "+bundle.getString("cHouseNumber"));
+        cHouseNumber.setText("Anschrift: "+bundle.getString("cStreet")+" "+bundle.getString("cHouseNumber"));
         cWebsite.setText("Website: "+bundle.getString("cWebsite"));
-        cStreet.setText("Anschrift: "+bundle.getString("cStreet"));
-        cPostal.setText("           "+bundle.getString("cPostal"));
+        //cStreet.setText("Anschrift: "+bundle.getString("cStreet"));
+        //cPostal.setText("           "+bundle.getString("cPostal"));
         cMailAddress.setText("Email: "+bundle.getString("cMailAddress"));
-        cLocation.setText(" "+bundle.getString("cLocation"));
+        cLocation.setText(bundle.getString("cPostal")+" "+bundle.getString("cLocation"));
         cPhoneNumber.setText("Telefonnummer: "+bundle.getString("cPhoneNumber"));
     }
 
