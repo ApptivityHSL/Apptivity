@@ -63,7 +63,7 @@ public class Favourites extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-            });
+                });
             Button dButton = new Button(this);
             final String matchKey = matchesToView[i];
             dButton.setOnClickListener(new View.OnClickListener() {
