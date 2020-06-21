@@ -34,6 +34,8 @@
     <string name="test12">|][|</string>
     <string name="test2">|][|</string>
     <string name="test3">[|</string>
+    <string name="left">LIKE</string>
+    <string name="right">DON\'T LIKE</string>
     <string name="getLocation">Finde deinen Standort!"</string>
     <string name="loading">loading ...</string>
     <string name="my_image_description">image</string>
