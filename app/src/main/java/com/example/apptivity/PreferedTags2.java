@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.CheckBox;
@@ -112,7 +113,7 @@ public class PreferedTags2 extends AppCompatActivity {
       //  String lastElement = Iterables.getLast(tags);
         for( int i = 0; i < tags.size(); i++ )
         {
-            TableLayout tLayout = findViewById(R.id.matchLL);
+            TableLayout tLayout = findViewById(R.id.tagsLL);
             //tLayout
 
             TableRow tr = new TableRow(this);
@@ -120,6 +121,9 @@ public class PreferedTags2 extends AppCompatActivity {
 
             CheckBox box = new CheckBox(this);
             CheckBox box2 = new CheckBox(this);
+            CheckBox box3 = new CheckBox(this);
+            box3.setVisibility(View.INVISIBLE);
+            box3.setPaddingRelative(125,0,0,0);
 
             box.setText(tags.get(i));
             box.setId(i);
@@ -134,7 +138,6 @@ public class PreferedTags2 extends AppCompatActivity {
            if(i >= tags.size()) {
 
                box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-               tr.addView(box);
                tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
                 break;
            } else {
@@ -148,8 +151,11 @@ public class PreferedTags2 extends AppCompatActivity {
             box2.setGravity(Gravity.CENTER);
 
             box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            box.setPaddingRelative(50,0,100,0);
             box2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            box2.setPaddingRelative(50,0,100,0);
 
+            tr.addView(box3);
             tr.addView(box);
             tr.addView(box2);
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
