@@ -1,6 +1,8 @@
 package com.example.apptivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 
 import android.content.Intent;
@@ -24,6 +26,8 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;
+
+import static androidx.constraintlayout.solver.widgets.Barrier.BOTTOM;
 
 
 public class PreferedTags2 extends AppCompatActivity {
@@ -121,9 +125,6 @@ public class PreferedTags2 extends AppCompatActivity {
 
             CheckBox box = new CheckBox(this);
             CheckBox box2 = new CheckBox(this);
-            CheckBox box3 = new CheckBox(this);
-            box3.setVisibility(View.INVISIBLE);
-            box3.setPaddingRelative(125,0,0,0);
 
             box.setText(tags.get(i));
             box.setId(i);
@@ -153,13 +154,14 @@ public class PreferedTags2 extends AppCompatActivity {
             box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             box.setPaddingRelative(50,0,100,0);
             box2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            box2.setPaddingRelative(50,0,100,0);
+            box2.setPaddingRelative(50,0,0,0);
 
-            tr.addView(box3);
             tr.addView(box);
             tr.addView(box2);
+            tr.setGravity(Gravity.CENTER_HORIZONTAL);
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-        }}
+        }
+        }
     }
 
 
