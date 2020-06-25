@@ -60,9 +60,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/destroyearthbb"
         android:onClick="onCheckboxClicked"
         android:text="@string/alone"
-        android:fontFamily="@font/destroyEarthBB"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWith" />
@@ -73,9 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/destroyearthbb"
         android:onClick="onCheckboxClicked"
         android:text="@string/partner"
-        android:fontFamily="@font/destroyEarthBB"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputAlone" />
@@ -86,10 +86,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/destroyearthbb"
         android:onClick="onCheckboxClicked"
         android:text="@string/family"
         android:textSize="30dp"
-        android:fontFamily="@font/destroyEarthBB"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPartner" />
 
@@ -99,9 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/destroyearthbb"
         android:onClick="onCheckboxClicked"
         android:text="@string/friends"
-        android:fontFamily="@font/destroyEarthBB"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputFamily" />
@@ -126,6 +126,7 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/btSearch2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputBudget" />
 </androidx.constraintlayout.widget.ConstraintLayout>
