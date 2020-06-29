@@ -148,12 +148,12 @@ public class Swiping extends  AppCompatActivity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-                Toast.makeText(Swiping.this, "Left!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Swiping.this, "Left!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(Swiping.this, "Right!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Swiping.this, "Right!", Toast.LENGTH_SHORT).show();
                 cards cardMatched = (cards) dataObject;
                 matches.add(cardMatched.getActID());
                 matchnum++;

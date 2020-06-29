@@ -81,6 +81,10 @@ public class ActivityOverview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        if(bundle.getString("cActID") == null){
+            openSwiping();
+        }
+
         try {
             JSONArray picArray = new JSONArray(bundle.getString("cURL"));
             Log.d("NoPic1", picArray.toString());
