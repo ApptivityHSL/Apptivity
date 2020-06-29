@@ -87,7 +87,7 @@ public class loadingFromDatabase extends AppCompatActivity {
             }
             activity.aktuell = 0;
             Log.d("doShit", "doing5");
-            activity.connection.queryData("Test", "Ort", "Landshut", new ConnectFirebaseCallback() {
+            activity.connection.queryData("Activities", "Ort", "Landshut", new ConnectFirebaseCallback() {
                 @Override
                 public void onCallback(String value) {
                     try {
