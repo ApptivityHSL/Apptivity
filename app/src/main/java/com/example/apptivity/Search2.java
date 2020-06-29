@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,12 +44,17 @@ public class Search2 extends AppCompatActivity {
     private Button getLocation;
     private ProgressBar progressGPS;
     private ResultReceiver resultReceiver;
+    private Button show;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search2);
+
+
+
+
 
         inputTown =  findViewById(R.id.inputTown);
         inputPostal =  findViewById(R.id.inputPostal);
