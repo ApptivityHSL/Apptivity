@@ -36,7 +36,7 @@
     <string name="test3">[|</string>
     <string name="right">LIKE</string>
     <string name="left">DON\'T LIKE</string>
-    <string name="getLocation">Finde deinen Standort!"</string>
+    <string name="getLocation">Standortsuche"</string>
     <string name="loading">loading ...</string>
     <string name="my_image_description">image</string>
 
