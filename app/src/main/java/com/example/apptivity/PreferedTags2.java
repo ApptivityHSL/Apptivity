@@ -152,9 +152,9 @@ public class PreferedTags2 extends AppCompatActivity {
             box2.setGravity(Gravity.CENTER);
 
             box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            box.setPaddingRelative(50,0,100,0);
+            box.setPaddingRelative(25,0,100,0);
             box2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            box2.setPaddingRelative(50,0,0,0);
+            box2.setPaddingRelative(25,0,0,0);
 
             tr.addView(box);
             tr.addView(box2);
