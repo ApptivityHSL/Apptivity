@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,7 @@ public class Favourites extends AppCompatActivity {
                 }
 
             });
-            connection.queryData("Test", "id", matchToView, new ConnectFirebaseCallback() {
+            connection.queryData("Activities", "id", matchToView, new ConnectFirebaseCallback() {
                 @Override
                 public void onCallback(String value) {                  //Gibt Collection und nicht Dokument
                     try {
@@ -92,6 +93,9 @@ public class Favourites extends AppCompatActivity {
                     }
                 }
             });
+
+                SystemClock.sleep(75); //hmm
+
             mButton.setText(matchesToView[i]);
             dButton.setText("X");
             mButton.setLayoutParams(new LinearLayout.LayoutParams(
