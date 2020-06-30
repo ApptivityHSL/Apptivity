@@ -61,7 +61,6 @@ public class PreferedTags2 extends AppCompatActivity {
                     if(!r.equals(null) || !r.equals("")){
                         tags.add(r);
                     }
-                    Log.d("tag", String.valueOf(tags));
                     tagCounter++;
                 }
                 tags.remove("");
@@ -69,28 +68,6 @@ public class PreferedTags2 extends AppCompatActivity {
                 progressPullAllData.setVisibility(View.GONE);
             }
         });
-
-
-
-      /*  a.pullAllData("Tag", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(String value) {
-                String r = "start";
-                int tagCounter = 0;
-                while(!r.equals("")){
-                    r = pullProperty(value, tagCounter, "Name");
-                    if(!r.equals(null) || !r.equals("")){
-                        tags.add(r);
-                    }
-                    Log.d("tag", String.valueOf(tags));
-                    tagCounter++;
-                }
-                tags.remove("");
-                checkBoxes();
-                progressPullAllData.setVisibility(View.GONE);
-
-            }
-        });*/
 
         btPrefTags = findViewById(R.id.btPrefTags);
         btPrefTags.setOnClickListener(new View.OnClickListener(){
@@ -105,7 +82,6 @@ public class PreferedTags2 extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 safeTags(listOfClickedTags);
-                Log.d("123prefer", String.valueOf(listOfClickedTags));
                 openSearch1();
             }
         });
@@ -114,11 +90,9 @@ public class PreferedTags2 extends AppCompatActivity {
 
 
     private void checkBoxes() {
-      //  String lastElement = Iterables.getLast(tags);
         for( int i = 0; i < tags.size(); i++ )
         {
             TableLayout tLayout = findViewById(R.id.tagsLL);
-            //tLayout
 
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));

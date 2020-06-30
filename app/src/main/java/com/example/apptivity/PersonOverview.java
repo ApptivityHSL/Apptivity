@@ -49,14 +49,6 @@ public class PersonOverview extends AppCompatActivity {
             }
 
         });
-
-     /*   btNewPI =  findViewById(R.id.btNewPI);
-        btNewPI.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){ openPersonalInformation();
-            }
-
-        });*/
     }
 
 

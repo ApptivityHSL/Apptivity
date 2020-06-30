@@ -2,11 +2,7 @@ package com.example.apptivity;
 
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class cards {
@@ -28,7 +24,6 @@ public class cards {
 
     public cards(String actID, String name, String imURL, String description, String open, String closed, String location, String street, String website, String houseNumber,
                  String budget, String phoneNumber, String postal, String mailAddress, ArrayList<String> tags) {
-        Log.d("noSwipe", imURL);
         this.actID = actID;
         this.name = name;
         int iend = imURL.indexOf(",");
@@ -37,8 +32,6 @@ public class cards {
         {
             subString= imURL.substring(0 , iend)+"]";
         }
-        //subString.replace("\"", "").replace("[", "").replace("]", "");
-        Log.d("jArray", subString);
         this.imURL = subString;
         this.description = description;
         this.open = open;

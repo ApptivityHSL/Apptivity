@@ -1,63 +1,36 @@
 package com.example.apptivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.DirectAction;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import org.json.JSONException;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static com.example.apptivity.cards.*;
-
 public class Swiping extends  AppCompatActivity {
 
-
-
-    private String IM_URL = "https://www.apptivity.com/Apptivity-WebApp/Apptivity-OG-Image.jpg";
-
     private Button btBackHome;
-    private Button frame;
-
-    String tags;
-    Intent getName;
-    Bundle extras;
-
 
     public static final String MATCHES ="match";
     private int matchnum = 0;
 
-    private int i;
-    private ConnectFirebase connection = new ConnectFirebase(this);
     private Set<String> matches = new HashSet<>();
 
     private cards cards_data[];
     private arrayAdapter arrayAdapter;
-    private BroadcastReceiver mReceiver;
     private ArrayList<String> listOfTags = new ArrayList<>();
     private ArrayList<String> listOfPeople = new ArrayList<>();
     private ArrayList<cards> filterdCards = new ArrayList<cards>();
@@ -70,15 +43,12 @@ public class Swiping extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swiping);
 
-
         //list of tags
         SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("tags",null);
         Type type = new TypeToken<ArrayList>() {}.getType();
         listOfTags = gson.fromJson(json, type);
-
-        Log.d("sdafsdfsdaf", String.valueOf(listOfTags));
 
         //list of people
         SharedPreferences sharedPreferences2 = getSharedPreferences("people", MODE_PRIVATE);
@@ -100,8 +70,6 @@ public class Swiping extends  AppCompatActivity {
         SharedPreferences sharedPreferences5 = getSharedPreferences("town", MODE_PRIVATE);
         town = sharedPreferences5.getString("town","");
 
-
-
         Log.d("123986", String.valueOf(listOfTags));
         Log.d("123986", String.valueOf(listOfPeople));
         Log.d("123986", String.valueOf(money));
@@ -113,21 +81,17 @@ public class Swiping extends  AppCompatActivity {
         filterdCards = cardFilter(listOfTags,listOfPeople,money,loadingFromDatabase.rowItems);
         //matches = new HashSet<String>();
 
-        Log.d("noSwipeS", "Before");
+
 
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
-
         arrayAdapter = new arrayAdapter(this, R.layout.item, filterdCards);
 
         SystemClock.sleep(250); //hmm
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
-        Log.d("noSwipeS", "After");
-
         flingContainer.setAdapter(arrayAdapter);
-        Log.d("noSwipeS", "After2");
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
@@ -153,7 +117,6 @@ public class Swiping extends  AppCompatActivity {
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                //Toast.makeText(Swiping.this, "Right!", Toast.LENGTH_SHORT).show();
                 cards cardMatched = (cards) dataObject;
                 matches.add(cardMatched.getActID());
                 matchnum++;
@@ -169,20 +132,12 @@ public class Swiping extends  AppCompatActivity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                //if(!isFirst) {
-                /*rowItems.add(new cards("XML ".concat(String.valueOf(i)), "Bitte weiterswipen!", "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg",
-                        "Bla", "8:00", "20:00", "Landshut", "Schlumpfstraße", "wwww.website.de", "27", "275", "125987", "84034", "mail@address.com", new ArrayList<String>()));
-                arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
-                i++;*/
-                //}
             }
 
             @Override
             public void onScroll(float scrollProgressPercent) {
             }
         });
-        Log.d("noSwipeS", "After3");
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
@@ -225,7 +180,6 @@ public class Swiping extends  AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Log.d("noSwipeS", "After4");
 
         btBackHome = findViewById(R.id.btBackHome);
         btBackHome.setOnClickListener(new View.OnClickListener() {
@@ -235,7 +189,6 @@ public class Swiping extends  AppCompatActivity {
             }
 
         });
-        Log.d("noSwipeS", "After5");
     }
 /*
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -256,20 +209,6 @@ public class Swiping extends  AppCompatActivity {
         Intent intent = new Intent(this, ActivityOverview.class);
         startActivity(intent);
     }
-    /*
-    public String pullStringFromData(String string, int index, String property){
-        JSONArray array = null;
-        String information = "";
-        try {
-            array = new JSONArray(string);
-            information = array.getJSONObject(index).get(property).toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.d("namtestPull", information);
-        return information;
-
-    }*/
 
     public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople,double money, List<cards> rowItems){
 

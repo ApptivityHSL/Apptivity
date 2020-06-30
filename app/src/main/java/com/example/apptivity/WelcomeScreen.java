@@ -29,7 +29,6 @@ public class WelcomeScreen extends AppCompatActivity {
 
     private ConnectFirebase a = new ConnectFirebase(this);
 
-    private Button btWelcome;
     public static final String DEFAULT_VALUE = "default";
     public static final String INPUT_NAME ="name";
 
@@ -38,24 +37,11 @@ public class WelcomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-
-
-
-      /*  a.pullAllData("Tag", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(String value) {
-            }
-        });*/
-
-
-        //Test
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 SharedPreferences nameOfPerson = getSharedPreferences("UserIn", MODE_PRIVATE);
                 String username = nameOfPerson.getString(INPUT_NAME,DEFAULT_VALUE);
-                Log.d("1298", username);
                 if(username.equals(DEFAULT_VALUE)) {
                     openPersonalInformation();
                 } else {
@@ -64,30 +50,7 @@ public class WelcomeScreen extends AppCompatActivity {
             }
         },SPLASH_TIME_OUT);
 
-        /*btWelcome =  findViewById(R.id.btWelcome);
-        btWelcome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-                SharedPreferences nameOfPerson = getSharedPreferences("UserIn", MODE_PRIVATE);
-                String username = nameOfPerson.getString(INPUT_NAME,DEFAULT_VALUE);
-               Log.d("1298", username);
-                if(username.equals(DEFAULT_VALUE)) {
-                    openPersonalInformation();
-                } else {
-                    openPersonOverview();
-                }
-            }
-
-        });*/
-
         ConnectFirebase cf = new ConnectFirebase(this);
-        /*cf.pullAllData("Tag", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(String value) {
-                    methode(value);
-            }
-        });*/
         cf.queryData("Tag", "Kategorie", "0", new ConnectFirebaseCallback() {
             @Override
             public void onCallback(String value) {

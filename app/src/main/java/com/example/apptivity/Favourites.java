@@ -44,7 +44,6 @@ public class Favourites extends AppCompatActivity {
             matchesToView[index++] = str;
 
         TableLayout tLayout = findViewById(R.id.matchLL);
-        //setContentView(linearLayout);
         final Bundle[] bundle = new Bundle[matchesToView.length];
             for (int i = 0; i < matchesToView.length; i++) {
                 TableRow tr = new TableRow(this);
@@ -126,7 +125,6 @@ public class Favourites extends AppCompatActivity {
             public void onClick(View v){
                 SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                //mEditor.clear();
                 mEditor.putStringSet(MATCHES, new HashSet<String>());
                 mEditor.apply();
                 refreshFav();

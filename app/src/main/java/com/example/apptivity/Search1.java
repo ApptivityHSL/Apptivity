@@ -67,8 +67,6 @@ public class Search1 extends AppCompatActivity {
 
                 safePeople(peopleArray);
 
-                Log.d("123981", String.valueOf(peopleArray));
-
                 alone = inputAlone.hasFocus();
                 partner = inputPartner.hasFocus();
                 family = inputFamily.hasFocus();
