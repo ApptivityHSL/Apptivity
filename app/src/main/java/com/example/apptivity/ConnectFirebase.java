@@ -3,10 +3,7 @@ package com.example.apptivity;
 import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,13 +19,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
+import java.util.Objects;
+
 
 public class ConnectFirebase {
     private String gson = "";
     private FirebaseAuth mAuth;
 
-    public ConnectFirebase(Activity current)
-    {
+    public ConnectFirebase(Activity current) {
         mAuth = FirebaseAuth.getInstance();
 
         mAuth.signInAnonymously()
@@ -47,8 +45,7 @@ public class ConnectFirebase {
                 });
     }
 
-    public void pullAllData(String collection, final ConnectFirebaseCallback callback)
-    {
+    public void pullAllData(String collection, final ConnectFirebaseCallback callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference dbRef = db.collection(collection);
 
@@ -57,22 +54,24 @@ public class ConnectFirebase {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        String jsonString = "[";
+                        StringBuilder jsonString = new StringBuilder("[");
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 gson =  new Gson().toJson(document.getData());
-                                jsonString += gson + ",";
+                                jsonString.append(gson).append(",");
                             }
                         } else {
-                            Log.d("argl", "Error getting documents: ", task.getException());
+                            Log.d("argl", "Error getting documents: ",
+                                    task.getException());
                         }
-                        jsonString = jsonString.substring(0, jsonString.length()-1) + "]";
-                        callback.onCallback(jsonString);
+                        jsonString = new StringBuilder(jsonString.substring(0, jsonString.length() - 1) + "]");
+                        callback.onCallback(jsonString.toString());
                     }
                 });
     }
 
-    public void queryData(String collection, String condition, String conditionValue, final ConnectFirebaseCallback callback)
+    public void queryData(String collection, String condition, String conditionValue,
+                          final ConnectFirebaseCallback callback)
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference dbRef = db.collection(collection);
@@ -82,24 +81,24 @@ public class ConnectFirebase {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        String jsonString = "[";
+                        StringBuilder jsonString = new StringBuilder("[");
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 gson =  new Gson().toJson(document.getData());
-                                jsonString += gson + ",";
+                                jsonString.append(gson).append(",");
                             }
                         } else {
-                            Log.d("argl", "Error getting documents: ", task.getException());
+                            Log.d("argl", "Error getting documents: ",
+                                    task.getException());
                         }
-                        Log.d("gnarfl", jsonString);
-                        jsonString = jsonString.substring(0, jsonString.length()-1) + "]";
-                        callback.onCallback(jsonString);
+                        Log.d("gnarfl", jsonString.toString());
+                        jsonString = new StringBuilder(jsonString.substring(0, jsonString.length() - 1) + "]");
+                        callback.onCallback(jsonString.toString());
                     }
                 });
     }
 
-    public void getImageURL(String bild, final ConnectFirebaseCallback callback)
-    {
+    public void getImageURL(String bild, final ConnectFirebaseCallback callback) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
 

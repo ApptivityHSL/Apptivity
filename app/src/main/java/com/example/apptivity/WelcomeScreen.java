@@ -91,5 +91,4 @@ public class WelcomeScreen extends AppCompatActivity {
             Log.d("argl", information);
 
         }
-
 }

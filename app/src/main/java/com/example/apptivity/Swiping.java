@@ -30,7 +30,7 @@ public class Swiping extends  AppCompatActivity {
     private Set<String> matches = new HashSet<>();
 
     private cards cards_data[];
-    private arrayAdapter arrayAdapter;
+    private MyArrayAdapter arrayAdapter;
     private ArrayList<String> listOfTags = new ArrayList<>();
     private ArrayList<String> listOfPeople = new ArrayList<>();
     private ArrayList<cards> filterdCards = new ArrayList<cards>();
@@ -85,7 +85,7 @@ public class Swiping extends  AppCompatActivity {
 
         SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
-        arrayAdapter = new arrayAdapter(this, R.layout.item, filterdCards);
+        arrayAdapter = new MyArrayAdapter(this, R.layout.item, filterdCards);
 
         SystemClock.sleep(250); //hmm
 
