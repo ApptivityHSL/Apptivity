@@ -81,18 +81,16 @@ public class ActivityOverview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        if(bundle.getString("cActID") == null){
+            openSwiping();
+        }
+
         try {
             JSONArray picArray = new JSONArray(bundle.getString("cURL"));
-            Log.d("NoPic1", picArray.toString());
             String url = picArray.toString().replace("\"", "").replace("[", "").replace("]", "").replace("\\", "/").replace("//", "/");
-            Log.d("NoPic2", url);
             if(url.contains(",")) {
                 url.substring(0, url.indexOf(","));
                 String picaArray[] = url.split(",");
-                Log.d("NoPic5", picaArray[0]);
-                Log.d("NoPic3", url);
-                //picaArray[0].replace("\"", "");
-                Log.d("NoPic4", picaArray[0]);
                 Glide.with(this)
                         .load(picaArray[0])
                         .into(cURL);
@@ -123,7 +121,6 @@ public class ActivityOverview extends AppCompatActivity {
     public void openSwiping(){
         SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         boolean fromFavos = sharedPreferences.getBoolean("FROM_FAVOS",true);
-        Log.d("123214124", String.valueOf(fromFavos));
 
         if(fromFavos){
             Intent intent1 = new Intent(this, Favourites.class);

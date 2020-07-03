@@ -51,15 +51,6 @@ public class Home extends AppCompatActivity {
 
         });
 
-
-     /*   btOptions =  findViewById(R.id.btOptions);
-        btOptions.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openPersonOverview();
-            }
-
-        });*/
     }
 
     private void insertNameintoTextView(){

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,6 @@ public class Favourites extends AppCompatActivity {
             matchesToView[index++] = str;
 
         TableLayout tLayout = findViewById(R.id.matchLL);
-        //setContentView(linearLayout);
         final Bundle[] bundle = new Bundle[matchesToView.length];
             for (int i = 0; i < matchesToView.length; i++) {
                 TableRow tr = new TableRow(this);
@@ -80,7 +80,7 @@ public class Favourites extends AppCompatActivity {
                 }
 
             });
-            connection.queryData("Test", "id", matchToView, new ConnectFirebaseCallback() {
+            connection.queryData("Activities", "id", matchToView, new ConnectFirebaseCallback() {
                 @Override
                 public void onCallback(String value) {                  //Gibt Collection und nicht Dokument
                     try {
@@ -92,6 +92,9 @@ public class Favourites extends AppCompatActivity {
                     }
                 }
             });
+
+                SystemClock.sleep(75); //hmm
+
             mButton.setText(matchesToView[i]);
             dButton.setText("X");
             mButton.setLayoutParams(new LinearLayout.LayoutParams(
@@ -122,7 +125,6 @@ public class Favourites extends AppCompatActivity {
             public void onClick(View v){
                 SharedPreferences mSharedPreferences = getSharedPreferences("activity_swiping", MODE_PRIVATE);
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                //mEditor.clear();
                 mEditor.putStringSet(MATCHES, new HashSet<String>());
                 mEditor.apply();
                 refreshFav();
