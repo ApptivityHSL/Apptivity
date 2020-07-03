@@ -87,24 +87,30 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     android:id="@+id/cHouseNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="maps"
                     android:text="TextView"
-                    android:textAlignment="center"
-                    android:layout_weight="1"/>
+                    android:textColor="@color/Logotürkis"
+                    android:textAlignment="center" />
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     android:id="@+id/cLocation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAlignment="center"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:layout_marginBottom="5dp"/>
+                    android:onClick="maps"
+                    android:text="TextView"
+                    android:textColor="@color/Logotürkis"
+                    android:textAlignment="center" />
             </TableRow>
 
             <TableRow>
@@ -120,25 +126,30 @@
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     android:id="@+id/cPhoneNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="call"
                     android:text="TextView"
-                    android:textAlignment="center"
-                    android:layout_weight="1"/>
+                    android:textColor="@color/Logotürkis"
+                    android:textAlignment="center" />
             </TableRow>
 
             <TableRow>
+
                 <TextView
                     android:id="@+id/cMailAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:layout_weight="1"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:autoLink="email"
+                    android:text="TextView"
+                    android:textAlignment="center" />
             </TableRow>
 
             <TableRow>
@@ -149,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:autoLink="web"
-                    android:clickable="true"
                     android:text="TextView"
                     android:textAlignment="center" />
             </TableRow>

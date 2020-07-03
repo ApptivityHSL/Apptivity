@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -103,6 +104,10 @@ public class ActivityOverview extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+
+
+
         cName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
         cBudget.setText("Budget: "+bundle.getString("cBudget"));
@@ -130,6 +135,26 @@ public class ActivityOverview extends AppCompatActivity {
             startActivity(intent2);
         }
 
+    }
+
+    public void maps(View view)
+    {
+        String loc = cHouseNumber.getText() + " " + cLocation.getText();
+        loc = loc.replace("Anschrift: ", "");
+        Log.d("maps", loc);
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+loc);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+    }
+
+    public void call(View view)
+    {
+        String number = (String) cPhoneNumber.getText();
+        number = number.replace("Telefonnummer: ", "");
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:"+number));
+        startActivity(dialIntent);
     }
 
 }
