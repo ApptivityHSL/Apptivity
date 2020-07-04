@@ -1,38 +1,30 @@
 package com.example.apptivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.apptivity.PersonalInformation.INPUT_NAME;
+import static java.lang.String.*;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.gson.Gson;
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
-
-
-import static com.example.apptivity.PersonalInformation.INPUT_NAME;
-
 public class Search1 extends AppCompatActivity {
-    private Button btSearch2;
     protected static boolean alone;
     protected static boolean partner;
     protected static boolean family;
     protected static boolean friends;
     protected static int budget;
-    private TextView greetings2;
     private SeekBar budgetBar;
     private TextView money;
 
-    ArrayList<String> peopleArray = new ArrayList<String>();
+    ArrayList<String> peopleArray = new ArrayList<>();
 
     private CheckBox inputAlone;
     private CheckBox inputPartner;
@@ -57,10 +49,10 @@ public class Search1 extends AppCompatActivity {
         inputFriend =  findViewById(R.id.inputFriend);
         inputBudget =  findViewById(R.id.inputBudget);
 
-        btSearch2 =  findViewById(R.id.btSearch2);
-        btSearch2.setOnClickListener(new View.OnClickListener(){
+        Button btSearch2 = findViewById(R.id.btSearch2);
+        btSearch2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
                 int value = inputBudget.getProgress();
                 safeMoney(value);
@@ -79,15 +71,15 @@ public class Search1 extends AppCompatActivity {
         });
     }
 
-    public void openSearch2(){
+    public void openSearch2() {
         Intent intent = new Intent(this, Search2.class);
         startActivity(intent);
     }
 
-    private void seekbar(){
+    private void seekbar() {
         budgetBar = findViewById(R.id. inputBudget);
         money = findViewById(R.id. money);
-        money.setText(budgetBar.getProgress() + "€" + " / " + budgetBar.getMax() + "€");
+        money.setText(format("%d€ / %d€", budgetBar.getProgress(), budgetBar.getMax()));
 
 
         budgetBar.setOnSeekBarChangeListener(
@@ -95,7 +87,7 @@ public class Search1 extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         budget = progress;
-                        money.setText(progress + "€" + " / " + budgetBar.getMax() + "€");
+                        money.setText(format("%d€ / %d€", progress, budgetBar.getMax()));
                     }
 
                     @Override
@@ -105,17 +97,17 @@ public class Search1 extends AppCompatActivity {
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-                        money.setText(budget + "€" + " / " + budgetBar.getMax() + "€");
+                        money.setText(format("%d€ / %d€", budget, budgetBar.getMax()));
                     }
                 }
         );
-    };
+    }
 
 
-    private void insertNameintoTextView(){
+    private void insertNameintoTextView() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
-        String text = "Hallo "+mSharedPreferences.getString(INPUT_NAME, "")+"!";
-        greetings2 =  findViewById(R.id.tvGreetings2);
+        String text = "Hallo " + mSharedPreferences.getString(INPUT_NAME, "") + "!";
+        TextView greetings2 = findViewById(R.id.tvGreetings2);
         greetings2.setText(text);
     }
 
@@ -139,38 +131,39 @@ public class Search1 extends AppCompatActivity {
         boolean checked = ((CheckBox) view).isChecked();
 
         // Check which checkbox was clicked
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.inputAlone:
-                if (checked){
-                    peopleArray.add((String) inputAlone.getText() );
+                if (checked) {
+                    peopleArray.add((String) inputAlone.getText());
+                } else {
+                    peopleArray.remove(inputAlone.getText());
                 }
-                else
-                    peopleArray.remove((String) inputAlone.getText() );
                 break;
 
             case R.id.inputPartner:
-                if (checked){
-                    peopleArray.add((String) inputPartner.getText() );
+                if (checked) {
+                    peopleArray.add((String) inputPartner.getText());
+                } else {
+                    peopleArray.remove(inputPartner.getText());
                 }
-                else
-                    peopleArray.remove((String) inputPartner.getText() );
                 break;
 
             case R.id.inputFamily:
-                if (checked){
-                    peopleArray.add((String) inputFamily.getText() );
+                if (checked) {
+                    peopleArray.add((String) inputFamily.getText());
+                } else {
+                    peopleArray.remove(inputFamily.getText());
                 }
-                else
-                    peopleArray.remove((String) inputFamily.getText() );
                 break;
 
             case R.id.inputFriend:
-                if (checked){
-                    peopleArray.add((String) inputFriend.getText() );
+                if (checked) {
+                    peopleArray.add((String) inputFriend.getText());
+                } else {
+                    peopleArray.remove(inputFriend.getText());
                 }
-                else
-                    peopleArray.remove((String) inputFriend.getText() );
                 break;
+            default:
 
         }
 

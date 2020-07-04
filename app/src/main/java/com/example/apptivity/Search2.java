@@ -1,38 +1,31 @@
 package com.example.apptivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 public class Search2 extends AppCompatActivity {
-    private Button btSwipe;
     protected static String town = "";
     protected static int postalCode;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
@@ -41,10 +34,11 @@ public class Search2 extends AppCompatActivity {
 
     private EditText inputTown;
     private EditText inputPostal;
-    private Button getLocation;
     private ProgressBar progressGPS;
     private ResultReceiver resultReceiver;
-    private Button show;
+
+    public Search2() {
+    }
 
 
     @Override
@@ -58,7 +52,7 @@ public class Search2 extends AppCompatActivity {
 
         inputTown =  findViewById(R.id.inputTown);
         inputPostal =  findViewById(R.id.inputPostal);
-        getLocation = findViewById(R.id. getLocation);
+        Button getLocation = findViewById(R.id.getLocation);
         progressGPS = findViewById(R.id. progressBarGps);
 
         progressGPS.setVisibility(View.INVISIBLE);
@@ -68,27 +62,29 @@ public class Search2 extends AppCompatActivity {
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ContextCompat.checkSelfPermission(
+                if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED){
+                ) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(
                         Search2.this,
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                             REQUEST_CODE_LOCATION_PERMISSION
 
                     );
-                }else {
+                } else {
                     getCurrentLocation();
                 }
             }
         });
 
-        btSwipe =  findViewById(R.id.btSwipe);
-        btSwipe.setOnClickListener(new View.OnClickListener(){
+        Button btSwipe = findViewById(R.id.btSwipe);
+        btSwipe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(inputTown.getText().toString() != null && inputPostal.getText().toString() != null
-                    && !inputTown.getText().toString().isEmpty() && !inputPostal.getText().toString().isEmpty()){
+            public void onClick(View v) {
+                inputTown.getText().toString();
+                inputPostal.getText().toString();
+                if (!inputTown.getText().toString().isEmpty() && !inputPostal
+                        .getText().toString().isEmpty()) {
                     town = inputTown.getText().toString();
                     postalCode = Integer.parseInt(inputPostal.getText().toString());
                     safeTown(town);
@@ -99,7 +95,8 @@ public class Search2 extends AppCompatActivity {
 
         });
     }
-    public void openSwipe(){
+
+    public void openSwipe() {
         Intent intent = new Intent(this, loadingFromDatabase.class);
         startActivity(intent);
     }
@@ -118,17 +115,17 @@ public class Search2 extends AppCompatActivity {
         editor.apply();
     }
 
-    private void fetchAddressFromLatLong(Location location){
+    private void fetchAddressFromLatLong(Location location) {
         Intent intent = new Intent(this, FetchAddressIntentService.class);
         intent.putExtra(Constants.RECEIVER, resultReceiver);
-        intent.putExtra(Constants.LOCATION_DATA_EXTRA,location);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
         startService(intent);
 
 
     }
 
     @SuppressLint("MissingPermission")
-    private void getCurrentLocation(){
+    private void getCurrentLocation() {
 
         progressGPS.setVisibility(View.VISIBLE);
 
@@ -138,7 +135,7 @@ public class Search2 extends AppCompatActivity {
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         LocationServices.getFusedLocationProviderClient(Search2.this)
-                .requestLocationUpdates(locationRequest, new LocationCallback(){
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
 
                     @SuppressLint("MissingPermission")
                     @Override
@@ -146,12 +143,14 @@ public class Search2 extends AppCompatActivity {
                         super.onLocationResult(locationResult);
                         LocationServices.getFusedLocationProviderClient(Search2.this)
                                 .removeLocationUpdates(this);
-                        if(locationResult != null && locationResult.getLocations().size() > 0) {
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
                             int latestLocationIndex = locationResult.getLocations().size() -1;
                             latitude =
-                                    locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                                    locationResult.getLocations()
+                                            .get(latestLocationIndex).getLatitude();
                             longitude =
-                                    locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                                    locationResult.getLocations()
+                                            .get(latestLocationIndex).getLongitude();
 
                             Location location = new Location("providerNA");
                             location.setLatitude(latitude);
@@ -169,10 +168,11 @@ public class Search2 extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == REQUEST_CODE_LOCATION_PERMISSION & grantResults.length > 0){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION & grantResults.length > 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
                 Toast.makeText(this, "Zugang verweigert!", Toast.LENGTH_SHORT).show();
@@ -181,7 +181,7 @@ public class Search2 extends AppCompatActivity {
         }
     }
 
-    private class AddressResultReceiver extends ResultReceiver{
+    private class AddressResultReceiver extends ResultReceiver {
 
 
         /**
@@ -195,14 +195,13 @@ public class Search2 extends AppCompatActivity {
             super(handler);
         }
 
-        protected void onReceiveResult(int resultCode, Bundle resultData){
-            super.onReceiveResult(resultCode,resultData);
-            if(resultCode == Constants.SUCCESS_RESULT){
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == Constants.SUCCESS_RESULT) {
                 String result  = resultData.getString(Constants.RESULT_DATA_KEY);
+                assert result != null;
                 String [] parts = result.split(", ");
-                String address = parts[0];
                 String city = parts[1];
-                String county = parts[2];
 
 
                 String [] postalAndCity = city.split(" ");
@@ -219,7 +218,7 @@ public class Search2 extends AppCompatActivity {
 
                 town = "";
 
-                for(int i = 1; i < x; i ++){
+                for (int i = 1; i < x; i++) {
 
                     town = town + " " + postalAndCity[i];
                 }
@@ -227,9 +226,6 @@ public class Search2 extends AppCompatActivity {
 
                 inputTown.setText(town);
                 inputPostal.setText(postalCodeString);
-
-            } else {
-
             }
             progressGPS.setVisibility(View.GONE);
         }
