@@ -1,6 +1,5 @@
 package com.example.apptivity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PersonalInformation extends AppCompatActivity {
 
@@ -17,11 +17,11 @@ public class PersonalInformation extends AppCompatActivity {
     private RadioButton inputFemale;
 
 
-    public static final String SHARED_PREFS ="sharedPrefs";
-    public static final String INPUT_NAME ="name";
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String INPUT_NAME = "name";
     public static final String INPUT_ALTER = "alter";
-    public static final String INPUT_MALE ="mann";
-    public static final String INPUT_FEMALE ="frau";
+    public static final String INPUT_MALE = "mann";
+    public static final String INPUT_FEMALE = "frau";
 
 
     @Override
@@ -35,12 +35,13 @@ public class PersonalInformation extends AppCompatActivity {
         inputFemale =  findViewById(R.id.inputFemale);
         Button btPInfo = findViewById(R.id.btPInfo);
 
-        btPInfo.setOnClickListener(new View.OnClickListener(){
+        btPInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 inputName.getText().toString();
                 inputAlter.getText().toString();
-                if (!inputName.getText().toString().isEmpty() && !inputAlter.getText().toString().isEmpty() && (inputMale.isChecked() || inputFemale.isChecked())) {
+                if (!inputName.getText().toString().isEmpty() && !inputAlter.getText().toString()
+                        .isEmpty() && (inputMale.isChecked() || inputFemale.isChecked())) {
                     String namefuerfunc;
                     int alterfuerfunc;
                     boolean malefuerfunc;
@@ -70,7 +71,7 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
 
-    private void storePersonalInfo(String name, int alter, boolean male, boolean female){
+    private void storePersonalInfo(String name, int alter, boolean male, boolean female) {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putString(INPUT_NAME, name);
@@ -92,24 +93,24 @@ public class PersonalInformation extends AppCompatActivity {
         mEditor3.apply();
     }
 
-    public String getInputName(){
+    public String getInputName() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getString(INPUT_NAME, "");
 
     }
 
-    private int getInputAlter(){
+    private int getInputAlter() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
        return  mSharedPreferences.getInt(INPUT_ALTER, 0);
 
     }
 
-    private boolean getInputMale(){
+    private boolean getInputMale() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getBoolean(INPUT_MALE, false);
     }
 
-    private boolean getInputFemale(){
+    private boolean getInputFemale() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getBoolean(INPUT_FEMALE, false);
 
