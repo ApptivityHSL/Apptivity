@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The type Home.
+ */
 public class Home extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         insertNameintoTextView();
@@ -21,7 +24,7 @@ public class Home extends AppCompatActivity {
         Button btFav = findViewById(R.id.btFav);
         btFav.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openFavos();
             }
 
@@ -30,7 +33,7 @@ public class Home extends AppCompatActivity {
         Button btSearch = findViewById(R.id.btSearch);
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openPrefTags2();
             }
 
@@ -39,7 +42,7 @@ public class Home extends AppCompatActivity {
         Button btOptions = findViewById(R.id.btOptions);
         btOptions.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openPersonOverview();
             }
 
@@ -54,6 +57,9 @@ public class Home extends AppCompatActivity {
         greetings.setText(text);
     }
 
+    /**
+     * Open search.
+     */
     public void openSearch() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
@@ -64,6 +70,9 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Open favos.
+     */
     public void openFavos() {
 
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
@@ -75,11 +84,17 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Open person overview.
+     */
     public void openPersonOverview() {
         Intent intent = new Intent(this, PersonOverview.class);
         startActivity(intent);
     }
 
+    /**
+     * Open pref tags 2.
+     */
     public void openPrefTags2() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();

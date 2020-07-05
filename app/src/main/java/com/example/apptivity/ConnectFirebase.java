@@ -21,18 +21,25 @@ import com.google.gson.Gson;
 
 import java.util.Objects;
 
-
+/**
+ * The type Connect firebase.
+ */
 public class ConnectFirebase {
     private String gson = "";
     private FirebaseAuth mAuth;
 
-    public ConnectFirebase(Activity current) {
+    /**
+     * Instantiates a new Connect firebase.
+     *
+     * @param current the current
+     */
+    public ConnectFirebase(final Activity current) {
         mAuth = FirebaseAuth.getInstance();
 
         mAuth.signInAnonymously()
                 .addOnCompleteListener(current, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull final Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d("cfb_auth", "FirebaseAuthErfolg");
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -45,7 +52,13 @@ public class ConnectFirebase {
                 });
     }
 
-    public void pullAllData(String collection, final ConnectFirebaseCallback callback) {
+    /**
+     * Pull all data.
+     *
+     * @param collection the collection
+     * @param callback   the callback
+     */
+    public void pullAllData(final String collection, final ConnectFirebaseCallback callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference dbRef = db.collection(collection);
 
@@ -53,7 +66,7 @@ public class ConnectFirebase {
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    public void onComplete(@NonNull final Task<QuerySnapshot> task) {
                         StringBuilder jsonString = new StringBuilder("[");
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
@@ -69,10 +82,16 @@ public class ConnectFirebase {
                     }
                 });
     }
-
-    public void queryData(String collection, String condition, String conditionValue,
-                          final ConnectFirebaseCallback callback)
-    {
+    /**
+     * Query data.
+     *
+     * @param collection     the collection
+     * @param condition      the condition
+     * @param conditionValue the condition value
+     * @param callback       the callback
+     */
+    public void queryData(final String collection, final String condition,
+                          final String conditionValue, final ConnectFirebaseCallback callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference dbRef = db.collection(collection);
 
@@ -80,7 +99,7 @@ public class ConnectFirebase {
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    public void onComplete(@NonNull final Task<QuerySnapshot> task) {
                         StringBuilder jsonString = new StringBuilder("[");
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
@@ -98,21 +117,26 @@ public class ConnectFirebase {
                 });
     }
 
-    public void getImageURL(String bild, final ConnectFirebaseCallback callback) {
+    /**
+     * Gets image url.
+     *
+     * @param bild     the bild
+     * @param callback the callback
+     */
+    public void getImageURL(final String bild, final ConnectFirebaseCallback callback) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
 
         storageRef.child(bild).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onSuccess(Uri uri) {
+            public void onSuccess(final Uri uri) {
                 callback.onCallback(uri.toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
+            public void onFailure(@NonNull final Exception exception) {
                 Log.d("argl", "getImageError");
             }
         });
     }
-
 }

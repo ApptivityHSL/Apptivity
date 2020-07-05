@@ -21,6 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 
+/**
+ * The type Prefered tags 2.
+ */
 public class PreferedTags2 extends AppCompatActivity {
 
     private ConnectFirebase aauth = new ConnectFirebase(this);
@@ -29,10 +32,11 @@ public class PreferedTags2 extends AppCompatActivity {
 
 
     private ProgressBar progressPullAllData;
-
+    private final int magicTwentyFive = 25;
+    private final int magicOneHundred = 100;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefered_tags2);
 
@@ -43,7 +47,7 @@ public class PreferedTags2 extends AppCompatActivity {
         aauth.queryData("Tag", "Kategorie",
                 "0", new ConnectFirebaseCallback() {
             @Override
-            public void onCallback(String value) {
+            public void onCallback(final String value) {
                 String r = "start";
                 int tagCounter = 0;
                 while (!r.equals("")) {
@@ -61,7 +65,7 @@ public class PreferedTags2 extends AppCompatActivity {
         Button btPrefTags = findViewById(R.id.btPrefTags);
         btPrefTags.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openHome();
             }
         });
@@ -69,7 +73,7 @@ public class PreferedTags2 extends AppCompatActivity {
         Button btHome = findViewById(R.id.btBackHome);
         btHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 safeTags(listOfClickedTags);
                 openSearch1();
             }
@@ -118,10 +122,10 @@ public class PreferedTags2 extends AppCompatActivity {
 
             box.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
-            box.setPaddingRelative(25, 0, 100, 0);
+            box.setPaddingRelative(magicTwentyFive, 0, magicOneHundred, 0);
             box2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
-            box2.setPaddingRelative(25, 0, 0, 0);
+            box2.setPaddingRelative(magicTwentyFive, 0, 0, 0);
 
             tr.addView(box);
             tr.addView(box2);
@@ -133,7 +137,7 @@ public class PreferedTags2 extends AppCompatActivity {
     }
 
 
-    private void safeTags(ArrayList<String> listOfClickedTags) {
+    private void safeTags(final ArrayList<String> listOfClickedTags) {
         SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -143,29 +147,44 @@ public class PreferedTags2 extends AppCompatActivity {
     }
 
 
+    /**
+     * Open personal information.
+     */
     public void openPersonalInformation() {
         safeTags(listOfClickedTags);
         Intent intent = new Intent(this, PersonalInformation.class);
         startActivity(intent);
     }
 
+    /**
+     * Open home.
+     */
     public void openHome() {
         safeTags(listOfClickedTags);
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
+    /**
+     * Open search 1.
+     */
     public void openSearch1() {
         safeTags(listOfClickedTags);
         Intent intent = new Intent(this, Search1.class);
         startActivity(intent);
     }
 
+    /**
+     * On checkbox clicked view . on click listener.
+     *
+     * @param button the button
+     * @return the view . on click listener
+     */
     View.OnClickListener onCheckboxClicked(final Button button) {
         return new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 boolean checked = ((CheckBox) v).isChecked();
 
                 for (int index = 0; index < tags.size(); index++) {
@@ -185,7 +204,15 @@ public class PreferedTags2 extends AppCompatActivity {
         };
     }
 
-    public String pullProperty(String string, int index, String property) {
+    /**
+     * Pull property string.
+     *
+     * @param string   the string
+     * @param index    the index
+     * @param property the property
+     * @return the string
+     */
+    public String pullProperty(final String string, final int index, final String property) {
         JSONArray array;
         String information = "";
         try {
@@ -198,7 +225,12 @@ public class PreferedTags2 extends AppCompatActivity {
         return information;
     }
 
-    public void onAuthStateChanged(FirebaseAuth auth) {
+    /**
+     * On auth state changed.
+     *
+     * @param auth the auth
+     */
+    public void onAuthStateChanged(final FirebaseAuth auth) {
 
     }
 

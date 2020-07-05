@@ -10,13 +10,23 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import java.util.List;
 
+/**
+ * The type My array adapter.
+ */
 public class MyArrayAdapter extends ArrayAdapter<cards> {
 
-    public MyArrayAdapter(Context context, int resourceId, List<cards> item) {
+    /**
+     * Instantiates a new My array adapter.
+     *
+     * @param context    the context
+     * @param resourceId the resource id
+     * @param item       the item
+     */
+    public MyArrayAdapter(final Context context, final int resourceId, final List<cards> item) {
         super(context, resourceId, item);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         cards cardItem = getItem(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);

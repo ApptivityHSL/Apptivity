@@ -13,11 +13,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The type Person overview.
+ */
 public class PersonOverview extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_overview);
 
@@ -28,7 +31,7 @@ public class PersonOverview extends AppCompatActivity {
         Button btBackHome = findViewById(R.id.btBackHome);
         btBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openHome();
             }
 
@@ -37,7 +40,7 @@ public class PersonOverview extends AppCompatActivity {
         Button btNewPI = findViewById(R.id.btNewPI);
         btNewPI.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openPersonalInformation();
             }
 

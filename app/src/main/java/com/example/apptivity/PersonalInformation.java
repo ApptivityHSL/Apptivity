@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The type Personal information.
+ */
 public class PersonalInformation extends AppCompatActivity {
 
     private EditText inputName;
@@ -17,15 +20,30 @@ public class PersonalInformation extends AppCompatActivity {
     private RadioButton inputFemale;
 
 
+    /**
+     * The constant SHARED_PREFS.
+     */
     public static final String SHARED_PREFS = "sharedPrefs";
+    /**
+     * The constant INPUT_NAME.
+     */
     public static final String INPUT_NAME = "name";
+    /**
+     * The constant INPUT_ALTER.
+     */
     public static final String INPUT_ALTER = "alter";
+    /**
+     * The constant INPUT_MALE.
+     */
     public static final String INPUT_MALE = "mann";
+    /**
+     * The constant INPUT_FEMALE.
+     */
     public static final String INPUT_FEMALE = "frau";
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information);
 
@@ -37,7 +55,7 @@ public class PersonalInformation extends AppCompatActivity {
 
         btPInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 inputName.getText().toString();
                 inputAlter.getText().toString();
                 if (!inputName.getText().toString().isEmpty() && !inputAlter.getText().toString()
@@ -71,7 +89,7 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
 
-    private void storePersonalInfo(String name, int alter, boolean male, boolean female) {
+    private void storePersonalInfo(final String name, final int alter, final boolean male, final boolean female) {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putString(INPUT_NAME, name);
@@ -93,6 +111,11 @@ public class PersonalInformation extends AppCompatActivity {
         mEditor3.apply();
     }
 
+    /**
+     * Gets input name.
+     *
+     * @return the input name
+     */
     public String getInputName() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getString(INPUT_NAME, "");

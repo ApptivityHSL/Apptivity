@@ -17,8 +17,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The type Swiping.
+ */
 public class Swiping extends  AppCompatActivity {
 
+    /**
+     * The constant MATCHES.
+     */
     public static final String MATCHES = "match";
     private int matchnum = 0;
 
@@ -26,12 +32,19 @@ public class Swiping extends  AppCompatActivity {
 
     private MyArrayAdapter arrayAdapter;
     private ArrayList<cards> filterdCards = new ArrayList<>();
+    private final int magicTwoHundredFifty = 250;
+    private final int magicFifty = 50;
 
-    public Swiping(cards[] cards_data) {
+    /**
+     * Instantiates a new Swiping.
+     *
+     * @param cards_data the cards data
+     */
+    public Swiping(final cards[] cards_data) {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swiping);
 
@@ -39,14 +52,14 @@ public class Swiping extends  AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("tags", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("tags", null);
-        Type type = new TypeToken<ArrayList>() {}.getType();
+        Type type = new TypeToken<ArrayList>() { }.getType();
         ArrayList<String> listOfTags = gson.fromJson(json, type);
 
         //list of people
         SharedPreferences sharedPreferences2 = getSharedPreferences("people", MODE_PRIVATE);
         Gson gson2 = new Gson();
         String json2 = sharedPreferences2.getString("people", null);
-        Type type2 = new TypeToken<ArrayList>() {}.getType();
+        Type type2 = new TypeToken<ArrayList>() { }.getType();
         ArrayList<String> listOfPeople = gson2.fromJson(json2, type2);
 
         //money
@@ -81,7 +94,7 @@ public class Swiping extends  AppCompatActivity {
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
         arrayAdapter = new MyArrayAdapter(this, R.layout.item, filterdCards);
 
-        SystemClock.sleep(250); //hmm
+        SystemClock.sleep(magicTwoHundredFifty); //hmm
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
 
@@ -102,7 +115,7 @@ public class Swiping extends  AppCompatActivity {
             }
 
             @Override
-            public void onLeftCardExit(Object dataObject) {
+            public void onLeftCardExit(final Object dataObject) {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
@@ -110,7 +123,7 @@ public class Swiping extends  AppCompatActivity {
             }
 
             @Override
-            public void onRightCardExit(Object dataObject) {
+            public void onRightCardExit(final Object dataObject) {
                 cards cardMatched = (cards) dataObject;
                 matches.add(cardMatched.getActID());
                 matchnum++;
@@ -122,20 +135,18 @@ public class Swiping extends  AppCompatActivity {
                 mEditor.apply();
             }
 
-            
-
             @Override
-            public void onAdapterAboutToEmpty(int itemsInAdapter) {
+            public void onAdapterAboutToEmpty(final int itemsInAdapter) {
                 // Ask for more data here
             }
 
             @Override
-            public void onScroll(float scrollProgressPercent) {
+            public void onScroll(final float scrollProgressPercent) {
             }
         });
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
-            public void onItemClicked(int itemPosition, Object dataObject) {
+            public void onItemClicked(final int itemPosition, final Object dataObject) {
                 cards cardMatched1 = (cards) dataObject;
 
                 String cName = cardMatched1.getName();
@@ -179,7 +190,7 @@ public class Swiping extends  AppCompatActivity {
         Button btBackHome = findViewById(R.id.btBackHome);
         btBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openHome();
             }
 
@@ -191,23 +202,43 @@ public class Swiping extends  AppCompatActivity {
         return ;
     }*/
 
+    /**
+     * Open home.
+     */
     public void openHome() {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
+    /**
+     * Activity overview.
+     */
     public void ActivityOverview() {
         Intent intent = new Intent(this, ActivityOverview.class);
         startActivity(intent);
         }
 
-    public void openActivityOverview(Object dataObject) {
+    /**
+     * Open activity overview.
+     *
+     * @param dataObject the data object
+     */
+    public void openActivityOverview(final Object dataObject) {
         Intent intent = new Intent(this, ActivityOverview.class);
         startActivity(intent);
     }
 
-    public ArrayList<cards> cardFilter(ArrayList<String> listOfTags, ArrayList<String> listOfPeople,
-                                       double money, List<cards> rowItems) {
+    /**
+     * Card filter array list.
+     *
+     * @param listOfTags   the list of tags
+     * @param listOfPeople the list of people
+     * @param money        the money
+     * @param rowItems     the row items
+     * @return the array list
+     */
+    public ArrayList<cards> cardFilter(final ArrayList<String> listOfTags, final ArrayList<String> listOfPeople,
+                                       double money, final List<cards> rowItems) {
 
         ArrayList<cards> result = new ArrayList<>();
 
@@ -223,7 +254,7 @@ public class Swiping extends  AppCompatActivity {
         boolean stillInFav;
 
         if (money == 0) {
-            money = 50;
+            money = magicFifty;
         }
 
         for (int i = 0; i < rowItems.size(); i++) {
@@ -262,19 +293,26 @@ public class Swiping extends  AppCompatActivity {
 
             double budget = Double.parseDouble(item.getBudget().replace(",", "."));
 
-            if (budget < money && sameTag  && samePeople && !stillInFav)
+            if (budget < money && sameTag  && samePeople && !stillInFav) {
                 result.add(item);
             }
-        
+            }
         return result;
     }
 
-    public static String[] convert(Set<String> setOfString) {
+    /**
+     * Convert string [ ].
+     *
+     * @param setOfString the set of string
+     * @return the string [ ]
+     */
+    public static String[] convert(final Set<String> setOfString) {
         String[] arrayOfString = new String[setOfString.size()];
 
         int index = 0;
-        for (String str : setOfString)
+        for (String str : setOfString) {
             arrayOfString[index++] = str;
+        }
         return arrayOfString;
     }
 

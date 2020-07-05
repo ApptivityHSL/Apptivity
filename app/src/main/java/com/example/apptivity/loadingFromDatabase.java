@@ -9,17 +9,23 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+/**
+ * The type Loading from database.
+ */
 public class loadingFromDatabase extends AppCompatActivity {
 
     private ConnectFirebase connection = new ConnectFirebase(this);
     private JSONArray countArray;
     private int actAmount;
     private int aktuell = 0;
+    /**
+     * The constant rowItems.
+     */
     public static List<cards> rowItems; //Für sortieren relevant
     private static volatile boolean warten = true;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_from_database);
 
@@ -38,7 +44,12 @@ public class loadingFromDatabase extends AppCompatActivity {
     private static class AsyncTaskLoad extends android.os.AsyncTask<Integer, Integer, String> {
         private WeakReference<loadingFromDatabase> activityWeakReference;
 
-        AsyncTaskLoad(loadingFromDatabase activity) {
+        /**
+         * Instantiates a new Async task load.
+         *
+         * @param activity the activity
+         */
+        AsyncTaskLoad(final loadingFromDatabase activity) {
             activityWeakReference = new WeakReference<>(activity);
         }
 
@@ -48,12 +59,12 @@ public class loadingFromDatabase extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(Integer... values) {
+        protected void onProgressUpdate(final Integer... values) {
             super.onProgressUpdate(values);
         }
 
         @Override
-        protected String doInBackground(Integer... integers) {
+        protected String doInBackground(final Integer... integers) {
             final loadingFromDatabase activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing()) {
                 return null;
@@ -62,7 +73,7 @@ public class loadingFromDatabase extends AppCompatActivity {
             activity.connection.queryData("Activities", "Ort",
                     "Landshut", new ConnectFirebaseCallback() {
                 @Override
-                public void onCallback(String value) {
+                public void onCallback(final String value) {
                     try {
                         activity.countArray = new JSONArray(value);
                         activity.actAmount = activity.countArray.length();
@@ -115,13 +126,13 @@ public class loadingFromDatabase extends AppCompatActivity {
                     warten = false;
                 }
             });
-            while (warten) {}
+            while (warten) { }
             warten = true;
             return null;
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(final String s) {
             super.onPostExecute(s);
             loadingFromDatabase activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing()) {

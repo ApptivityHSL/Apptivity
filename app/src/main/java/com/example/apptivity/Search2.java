@@ -25,8 +25,17 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
+/**
+ * The type Search 2.
+ */
 public class Search2 extends AppCompatActivity {
+    /**
+     * The constant town.
+     */
     protected static String town = "";
+    /**
+     * The constant postalCode.
+     */
     protected static int postalCode;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     private double longitude;
@@ -37,12 +46,18 @@ public class Search2 extends AppCompatActivity {
     private ProgressBar progressGPS;
     private ResultReceiver resultReceiver;
 
+    private final int magicTenThousand = 10000;
+    private final int magicThreeThousand = 3000;
+
+    /**
+     * Instantiates a new Search 2.
+     */
     public Search2() {
     }
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search2);
 
@@ -53,7 +68,7 @@ public class Search2 extends AppCompatActivity {
         inputTown =  findViewById(R.id.inputTown);
         inputPostal =  findViewById(R.id.inputPostal);
         Button getLocation = findViewById(R.id.getLocation);
-        progressGPS = findViewById(R.id. progressBarGps);
+        progressGPS = findViewById(R.id.progressBarGps);
 
         progressGPS.setVisibility(View.INVISIBLE);
 
@@ -61,7 +76,7 @@ public class Search2 extends AppCompatActivity {
 
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
@@ -80,7 +95,7 @@ public class Search2 extends AppCompatActivity {
         Button btSwipe = findViewById(R.id.btSwipe);
         btSwipe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 inputTown.getText().toString();
                 inputPostal.getText().toString();
                 if (!inputTown.getText().toString().isEmpty() && !inputPostal
@@ -96,26 +111,29 @@ public class Search2 extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open swipe.
+     */
     public void openSwipe() {
         Intent intent = new Intent(this, loadingFromDatabase.class);
         startActivity(intent);
     }
 
-    private void safeTown(String i) {
+    private void safeTown(final String i) {
         SharedPreferences sharedPreferences = getSharedPreferences("town", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("town", i);
         editor.apply();
     }
 
-    private void safePostCode(int i) {
+    private void safePostCode(final int i) {
         SharedPreferences sharedPreferences = getSharedPreferences("postCode", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("postCode", i);
         editor.apply();
     }
 
-    private void fetchAddressFromLatLong(Location location) {
+    private void fetchAddressFromLatLong(final Location location) {
         Intent intent = new Intent(this, FetchAddressIntentService.class);
         intent.putExtra(Constants.RECEIVER, resultReceiver);
         intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
@@ -130,8 +148,8 @@ public class Search2 extends AppCompatActivity {
         progressGPS.setVisibility(View.VISIBLE);
 
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
+        locationRequest.setInterval(magicTenThousand);
+        locationRequest.setFastestInterval(magicThreeThousand);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         LocationServices.getFusedLocationProviderClient(Search2.this)
@@ -139,12 +157,12 @@ public class Search2 extends AppCompatActivity {
 
                     @SuppressLint("MissingPermission")
                     @Override
-                    public void onLocationResult(LocationResult locationResult) {
+                    public void onLocationResult(final LocationResult locationResult) {
                         super.onLocationResult(locationResult);
                         LocationServices.getFusedLocationProviderClient(Search2.this)
                                 .removeLocationUpdates(this);
                         if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int latestLocationIndex = locationResult.getLocations().size() -1;
+                            int latestLocationIndex = locationResult.getLocations().size() - 1;
                             latitude =
                                     locationResult.getLocations()
                                             .get(latestLocationIndex).getLatitude();
@@ -168,10 +186,10 @@ public class Search2 extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions,
+                                           @NonNull final int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION & grantResults.length > 0){
+        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION & grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
@@ -189,22 +207,22 @@ public class Search2 extends AppCompatActivity {
          * {@link #onReceiveResult} method will be called from the thread running
          * <var>handler</var> if given, or from an arbitrary thread if null.
          *
-         * @param handler
+         * @param handler the handler
          */
-        public AddressResultReceiver(Handler handler) {
+        AddressResultReceiver(final Handler handler) {
             super(handler);
         }
 
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
+        protected void onReceiveResult(final int resultCode, final Bundle resultData) {
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
                 String result  = resultData.getString(Constants.RESULT_DATA_KEY);
                 assert result != null;
-                String [] parts = result.split(", ");
+                String[] parts = result.split(", ");
                 String city = parts[1];
 
 
-                String [] postalAndCity = city.split(" ");
+                String[] postalAndCity = city.split(" ");
                 int x = postalAndCity.length;
                 String postalCodeString;
 

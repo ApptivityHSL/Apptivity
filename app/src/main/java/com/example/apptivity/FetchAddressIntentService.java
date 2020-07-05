@@ -15,18 +15,24 @@ import java.util.Locale;
 import java.util.Objects;
 
 
+/**
+ * The type Fetch address intent service.
+ */
 public class FetchAddressIntentService extends IntentService {
 
     private ResultReceiver resultReceiver;
 
+    /**
+     * Instantiates a new Fetch address intent service.
+     */
     public FetchAddressIntentService() {
         super("FetchAddressIntenService");
     }
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
+    protected void onHandleIntent(@Nullable final Intent intent) {
 
-        if (intent != null){
+        if (intent != null) {
             String errorMessage = "";
             resultReceiver = intent.getParcelableExtra(Constants.RECEIVER);
             Location location;
@@ -63,7 +69,7 @@ public class FetchAddressIntentService extends IntentService {
 
     }
 
-    private void deliverResultToReceiver(int resultCode, String addressMessage) {
+    private void deliverResultToReceiver(final int resultCode,final  String addressMessage) {
         Bundle bundle = new Bundle();
         bundle.putString(Constants.RESULT_DATA_KEY, addressMessage);
         resultReceiver.send(resultCode, bundle);

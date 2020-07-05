@@ -14,23 +14,23 @@ import com.bumptech.glide.Glide;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+/**
+ * The type Activity overview.
+ */
 public class ActivityOverview extends AppCompatActivity {
-
     private TextView tvHouseNumber;
     private TextView tvLocation;
     private TextView tvPhoneNumber;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
-
 
         Button btBack = findViewById(R.id.btSwiping);
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openSwiping();
             }
         });
@@ -73,10 +73,6 @@ public class ActivityOverview extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
-
         tvName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
         tvBudget.setText(String.format("Budget: %s", bundle.getString("cBudget")));
@@ -96,6 +92,9 @@ public class ActivityOverview extends AppCompatActivity {
                 bundle.getString("cPhoneNumber")));
     }
 
+    /**
+     * Open swiping.
+     */
     public void openSwiping() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         boolean fromFavos = sharedPreferences.getBoolean("FROM_FAVOS", true);
@@ -110,7 +109,12 @@ public class ActivityOverview extends AppCompatActivity {
 
     }
 
-    public void maps(View view) {
+    /**
+     * Maps.
+     *
+     * @param view the view
+     */
+    public void maps(final View view) {
         String loc = tvHouseNumber.getText() + " " + tvLocation.getText();
         loc = loc.replace("Anschrift: ", "");
         Log.d("maps", loc);
@@ -120,7 +124,12 @@ public class ActivityOverview extends AppCompatActivity {
         startActivity(mapIntent);
     }
 
-    public void call(View view) {
+    /**
+     * Call.
+     *
+     * @param view the view
+     */
+    public void call(final View view) {
         String number = (String) tvPhoneNumber.getText();
         number = number.replace("Telefonnummer: ", "");
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);

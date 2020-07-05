@@ -17,14 +17,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * The type Favourites.
+ */
 public class Favourites extends AppCompatActivity {
 
+    /**
+     * The constant MATCHES.
+     */
     public static final String MATCHES = "match";
     private Set<String> matches;
     private ConnectFirebase connection = new ConnectFirebase(this);
+    private final int magicSeventyFive = 75;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
 
@@ -53,7 +60,7 @@ public class Favourites extends AppCompatActivity {
                 fillBundle(bundle[i], matchToView);
                 mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
                     Intent intent = new Intent(
                             Favourites.this, ActivityOverview.class);
                     intent.putExtras(bundle[indeXX]);
@@ -65,7 +72,7 @@ public class Favourites extends AppCompatActivity {
             final String matchKey = matchesToView[i];
             delButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
                     SharedPreferences mSharedPreferences =
                             getSharedPreferences("activity_swiping", MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = mSharedPreferences.edit();
@@ -81,7 +88,7 @@ public class Favourites extends AppCompatActivity {
             connection.queryData("Activities", "id", matchToView,
                     new ConnectFirebaseCallback() {
                 @Override
-                public void onCallback(String value) {  //Gibt Collection und nicht Dokument
+                public void onCallback(final String value) {  //Gibt Collection und nicht Dokument
                     try {
                         JSONArray name1 = new JSONArray(value);         //Fehler ???
                         JSONObject name = name1.getJSONObject(0);  //Nja Fast !!!
@@ -92,7 +99,7 @@ public class Favourites extends AppCompatActivity {
                 }
             });
 
-                SystemClock.sleep(75); //hmm
+                SystemClock.sleep(magicSeventyFive); //hmm
 
             mButton.setText(matchesToView[i]);
             delButton.setText("X");
@@ -116,7 +123,7 @@ public class Favourites extends AppCompatActivity {
         Button btBackToHome = findViewById(R.id.btBackToHome);
         btBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 openHome();
             }
 
@@ -124,7 +131,7 @@ public class Favourites extends AppCompatActivity {
         Button btResetMatches = findViewById(R.id.btResetMatches);
         btResetMatches.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 SharedPreferences mSharedPreferences =
                         getSharedPreferences("activity_swiping", MODE_PRIVATE);
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
@@ -145,10 +152,10 @@ public class Favourites extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void fillBundle(final Bundle bundle, String matchToView) {
+    private void fillBundle(final Bundle bundle, final String matchToView) {
         connection.queryData("Test", "id", matchToView, new ConnectFirebaseCallback() {
             @Override
-            public void onCallback(String value) {
+            public void onCallback(final String value) {
                 try {
                     JSONArray activity1 = new JSONArray(value);
                     JSONObject activity = activity1.getJSONObject(0);

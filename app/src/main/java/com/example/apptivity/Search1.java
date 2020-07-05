@@ -15,15 +15,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 
+/**
+ * The type Search 1.
+ */
 public class Search1 extends AppCompatActivity {
+    /**
+     * The constant alone.
+     */
     protected static boolean alone;
+    /**
+     * The constant partner.
+     */
     protected static boolean partner;
+    /**
+     * The constant family.
+     */
     protected static boolean family;
+    /**
+     * The constant friends.
+     */
     protected static boolean friends;
+    /**
+     * The constant budget.
+     */
     protected static int budget;
     private SeekBar budgetBar;
     private TextView money;
 
+    /**
+     * The People array.
+     */
     ArrayList<String> peopleArray = new ArrayList<>();
 
     private CheckBox inputAlone;
@@ -34,7 +55,7 @@ public class Search1 extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search1);
 
@@ -52,7 +73,7 @@ public class Search1 extends AppCompatActivity {
         Button btSearch2 = findViewById(R.id.btSearch2);
         btSearch2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
                 int value = inputBudget.getProgress();
                 safeMoney(value);
@@ -71,32 +92,35 @@ public class Search1 extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open search 2.
+     */
     public void openSearch2() {
         Intent intent = new Intent(this, Search2.class);
         startActivity(intent);
     }
 
     private void seekbar() {
-        budgetBar = findViewById(R.id. inputBudget);
-        money = findViewById(R.id. money);
+        budgetBar = findViewById(R.id.inputBudget);
+        money = findViewById(R.id.money);
         money.setText(format("%d€ / %d€", budgetBar.getProgress(), budgetBar.getMax()));
 
 
         budgetBar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
                         budget = progress;
                         money.setText(format("%d€ / %d€", progress, budgetBar.getMax()));
                     }
 
                     @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    public void onStartTrackingTouch(final SeekBar seekBar) {
 
                     }
 
                     @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    public void onStopTrackingTouch(final SeekBar seekBar) {
                         money.setText(format("%d€ / %d€", budget, budgetBar.getMax()));
                     }
                 }
@@ -111,7 +135,7 @@ public class Search1 extends AppCompatActivity {
         greetings2.setText(text);
     }
 
-    private void safePeople(ArrayList<String> people) {
+    private void safePeople(final ArrayList<String> people) {
         SharedPreferences sharedPreferences = getSharedPreferences("people", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -120,14 +144,19 @@ public class Search1 extends AppCompatActivity {
         editor.apply();
     }
 
-    private void safeMoney(int i) {
+    private void safeMoney(final int i) {
         SharedPreferences sharedPreferences = getSharedPreferences("money", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("money", i);
         editor.apply();
     }
 
-    public void onCheckboxClicked(View view) {
+    /**
+     * On checkbox clicked.
+     *
+     * @param view the view
+     */
+    public void onCheckboxClicked(final View view) {
         boolean checked = ((CheckBox) view).isChecked();
 
         // Check which checkbox was clicked
