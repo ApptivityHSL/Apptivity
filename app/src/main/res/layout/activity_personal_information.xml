@@ -5,7 +5,6 @@
     android:id="@+id/inputAlter2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2c89ef"
     tools:context=".PersonalInformation">
 
     <!--  android:text="@string/inputName" /> -->
@@ -17,7 +16,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
-        android:text="@string/btPInfo" />
+        android:text="@string/btPInfo"
+        android:minWidth="150dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"/>
 
     <EditText
         android:id="@+id/inputName"
@@ -30,7 +32,8 @@
         android:maxLength="25"
         android:inputType="textPersonName"
         android:minWidth="100dip"
-        android:minHeight="50dip" />
+        android:minHeight="50dip"
+        android:textColor="@color/Hintergrundblau"/>
 
     <!-- android:text="@string/inputAlter" /> -->
 
@@ -45,13 +48,15 @@
             android:id="@+id/inputFemale"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:text="@string/cbFemale" />
+            android:text="@string/cbFemale"
+            android:textColor="@color/Hintergrundblau"/>
 
         <RadioButton
             android:id="@+id/inputMale"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="@string/cbMale" />
+            android:text="@string/cbMale"
+            android:textColor="@color/Hintergrundblau"/>
     </RadioGroup>
 
     <EditText
@@ -65,6 +70,18 @@
         android:inputType="numberSigned"
         android:minWidth="100dip"
         android:maxLength="3"
-        android:minHeight="50dip" />
+        android:minHeight="50dip"
+        android:textColor="@color/Hintergrundblau"/>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="619dp"
+        android:layout_height="553dp"
+        android:alpha=".35"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224"
+        app:srcCompat="@drawable/apptivity_fg" />
 </RelativeLayout>

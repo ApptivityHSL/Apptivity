@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2c89ef"
     tools:context=".PersonOverview">
 
     <Button
@@ -17,7 +16,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"/>
 
     <Button
         android:id="@+id/btNewPI"
@@ -27,7 +28,9 @@
         android:layout_marginBottom="48dp"
         android:text="@string/btNewPI"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"/>
 
     <TextView
         android:id="@+id/tvNameOverview"
@@ -38,7 +41,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/Hintergrundblau"/>
 
     <TextView
         android:id="@+id/tvAgeOverview"
@@ -49,7 +53,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/Hintergrundblau"/>
 
     <TextView
         android:id="@+id/tvGenderOverview"
@@ -60,5 +65,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/Hintergrundblau"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="619dp"
+        android:layout_height="553dp"
+        android:alpha=".35"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224"
+        app:srcCompat="@drawable/apptivity_fg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

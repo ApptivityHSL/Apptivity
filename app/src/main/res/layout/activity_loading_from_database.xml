@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2c89ef"
     tools:context=".loadingFromDatabase">
 
     <ProgressBar
@@ -29,4 +28,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
         app:layout_constraintVertical_bias="0.049" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="619dp"
+        android:layout_height="553dp"
+        android:alpha=".35"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224"
+        app:srcCompat="@drawable/apptivity_fg"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="@color/Hintergrundblau"
+        android:textColorHint="@color/Hintergrundblau"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
