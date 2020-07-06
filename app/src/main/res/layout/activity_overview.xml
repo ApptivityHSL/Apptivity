@@ -113,7 +113,8 @@
                     android:layout_weight="1"
                     android:layout_marginBottom="5dp"
                     android:onClick="maps"
-                    android:textColor="@color/Hintergrundblau"/>
+                    android:textColor="@color/Logotürkis"
+                    />
             </TableRow>
 
             <TableRow>

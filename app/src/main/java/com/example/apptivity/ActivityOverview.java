@@ -2,8 +2,13 @@ package com.example.apptivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -73,6 +78,16 @@ public class ActivityOverview extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Spannable spanHouseNumber = new SpannableString(String.format("Anschrift: %s %s", bundle.getString("cStreet"),
+                bundle.getString("cHouseNumber")));
+        spanHouseNumber.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Logotürkis)), 11, spanHouseNumber.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanHouseNumber.setSpan(new UnderlineSpan(), 11, spanHouseNumber.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        Spannable spanPhoneNumber = new SpannableString(String.format("Telefonnummer: %s",
+                bundle.getString("cPhoneNumber")));
+        spanPhoneNumber.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Logotürkis)), 15, spanPhoneNumber.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanPhoneNumber.setSpan(new UnderlineSpan(), 15, spanPhoneNumber.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         tvName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
         tvBudget.setText(String.format("Budget: %s", bundle.getString("cBudget") + "€"));
@@ -80,16 +95,17 @@ public class ActivityOverview extends AppCompatActivity {
                 bundle.getString("cClosed")));
         //cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));
         tvDescription.setText(bundle.getString("cDescription"));
-        tvHouseNumber.setText(String.format("Anschrift: %s %s", bundle.getString("cStreet"),
-                bundle.getString("cHouseNumber")));
+        tvHouseNumber.setText(spanHouseNumber);
         tvWebsite.setText(String.format("Website: %s", bundle.getString("cWebsite")));
         //cStreet.setText("Anschrift: "+bundle.getString("cStreet"));
         //cPostal.setText("           "+bundle.getString("cPostal"));
         tvMailAddress.setText(String.format("Email: %s", bundle.getString("cMailAddress")));
         tvLocation.setText(String.format("%s %s", bundle.getString("cPostal"),
                 bundle.getString("cLocation")));
-        tvPhoneNumber.setText(String.format("Telefonnummer: %s",
-                bundle.getString("cPhoneNumber")));
+        tvPhoneNumber.setText(spanPhoneNumber);
+
+        tvLocation.setPaintFlags(tvLocation.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
     }
 
     /**
