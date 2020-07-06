@@ -43,7 +43,13 @@ public class Swiping extends  AppCompatActivity {
     public Swiping(final cards[] cards_data) {
     }
 
-    public Swiping(){}
+    /**
+     * Instantiates a new Swiping.
+     *
+     */
+    public Swiping(){
+
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

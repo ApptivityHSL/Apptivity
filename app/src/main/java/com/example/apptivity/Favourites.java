@@ -153,7 +153,7 @@ public class Favourites extends AppCompatActivity {
     }
 
     private void fillBundle(final Bundle bundle, final String matchToView) {
-        connection.queryData("Test", "id", matchToView, new ConnectFirebaseCallback() {
+        connection.queryData("Activities", "id", matchToView, new ConnectFirebaseCallback() {
             @Override
             public void onCallback(final String value) {
                 try {
