@@ -1,128 +1,105 @@
 package com.example.apptivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
-
+/**
+ * The type Activity overview.
+ */
 public class ActivityOverview extends AppCompatActivity {
-
-    private Button btBack;
-
-    private TextView cName;
-    private TextView cActID;
-    private TextView cBudget;
-    private TextView cClosed;
-    private TextView cOpen;
-    private TextView cDescription;
-    private TextView cHouseNumber;
-    private ImageView cURL;
-    private TextView cWebsite;
-    private TextView cStreet;
-    private TextView cPostal;
-    private TextView cMailAddress;
-    private TextView cLocation;
-    private TextView cPhoneNumber;
-
+    private TextView tvHouseNumber;
+    private TextView tvLocation;
+    private TextView tvPhoneNumber;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
-
-        btBack =  findViewById(R.id.btSwiping);
-        btBack.setOnClickListener(new View.OnClickListener(){
+        Button btBack = findViewById(R.id.btSwiping);
+        btBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(final View v) {
                 openSwiping();
             }
         });
 
-        cName = (TextView) findViewById(R.id.cName);
-        //cActID = (TextView) findViewById(R.id.cActID);
-        cBudget = (TextView) findViewById(R.id.cBudget);
-        cClosed = (TextView) findViewById(R.id.cClosed);
-        //cOpen = (TextView) findViewById(R.id.cOpen);
-        cDescription = (TextView) findViewById(R.id.cDescription);
-        cHouseNumber = (TextView) findViewById(R.id.cHouseNumber);
-        cURL = (ImageView) findViewById(R.id.actImage);
-        cWebsite = (TextView) findViewById(R.id.cWebsite);
-        //cStreet = (TextView) findViewById(R.id.cStreet);
-        //cPostal = (TextView) findViewById(R.id.cPostal);
-        cMailAddress = (TextView) findViewById(R.id.cMailAddress);
-        cLocation = (TextView) findViewById(R.id.cLocation);
-        cPhoneNumber = (TextView) findViewById(R.id.cPhoneNumber);
+        TextView tvName = findViewById(R.id.cName);
+        TextView tvBudget = findViewById(R.id.cBudget);
+        TextView tvClosed = findViewById(R.id.cClosed);
+        TextView tvDescription = findViewById(R.id.cDescription);
+        tvHouseNumber = findViewById(R.id.cHouseNumber);
+        ImageView imURL = findViewById(R.id.actImage);
+        TextView tvWebsite = findViewById(R.id.cWebsite);
+        TextView tvMailAddress = findViewById(R.id.cMailAddress);
+        tvLocation = findViewById(R.id.cLocation);
+        tvPhoneNumber = findViewById(R.id.cPhoneNumber);
 
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle.getString("cActID") == null){
+        assert bundle != null;
+        if (bundle.getString("cActID") == null) {
             openSwiping();
         }
 
         try {
             JSONArray picArray = new JSONArray(bundle.getString("cURL"));
-            String url = picArray.toString().replace("\"", "").replace("[", "").replace("]", "").replace("\\", "/").replace("//", "/");
-            if(url.contains(",")) {
+            String url = picArray.toString().replace("\"", "")
+                    .replace("[", "").replace("]", "")
+                    .replace("\\", "/").replace("//", "/");
+            if (url.contains(",")) {
                 url.substring(0, url.indexOf(","));
-                String picaArray[] = url.split(",");
+                String[] picaArray = url.split(",");
                 Glide.with(this)
                         .load(picaArray[0])
-                        .into(cURL);
-            }else{
+                        .into(imURL);
+            } else {
                 Glide.with(this)
                         .load(url)
-                        .into(cURL);
+                        .into(imURL);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        cName.setText(bundle.getString("cName"));
+        tvName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
-        cBudget.setText("Budget: "+bundle.getString("cBudget"));
-        cClosed.setText("Geöffnet von "+bundle.getString("cOpen")+" bis "+bundle.getString("cClosed"));
+        tvBudget.setText(String.format("Budget: %s", bundle.getString("cBudget")));
+        tvClosed.setText(String.format("Geöffnet von %s bis %s", bundle.getString("cOpen"),
+                bundle.getString("cClosed")));
         //cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));
-        cDescription.setText(bundle.getString("cDescription"));
-        cHouseNumber.setText("Anschrift: "+bundle.getString("cStreet")+" "+bundle.getString("cHouseNumber"));
-        cWebsite.setText("Website: "+bundle.getString("cWebsite"));
+        tvDescription.setText(bundle.getString("cDescription"));
+        tvHouseNumber.setText(String.format("Anschrift: %s %s", bundle.getString("cStreet"),
+                bundle.getString("cHouseNumber")));
+        tvWebsite.setText(String.format("Website: %s", bundle.getString("cWebsite")));
         //cStreet.setText("Anschrift: "+bundle.getString("cStreet"));
         //cPostal.setText("           "+bundle.getString("cPostal"));
-        cMailAddress.setText("Email: "+bundle.getString("cMailAddress"));
-        cLocation.setText(bundle.getString("cPostal")+" "+bundle.getString("cLocation"));
-        cPhoneNumber.setText("Telefonnummer: "+bundle.getString("cPhoneNumber"));
+        tvMailAddress.setText(String.format("Email: %s", bundle.getString("cMailAddress")));
+        tvLocation.setText(String.format("%s %s", bundle.getString("cPostal"),
+                bundle.getString("cLocation")));
+        tvPhoneNumber.setText(String.format("Telefonnummer: %s",
+                bundle.getString("cPhoneNumber")));
     }
 
-    public void openSwiping(){
+    /**
+     * Open swiping.
+     */
+    public void openSwiping() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
-        boolean fromFavos = sharedPreferences.getBoolean("FROM_FAVOS",true);
+        boolean fromFavos = sharedPreferences.getBoolean("FROM_FAVOS", true);
 
-        if(fromFavos){
+        if (fromFavos) {
             Intent intent1 = new Intent(this, Favourites.class);
             startActivity(intent1);
         } else {
@@ -130,6 +107,34 @@ public class ActivityOverview extends AppCompatActivity {
             startActivity(intent2);
         }
 
+    }
+
+    /**
+     * Maps.
+     *
+     * @param view the view
+     */
+    public void maps(final View view) {
+        String loc = tvHouseNumber.getText() + " " + tvLocation.getText();
+        loc = loc.replace("Anschrift: ", "");
+        Log.d("maps", loc);
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + loc);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+    }
+
+    /**
+     * Call.
+     *
+     * @param view the view
+     */
+    public void call(final View view) {
+        String number = (String) tvPhoneNumber.getText();
+        number = number.replace("Telefonnummer: ", "");
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + number));
+        startActivity(dialIntent);
     }
 
 }

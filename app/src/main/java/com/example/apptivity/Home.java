@@ -1,6 +1,6 @@
 package com.example.apptivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.apptivity.PersonalInformation.INPUT_NAME;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,44 +8,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.apptivity.PersonalInformation.INPUT_NAME;
-
-
+/**
+ * The type Home.
+ */
 public class Home extends AppCompatActivity {
-    private TextView greetings;
-    private Button btFav;
-    private Button btSearch;
-    private Button btOptions;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         insertNameintoTextView();
 
-        btFav =  findViewById(R.id.btFav);
-        btFav.setOnClickListener(new View.OnClickListener(){
+        Button btFav = findViewById(R.id.btFav);
+        btFav.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(final View v) {
                 openFavos();
             }
 
         });
 
-        btSearch =  findViewById(R.id.btSearch);
-        btSearch.setOnClickListener(new View.OnClickListener(){
+        Button btSearch = findViewById(R.id.btSearch);
+        btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(final View v) {
                 openPrefTags2();
             }
 
         });
 
-        btOptions =  findViewById(R.id.btOptions);
-        btOptions.setOnClickListener(new View.OnClickListener(){
+        Button btOptions = findViewById(R.id.btOptions);
+        btOptions.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(final View v) {
                 openPersonOverview();
             }
 
@@ -53,14 +50,17 @@ public class Home extends AppCompatActivity {
 
     }
 
-    private void insertNameintoTextView(){
+    private void insertNameintoTextView() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
-        String text = "Hallo "+mSharedPreferences.getString(INPUT_NAME, "")+"!";
-        greetings =  findViewById(R.id.greetings);
+        String text = "Hallo " + mSharedPreferences.getString(INPUT_NAME, "") + "!";
+        TextView greetings = findViewById(R.id.greetings);
         greetings.setText(text);
     }
-    public void openSearch(){
 
+    /**
+     * Open search.
+     */
+    public void openSearch() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putBoolean("FROM_FAVOS", false);
@@ -70,7 +70,10 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openFavos(){
+    /**
+     * Open favos.
+     */
+    public void openFavos() {
 
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
@@ -81,12 +84,18 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPersonOverview(){
+    /**
+     * Open person overview.
+     */
+    public void openPersonOverview() {
         Intent intent = new Intent(this, PersonOverview.class);
         startActivity(intent);
     }
 
-    public void openPrefTags2(){
+    /**
+     * Open pref tags 2.
+     */
+    public void openPrefTags2() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putBoolean("FROM_FAVOS", false);

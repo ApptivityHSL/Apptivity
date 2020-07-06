@@ -1,13 +1,15 @@
 package com.example.apptivity;
 
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
+/**
+ * The type Settings.
+ */
 public class Settings extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
     }

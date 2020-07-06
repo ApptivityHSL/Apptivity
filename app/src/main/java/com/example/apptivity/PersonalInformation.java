@@ -1,34 +1,49 @@
 package com.example.apptivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The type Personal information.
+ */
 public class PersonalInformation extends AppCompatActivity {
 
     private EditText inputName;
     private EditText inputAlter;
     private RadioButton inputMale;
     private RadioButton inputFemale;
-    private Button btPInfo;
-    
 
-    public static final String SHARED_PREFS ="sharedPrefs";
-    public static final String INPUT_NAME ="name";
+
+    /**
+     * The constant SHARED_PREFS.
+     */
+    public static final String SHARED_PREFS = "sharedPrefs";
+    /**
+     * The constant INPUT_NAME.
+     */
+    public static final String INPUT_NAME = "name";
+    /**
+     * The constant INPUT_ALTER.
+     */
     public static final String INPUT_ALTER = "alter";
-    public static final String INPUT_MALE ="mann";
-    public static final String INPUT_FEMALE ="frau";
+    /**
+     * The constant INPUT_MALE.
+     */
+    public static final String INPUT_MALE = "mann";
+    /**
+     * The constant INPUT_FEMALE.
+     */
+    public static final String INPUT_FEMALE = "frau";
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information);
 
@@ -36,19 +51,19 @@ public class PersonalInformation extends AppCompatActivity {
         inputAlter =  findViewById(R.id.inputAlter);
         inputMale =  findViewById(R.id.inputMale);
         inputFemale =  findViewById(R.id.inputFemale);
-        btPInfo =  findViewById(R.id.btPInfo);
+        Button btPInfo = findViewById(R.id.btPInfo);
 
-        btPInfo.setOnClickListener(new View.OnClickListener(){
+        btPInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(inputName.getText().toString() != null && inputAlter.getText().toString() != null
-                        && !inputName.getText().toString().isEmpty() && !(inputAlter.getText().toString().isEmpty())
-                    && (inputMale.isChecked() || inputFemale.isChecked())
-                ) {
-                    String namefuerfunc = "";
-                    int alterfuerfunc = 0;
-                    Boolean malefuerfunc = false;
-                    Boolean femalefuerfunc = false;
+            public void onClick(final View v) {
+                inputName.getText().toString();
+                inputAlter.getText().toString();
+                if (!inputName.getText().toString().isEmpty() && !inputAlter.getText().toString()
+                        .isEmpty() && (inputMale.isChecked() || inputFemale.isChecked())) {
+                    String namefuerfunc;
+                    int alterfuerfunc;
+                    boolean malefuerfunc;
+                    boolean femalefuerfunc;
 
                     namefuerfunc = inputName.getText().toString();
                     alterfuerfunc = Integer.parseInt(inputAlter.getText().toString());
@@ -74,7 +89,7 @@ public class PersonalInformation extends AppCompatActivity {
     }
 
 
-    private void storePersonalInfo(String name, int alter, boolean male, boolean female){
+    private void storePersonalInfo(final String name, final int alter, final boolean male, final boolean female) {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putString(INPUT_NAME, name);
@@ -96,24 +111,29 @@ public class PersonalInformation extends AppCompatActivity {
         mEditor3.apply();
     }
 
-    public String getInputName(){
+    /**
+     * Gets input name.
+     *
+     * @return the input name
+     */
+    public String getInputName() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getString(INPUT_NAME, "");
 
     }
 
-    private int getInputAlter(){
+    private int getInputAlter() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
        return  mSharedPreferences.getInt(INPUT_ALTER, 0);
 
     }
 
-    private boolean getInputMale(){
+    private boolean getInputMale() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getBoolean(INPUT_MALE, false);
     }
 
-    private boolean getInputFemale(){
+    private boolean getInputFemale() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         return mSharedPreferences.getBoolean(INPUT_FEMALE, false);
 
