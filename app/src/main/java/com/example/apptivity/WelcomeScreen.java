@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 /**
  * The type Welcome screen.
@@ -43,22 +40,6 @@ public class WelcomeScreen extends AppCompatActivity {
                 }
             }
         }, SPLASH_TIME_OUT);
-
-        ConnectFirebase cf = new ConnectFirebase(this);
-        cf.queryData("Tag", "Kategorie", "0", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(final String value) {
-                Log.d("argl", value);
-                methode(value);
-            }
-        });
-
-        cf.getImageURL("Tag/bild3.png", new ConnectFirebaseCallback() {
-            @Override
-            public void onCallback(final String value) {
-                Log.d("argl", value);
-            }
-        });
     }
 
     /**
@@ -78,22 +59,4 @@ public class WelcomeScreen extends AppCompatActivity {
          startActivity(intent);
          finish();
     }
-
-    /**
-     * Methode.
-     *
-     * @param string the string
-     */
-    public void methode(final String string) {
-            JSONArray array;
-            String information = "";
-            try {
-                array = new JSONArray(string);
-                information = array.getJSONObject(0).get("Bild").toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.d("argl", information);
-
-        }
 }

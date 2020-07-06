@@ -47,8 +47,7 @@ public class Swiping extends  AppCompatActivity {
      * Instantiates a new Swiping.
      *
      */
-    public Swiping(){
-
+    public Swiping() {
     }
 
     @Override
