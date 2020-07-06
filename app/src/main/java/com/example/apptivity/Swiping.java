@@ -43,6 +43,8 @@ public class Swiping extends  AppCompatActivity {
     public Swiping(final cards[] cards_data) {
     }
 
+    public Swiping(){}
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
