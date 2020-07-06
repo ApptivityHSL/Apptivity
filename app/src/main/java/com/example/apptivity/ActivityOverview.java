@@ -75,7 +75,7 @@ public class ActivityOverview extends AppCompatActivity {
 
         tvName.setText(bundle.getString("cName"));
         //cActID.setText(bundle.getString("cActID"));
-        tvBudget.setText(String.format("Budget: %s", bundle.getString("cBudget")));
+        tvBudget.setText(String.format("Budget: %s", bundle.getString("cBudget") + "€"));
         tvClosed.setText(String.format("Geöffnet von %s bis %s", bundle.getString("cOpen"),
                 bundle.getString("cClosed")));
         //cOpen.setText("Geöffnet von "+bundle.getString("cOpen"));

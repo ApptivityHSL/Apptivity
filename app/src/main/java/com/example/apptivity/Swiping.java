@@ -35,13 +35,7 @@ public class Swiping extends  AppCompatActivity {
     private final int magicTwoHundredFifty = 250;
     private final int magicFifty = 50;
 
-    /**
-     * Instantiates a new Swiping.
-     *
-     * @param cards_data the cards data
-     */
-    public Swiping(final cards[] cards_data) {
-    }
+
 
     /**
      * Instantiates a new Swiping.
