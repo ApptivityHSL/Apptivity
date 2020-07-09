@@ -292,7 +292,14 @@ public class Swiping extends  AppCompatActivity {
                 }
             }
 
-            double budget = Double.parseDouble(item.getBudget().replace(",", "."));
+            double budget = 0;
+
+            try {
+                budget = Double.parseDouble(item.getBudget().replace(",", "."));
+            }
+            catch (java.lang.NumberFormatException form){
+                Log.d("swiping", String.valueOf(form));
+            }
 
             if (budget < money && sameTag  && samePeople && !stillInFav) {
                 result.add(item);

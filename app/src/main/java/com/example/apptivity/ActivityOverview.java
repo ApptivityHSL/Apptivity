@@ -146,8 +146,8 @@ public class ActivityOverview extends AppCompatActivity {
      * @param view the view
      */
     public void call(final View view) {
-        String number = (String) tvPhoneNumber.getText();
-        number = number.replace("Telefonnummer: ", "");
+        String number = String.valueOf(tvPhoneNumber.getText());
+        number = number.replace("Telefonnummer: ", "").replace(" ","");
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         dialIntent.setData(Uri.parse("tel:" + number));
         startActivity(dialIntent);
