@@ -59,14 +59,16 @@
         android:layout_width="619dp"
         android:layout_height="553dp"
         android:alpha=".35"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="@color/Hintergrundblau"
+        android:textColorHint="@color/Hintergrundblau"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.224"
         app:srcCompat="@drawable/apptivity_fg"
-        android:textColor="@android:color/background_dark"
-        android:textColorHighlight="@color/Hintergrundblau"
-        android:textColorHint="@color/Hintergrundblau"/>
+        android:visibility="invisible"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Search1"
-    >
+    tools:context=".Search1">
 
     <TextView
         android:id="@+id/tvWith"
@@ -15,38 +14,37 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="40dp"
         android:text="@string/WithWho"
+        android:textColor="@color/Hintergrundblau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGreetings2"
-        android:textColor="@color/Hintergrundblau"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvGreetings2" />
 
     <Button
         android:id="@+id/btSearch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/continues"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputBudget"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@id/inputBudget" />
 
     <TextView
         android:id="@+id/tvGreetings2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/greetings"
+        android:textColor="@color/Hintergrundblau"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="0dp"
-        android:textColor="@color/Hintergrundblau"/>
+        app:layout_goneMarginTop="0dp" />
 
     <TextView
         android:id="@+id/tvBudget"
@@ -54,11 +52,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="@string/budget"
+        android:textColor="@color/Hintergrundblau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputFriend"
-        android:textColor="@color/Hintergrundblau"/>
+        app:layout_constraintTop_toBottomOf="@id/inputFriend" />
 
     <CheckBox
         android:id="@+id/inputAlone"
@@ -126,27 +124,28 @@
         android:layout_width="115dp"
         android:layout_height="22dp"
         android:text="TextView"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="@color/Hintergrundblau"
+        android:textColorHint="@color/Hintergrundblau"
         app:layout_constraintBottom_toTopOf="@+id/btSearch2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputBudget"
-        android:textColor="@android:color/background_dark"
-        android:textColorHighlight="@color/Hintergrundblau"
-        android:textColorHint="@color/Hintergrundblau"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputBudget" />
 
     <ImageView
-    android:id="@+id/imageView"
-    android:layout_width="619dp"
-    android:layout_height="553dp"
-    android:alpha=".35"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.224"
-    app:srcCompat="@drawable/apptivity_fg"
-    android:textColor="@android:color/background_dark"
-    android:textColorHighlight="@color/Hintergrundblau"
-    android:textColorHint="@color/Hintergrundblau"/>
+        android:id="@+id/imageView"
+        android:layout_width="619dp"
+        android:layout_height="553dp"
+        android:alpha=".35"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="@color/Hintergrundblau"
+        android:textColorHint="@color/Hintergrundblau"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224"
+        app:srcCompat="@drawable/apptivity_fg" />
 </androidx.constraintlayout.widget.ConstraintLayout>
