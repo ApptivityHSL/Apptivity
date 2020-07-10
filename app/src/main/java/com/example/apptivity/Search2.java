@@ -115,7 +115,7 @@ public class Search2 extends AppCompatActivity {
      * Open swipe.
      */
     public void openSwipe() {
-        Intent intent = new Intent(this, loadingFromDatabase.class);
+        Intent intent = new Intent(this, LoadingFromDatabase.class);
         startActivity(intent);
     }
 

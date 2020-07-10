@@ -85,7 +85,7 @@ public class Swiping extends  AppCompatActivity {
 
 
 
-        filterdCards = cardFilter(listOfTags, listOfPeople, money, loadingFromDatabase.rowItems);
+        filterdCards = cardFilter(listOfTags, listOfPeople, money, LoadingFromDatabase.rowItems);
         //matches = new HashSet<String>();
 
 

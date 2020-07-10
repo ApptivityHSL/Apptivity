@@ -12,7 +12,7 @@ import org.json.JSONException;
 /**
  * The type Loading from database.
  */
-public class loadingFromDatabase extends AppCompatActivity {
+public class LoadingFromDatabase extends AppCompatActivity {
 
     private ConnectFirebase connection = new ConnectFirebase(this);
     private JSONArray countArray;
@@ -42,14 +42,14 @@ public class loadingFromDatabase extends AppCompatActivity {
     }
 
     private static class AsyncTaskLoad extends android.os.AsyncTask<Integer, Integer, String> {
-        private WeakReference<loadingFromDatabase> activityWeakReference;
+        private WeakReference<LoadingFromDatabase> activityWeakReference;
 
         /**
          * Instantiates a new Async task load.
          *
          * @param activity the activity
          */
-        AsyncTaskLoad(final loadingFromDatabase activity) {
+        AsyncTaskLoad(final LoadingFromDatabase activity) {
             activityWeakReference = new WeakReference<>(activity);
         }
 
@@ -65,7 +65,7 @@ public class loadingFromDatabase extends AppCompatActivity {
 
         @Override
         protected String doInBackground(final Integer... integers) {
-            final loadingFromDatabase activity = activityWeakReference.get();
+            final LoadingFromDatabase activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing()) {
                 return null;
             }
@@ -134,12 +134,16 @@ public class loadingFromDatabase extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String s) {
             super.onPostExecute(s);
-            loadingFromDatabase activity = activityWeakReference.get();
+            LoadingFromDatabase activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing()) {
                 return;
             }
             Intent intent = new Intent(activity, Swiping.class);
             activity.startActivity(intent);
         }
+    }
+
+    public static List<cards> getRowItems() {
+        return rowItems;
     }
 }
