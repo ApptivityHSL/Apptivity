@@ -98,8 +98,9 @@ public class Search2 extends AppCompatActivity {
             public void onClick(final View v) {
                 inputTown.getText().toString();
                 inputPostal.getText().toString();
-                if (!inputTown.getText().toString().isEmpty() && !inputPostal
-                        .getText().toString().isEmpty()) {
+                if (!inputTown.getText().toString().isEmpty()
+                        && !inputPostal.getText().toString().isEmpty()
+                        && inputPostal.getText().toString().matches("^\\d+$")) {
                     town = inputTown.getText().toString();
                     postalCode = Integer.parseInt(inputPostal.getText().toString());
                     safeTown(town);
