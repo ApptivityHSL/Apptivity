@@ -42,7 +42,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/Hintergrundblau"/>
+        android:textColor="@color/Hintergrundblau"
+        android:fontFamily="@font/calibriregular"/>
 
     <TextView
         android:id="@+id/tvAgeOverview"
@@ -54,7 +55,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/Hintergrundblau"/>
+        android:textColor="@color/Hintergrundblau"
+        android:fontFamily="@font/calibriregular"/>
 
     <TextView
         android:id="@+id/tvGenderOverview"
@@ -66,7 +68,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/Hintergrundblau"/>
+        android:textColor="@color/Hintergrundblau"
+        android:fontFamily="@font/calibriregular"/>
 
     <ImageView
         android:id="@+id/imageView"

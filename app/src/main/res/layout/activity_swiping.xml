@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rotation_degrees="15.5"
-        tools:context=".Apptivity" />
+        tools:context=".Apptivity"
+        android:fontFamily="@font/calibriregular"/>
 
     <Button
         android:id="@+id/btBackHome"
@@ -41,7 +42,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.883"
-        app:srcCompat="@drawable/baseline_keyboard_arrow_left_black_18dp" />
+        app:srcCompat="@drawable/baseline_keyboard_arrow_left_black_18dp"
+        android:fontFamily="@font/calibriregular"/>
 
     <ImageView
         android:id="@+id/arrowRight"
@@ -65,7 +67,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/arrowLeft"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintVertical_bias="0.88"
+        android:fontFamily="@font/calibriregular"/>
 
     <TextView
         android:id="@+id/textRight"
@@ -78,6 +81,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintVertical_bias="0.88"
+        android:fontFamily="@font/calibriregular"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGreetings2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGreetings2"
+        android:fontFamily="@font/calibriregular"/>
 
     <Button
         android:id="@+id/btSearch2"
@@ -31,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputBudget" />
+        app:layout_constraintTop_toBottomOf="@id/inputBudget"
+        />
 
     <TextView
         android:id="@+id/tvGreetings2"
@@ -44,7 +46,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="0dp" />
+        app:layout_goneMarginTop="0dp"
+        android:fontFamily="@font/calibriregular"/>
 
     <TextView
         android:id="@+id/tvBudget"
@@ -56,7 +59,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputFriend" />
+        app:layout_constraintTop_toBottomOf="@id/inputFriend"
+        android:fontFamily="@font/calibriregular"/>
 
     <CheckBox
         android:id="@+id/inputAlone"
@@ -68,7 +72,8 @@
         android:text="@string/alone"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWith" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWith"
+        android:fontFamily="@font/calibriregular"/>
 
     <CheckBox
         android:id="@+id/inputPartner"
@@ -80,7 +85,8 @@
         android:text="@string/partner"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAlone" />
+        app:layout_constraintTop_toBottomOf="@+id/inputAlone"
+        android:fontFamily="@font/calibriregular"/>
 
     <CheckBox
         android:id="@+id/inputFamily"
@@ -92,7 +98,8 @@
         android:text="@string/family"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPartner" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPartner"
+        android:fontFamily="@font/calibriregular"/>
 
     <CheckBox
         android:id="@+id/inputFriend"
@@ -104,7 +111,8 @@
         android:text="@string/friends"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFamily" />
+        app:layout_constraintTop_toBottomOf="@+id/inputFamily"
+        android:fontFamily="@font/calibriregular"/>
 
     <SeekBar
         android:id="@+id/inputBudget"
@@ -117,7 +125,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btSearch2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBudget" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBudget"
+        android:fontFamily="@font/calibriregular"/>
 
     <TextView
         android:id="@+id/money"
@@ -131,7 +140,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputBudget" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBudget"
+        android:fontFamily="@font/calibriregular"/>
 
     <ImageView
         android:id="@+id/imageView"

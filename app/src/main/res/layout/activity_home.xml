@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/calibriregular"/>
 
     <Button
         android:id="@+id/btSearch"
@@ -31,7 +32,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greetings"
         android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        android:fontFamily="@font/calibriregular"
+        />
 
     <Button
         android:id="@+id/btFav"

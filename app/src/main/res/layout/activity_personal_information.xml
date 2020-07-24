@@ -33,7 +33,8 @@
         android:inputType="textPersonName"
         android:minWidth="100dip"
         android:minHeight="50dip"
-        android:textColor="@color/Hintergrundblau"/>
+        android:textColor="@color/Hintergrundblau"
+        android:fontFamily="@font/calibriregular"/>
 
     <!-- android:text="@string/inputAlter" /> -->
 
@@ -49,14 +50,16 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:text="@string/cbFemale"
-            android:textColor="@color/Hintergrundblau"/>
+            android:textColor="@color/Hintergrundblau"
+            android:fontFamily="@font/calibriregular"/>
 
         <RadioButton
             android:id="@+id/inputMale"
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:text="@string/cbMale"
-            android:textColor="@color/Hintergrundblau"/>
+            android:textColor="@color/Hintergrundblau"
+            android:fontFamily="@font/calibriregular"/>
     </RadioGroup>
 
     <EditText
@@ -71,7 +74,8 @@
         android:minWidth="100dip"
         android:maxLength="3"
         android:minHeight="50dip"
-        android:textColor="@color/Hintergrundblau"/>
+        android:textColor="@color/Hintergrundblau"
+        android:fontFamily="@font/calibriregular"/>
 
     <ImageView
         android:id="@+id/imageView"
