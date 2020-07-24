@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loadingFromDatabase"></activity>
+        <activity android:name=".LoadingFromDatabase"></activity>
         <activity android:name=".PreferedTags2" />
         <activity android:name=".ActivityOverview" />
         <activity android:name=".Swiping" />
