@@ -36,7 +36,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 if (username.equals(DEFAULT_VALUE)) {
                     openPersonalInformation();
                 } else {
-                    openPersonOverview();
+                    openHome();
                 }
             }
         }, SPLASH_TIME_OUT);
@@ -54,8 +54,8 @@ public class WelcomeScreen extends AppCompatActivity {
     /**
      * Open person overview.
      */
-    public void openPersonOverview() {
-         Intent intent = new Intent(WelcomeScreen.this, PersonOverview.class);
+    public void openHome() {
+         Intent intent = new Intent(WelcomeScreen.this, Home.class);
          startActivity(intent);
          finish();
     }
