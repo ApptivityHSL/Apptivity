@@ -58,8 +58,9 @@ public class Search1 extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search1);
-
+/**
         insertNameintoTextView();
+ */
         seekbar();
 
 
@@ -127,14 +128,14 @@ public class Search1 extends AppCompatActivity {
         );
     }
 
-
+/**
     private void insertNameintoTextView() {
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         String text = "Hallo " + mSharedPreferences.getString(INPUT_NAME, "") + "!";
         TextView greetings2 = findViewById(R.id.tvGreetings2);
         greetings2.setText(text);
     }
-
+*/
     private void safePeople(final ArrayList<String> people) {
         SharedPreferences sharedPreferences = getSharedPreferences("people", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
