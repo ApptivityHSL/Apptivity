@@ -14,6 +14,7 @@
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/calibriregular"
         android:text="@string/btBackHome"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btNewPI"
         app:layout_constraintHorizontal_bias="0.5"
@@ -28,6 +29,7 @@
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/calibriregular"
         android:text="@string/btNewPI"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/btBackHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,12 +42,12 @@
         android:layout_marginTop="96dp"
         android:fontFamily="@font/calibriregular"
         android:text="@string/tvNameOverview"
-        android:textColor="@color/Hintergrundblau"
+        android:textColor="@color/schwarz"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="24sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvAgeOverview"
@@ -54,12 +56,12 @@
         android:layout_marginTop="208dp"
         android:fontFamily="@font/calibriregular"
         android:text="@string/tvAgeOverview"
-        android:textColor="@color/Hintergrundblau"
+        android:textColor="@color/schwarz"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="24sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvGenderOverview"
@@ -68,12 +70,12 @@
         android:layout_marginTop="356dp"
         android:fontFamily="@font/calibriregular"
         android:text="@string/tvGenderOverview"
-        android:textColor="@color/Hintergrundblau"
+        android:textColor="@color/schwarz"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="24sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"

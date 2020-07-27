@@ -19,7 +19,8 @@
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
-        android:text="@string/btPInfo" />
+        android:text="@string/btPInfo"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/inputName"
@@ -33,8 +34,8 @@
         android:maxLength="25"
         android:minWidth="150dip"
         android:minHeight="50dip"
-        android:textSize="30dp"
-        android:textColor="@color/Hintergrundblau" />
+        android:textColor="@color/schwarz"
+        android:textSize="30dp" />
 
     <!-- android:text="@string/inputAlter" /> -->
 
@@ -49,19 +50,19 @@
             android:id="@+id/inputFemale"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:text="@string/cbFemale"
-            android:textColor="@color/Hintergrundblau"
             android:fontFamily="@font/calibriregular"
-            android:textSize="30dp"/>
+            android:text="@string/cbFemale"
+            android:textColor="@color/schwarz"
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/inputMale"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="@string/cbMale"
-            android:textColor="@color/Hintergrundblau"
             android:fontFamily="@font/calibriregular"
-            android:textSize="30dp"/>
+            android:text="@string/cbMale"
+            android:textColor="@color/schwarz"
+            android:textSize="30dp" />
     </RadioGroup>
 
     <EditText
@@ -70,14 +71,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/inputName"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/calibriregular"
         android:hint="@string/inputAlter"
         android:inputType="numberSigned"
-        android:minWidth="150dip"
         android:maxLength="3"
+        android:minWidth="150dip"
         android:minHeight="50dip"
-        android:textColor="@color/Hintergrundblau"
-        android:fontFamily="@font/calibriregular"
-        android:textSize="30dp"/>
+        android:textColor="@color/schwarz"
+        android:textSize="30dp" />
 
     <ImageView
         android:id="@+id/imageView"
