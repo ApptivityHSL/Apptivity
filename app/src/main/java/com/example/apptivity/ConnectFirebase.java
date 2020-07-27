@@ -31,7 +31,7 @@ public class ConnectFirebase {
     /**
      * Instantiates a new Connect firebase.
      *
-     * @param current the current
+     * @param current currently active Activity
      */
     public ConnectFirebase(final Activity current) {
         mAuth = FirebaseAuth.getInstance();
@@ -55,7 +55,7 @@ public class ConnectFirebase {
     /**
      * Pull all data.
      *
-     * @param collection the collection
+     * @param collection data location in firebase
      * @param callback   the callback
      */
     public void pullAllData(final String collection, final ConnectFirebaseCallback callback) {
@@ -85,7 +85,7 @@ public class ConnectFirebase {
     /**
      * Query data.
      *
-     * @param collection     the collection
+     * @param collection     data location in firebase
      * @param condition      the condition
      * @param conditionValue the condition value
      * @param callback       the callback
@@ -120,7 +120,7 @@ public class ConnectFirebase {
     /**
      * Gets image url.
      *
-     * @param bild     the bild
+     * @param bild     the internal path of the picture
      * @param callback the callback
      */
     public void getImageURL(final String bild, final ConnectFirebaseCallback callback) {
