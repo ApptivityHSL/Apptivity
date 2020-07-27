@@ -40,6 +40,8 @@ public class LoadingFromDatabase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_from_database);
 
+        notmatches = new HashSet<>();
+
         SharedPreferences mSharedPreferences = getSharedPreferences("town", MODE_PRIVATE);
         conditionTown = mSharedPreferences.getString("town", "Dorfen");
 
