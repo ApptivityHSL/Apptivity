@@ -119,7 +119,7 @@ public class Favourites extends AppCompatActivity {
             delButton.setText("X");
             delButton.setTextColor(getResources().getColor(R.color.rot));
             delButton.setHintTextColor(getResources().getColor(R.color.schwarz));
-            delButton.setTextSize(9);
+          //  delButton.setTextSize(17);
             mButton.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
