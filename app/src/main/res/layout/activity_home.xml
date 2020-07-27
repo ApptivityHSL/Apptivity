@@ -9,73 +9,72 @@
     <TextView
         android:id="@+id/greetings"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="94dp"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/greetings"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btSearch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="94dp"
         android:layout_marginTop="40dp"
-        android:text="@string/btSearch"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
+        android:text="@string/btSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greetings"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/greetings" />
 
     <Button
         android:id="@+id/btFav"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="94dp"
         android:layout_marginTop="60dp"
-        android:text="@string/btFav"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
+        android:text="@string/btFav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btSearch"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@id/btSearch" />
 
     <Button
         android:id="@+id/btOptions"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btOptions"
+        android:layout_height="94dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
         android:minHeight="50dp"
+        android:text="@string/btOptions"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btFav"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@+id/btFav" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="619dp"
         android:layout_height="553dp"
         android:alpha=".35"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="@color/Hintergrundblau"
+        android:textColorHint="@color/Hintergrundblau"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.224"
-        app:srcCompat="@drawable/apptivity_fg"
-        android:textColor="@android:color/background_dark"
-        android:textColorHighlight="@color/Hintergrundblau"
-        android:textColorHint="@color/Hintergrundblau"/>
+        app:srcCompat="@drawable/apptivity_fg" />
 </androidx.constraintlayout.widget.ConstraintLayout>
