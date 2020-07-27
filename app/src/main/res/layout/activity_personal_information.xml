@@ -20,7 +20,9 @@
         android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
         android:text="@string/btPInfo"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"/>
 
     <EditText
         android:id="@+id/inputName"

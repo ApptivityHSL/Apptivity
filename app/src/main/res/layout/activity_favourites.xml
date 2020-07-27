@@ -37,6 +37,8 @@
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         />
 
     <ScrollView
@@ -73,6 +75,7 @@
         app:layout_constraintVertical_bias="0.224"
         app:srcCompat="@drawable/apptivity_fg"
         android:visibility="invisible"
+
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
