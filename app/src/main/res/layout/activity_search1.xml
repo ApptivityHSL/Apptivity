@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarSize="12dp"
     tools:context=".Search1">
 
     <TextView
@@ -25,29 +26,30 @@
 
     <Button
         android:id="@+id/btSearch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="171dp"
+        android:layout_height="57dp"
         android:layout_marginTop="108dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/calibriregular"
         android:text="@string/continues"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputBudget"
-        />
+        app:layout_constraintVertical_bias="0.072" />
 
     <TextView
         android:id="@+id/tvBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="128dp"
         android:fontFamily="@font/calibriregular"
         android:text="@string/budget"
-        android:textSize="20dp"
-        android:textColor="@color/Hintergrundblau"
+        android:textColor="@color/schwarz"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputFriend" />
 
@@ -56,13 +58,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/calibriregular"
         android:onClick="onCheckboxClicked"
         android:text="@string/alone"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWith"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvWith" />
 
     <CheckBox
         android:id="@+id/inputPartner"
@@ -83,12 +85,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/calibriregular"
         android:onClick="onCheckboxClicked"
         android:text="@string/family"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPartner"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputPartner" />
 
     <CheckBox
         android:id="@+id/inputFriend"
@@ -96,26 +98,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/calibriregular"
         android:onClick="onCheckboxClicked"
         android:text="@string/friends"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputFamily"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputFamily" />
 
     <SeekBar
         android:id="@+id/inputBudget"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/calibriregular"
         android:max="50"
         android:progress="0"
+        android:scrollbarSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btSearch2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBudget"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvBudget" />
 
     <TextView
         android:id="@+id/money"
@@ -123,15 +126,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/calibriregular"
         android:text="TextView"
-        android:textSize="20dp"
         android:textColor="@android:color/background_dark"
         android:textColorHighlight="@color/Hintergrundblau"
         android:textColorHint="@color/Hintergrundblau"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btSearch2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputBudget" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBudget"
+        app:layout_constraintVertical_bias="0.208" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -143,9 +147,7 @@
         android:textColorHint="@color/Hintergrundblau"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224"
         app:srcCompat="@drawable/apptivity_fg" />
 </androidx.constraintlayout.widget.ConstraintLayout>
