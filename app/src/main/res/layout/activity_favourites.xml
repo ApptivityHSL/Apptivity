@@ -11,38 +11,40 @@
         android:id="@+id/btBackToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"
-        android:minWidth="150dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="50dp"
         android:text="@string/btBackToHome"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btResetMatches"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"
+        android:minWidth="150dp"
+        />
 
     <Button
         android:id="@+id/btResetMatches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
+        android:text="@string/btResetMatches"
+        app:layout_constraintBottom_toBottomOf="@+id/btBackToHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btBackToHome"
+        app:layout_constraintTop_toTopOf="@+id/btBackToHome"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/calibriregular"
         android:minWidth="150dp"
-        android:text="@string/btResetMatches"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btBackToHome" />
+        />
 
     <ScrollView
         android:id="@+id/matchScroll"
-        android:layout_width="412dp"
-        android:layout_height="642dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/btBackToHome"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -52,7 +54,8 @@
             android:layout_height="wrap_content"
             android:minWidth="100dp"
             android:minHeight="400dp"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            />
     </ScrollView>
 
     <ImageView
