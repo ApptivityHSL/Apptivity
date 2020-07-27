@@ -15,26 +15,26 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:text="@string/btPInfo"
-        android:minWidth="150dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        android:fontFamily="@font/calibriregular"
+        android:minWidth="150dp"
+        android:text="@string/btPInfo" />
 
     <EditText
         android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:ems="10"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/calibriregular"
         android:hint="@string/inputName"
-        android:maxLength="25"
         android:inputType="textPersonName"
-        android:minWidth="100dip"
+        android:maxLength="25"
+        android:minWidth="150dip"
         android:minHeight="50dip"
-        android:textColor="@color/Hintergrundblau"
-        android:fontFamily="@font/calibriregular"/>
+        android:textSize="30dp"
+        android:textColor="@color/Hintergrundblau" />
 
     <!-- android:text="@string/inputAlter" /> -->
 
@@ -51,7 +51,8 @@
             android:layout_height="65dp"
             android:text="@string/cbFemale"
             android:textColor="@color/Hintergrundblau"
-            android:fontFamily="@font/calibriregular"/>
+            android:fontFamily="@font/calibriregular"
+            android:textSize="30dp"/>
 
         <RadioButton
             android:id="@+id/inputMale"
@@ -59,7 +60,8 @@
             android:layout_height="66dp"
             android:text="@string/cbMale"
             android:textColor="@color/Hintergrundblau"
-            android:fontFamily="@font/calibriregular"/>
+            android:fontFamily="@font/calibriregular"
+            android:textSize="30dp"/>
     </RadioGroup>
 
     <EditText
@@ -68,14 +70,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/inputName"
         android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/inputAlter"
         android:inputType="numberSigned"
-        android:minWidth="100dip"
+        android:minWidth="150dip"
         android:maxLength="3"
         android:minHeight="50dip"
         android:textColor="@color/Hintergrundblau"
-        android:fontFamily="@font/calibriregular"/>
+        android:fontFamily="@font/calibriregular"
+        android:textSize="30dp"/>
 
     <ImageView
         android:id="@+id/imageView"
