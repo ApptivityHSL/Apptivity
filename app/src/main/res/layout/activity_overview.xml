@@ -56,6 +56,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textSize="30dp"
                     android:textAlignment="center"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
@@ -71,6 +72,7 @@
                     android:layout_weight="1"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="25dp"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
@@ -90,6 +92,7 @@
                     android:layout_weight="1"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
@@ -103,6 +106,7 @@
                     android:textAlignment="center"
                     android:layout_weight="1"
                     android:onClick="maps"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
@@ -117,6 +121,7 @@
                     android:layout_weight="1"
                     android:layout_marginBottom="5dp"
                     android:onClick="maps"
+                    android:textSize="30dp"
                     android:textColor="@color/Logotürkis"
                     android:fontFamily="@font/calibriregular"
                     />
@@ -132,6 +137,7 @@
                     android:layout_weight="1"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
@@ -145,6 +151,7 @@
                     android:textAlignment="center"
                     android:layout_weight="1"
                     android:onClick="call"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
@@ -160,6 +167,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:autoLink="email"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
@@ -174,6 +182,7 @@
                     android:autoLink="web"
                     android:text="TextView"
                     android:textAlignment="center"
+                    android:textSize="30dp"
                     android:textColor="@color/Hintergrundblau"
                     android:fontFamily="@font/calibriregular"/>
             </TableRow>
