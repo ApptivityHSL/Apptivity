@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashSet;
+
 /**
  * The type Home.
  */
@@ -96,6 +98,7 @@ public class Home extends AppCompatActivity {
      * Open pref tags 2.
      */
     public void openPrefTags2() {
+        Swiping.notmatches = new HashSet<>();
         SharedPreferences mSharedPreferences = getSharedPreferences("UserIn", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putBoolean("FROM_FAVOS", false);

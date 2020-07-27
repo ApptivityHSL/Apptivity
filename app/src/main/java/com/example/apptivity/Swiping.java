@@ -29,6 +29,7 @@ public class Swiping extends  AppCompatActivity {
     private int matchnum = 0;
 
     private Set<String> matches = new HashSet<>();
+    public static Set<String> notmatches = new HashSet<>();
 
     private MyArrayAdapter arrayAdapter;
     private ArrayList<cards> filterdCards = new ArrayList<>();
@@ -85,7 +86,7 @@ public class Swiping extends  AppCompatActivity {
 
 
 
-        filterdCards = cardFilter(listOfTags, listOfPeople, money, LoadingFromDatabase.rowItems);
+        filterdCards = cardFilter(listOfTags, listOfPeople, money, LoadingFromDatabase.rowItems, notmatches);
         //matches = new HashSet<String>();
 
 
@@ -117,6 +118,8 @@ public class Swiping extends  AppCompatActivity {
 
             @Override
             public void onLeftCardExit(final Object dataObject) {
+                cards cardMatched = (cards) dataObject;
+                notmatches.add(cardMatched.getActID());
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
@@ -239,7 +242,7 @@ public class Swiping extends  AppCompatActivity {
      * @return the array list
      */
     public ArrayList<cards> cardFilter(final ArrayList<String> listOfTags, final ArrayList<String> listOfPeople,
-                                       double money, final List<cards> rowItems) {
+                                       double money, final List<cards> rowItems, final Set<String> notmatches ) {
 
         ArrayList<cards> result = new ArrayList<>();
 
@@ -248,11 +251,16 @@ public class Swiping extends  AppCompatActivity {
         matches = mSharedPreferences.getStringSet(MATCHES, matches);
 
         String[] matchesFav = convert(matches);
+
+        String[] notmatchesFav = convert(notmatches);
+
+
         Log.d("matches", String.valueOf(matches));
 
         boolean sameTag;
         boolean samePeople;
         boolean stillInFav;
+        boolean notmatchin = false;
 
         if (money == 0) {
             money = magicFifty;
@@ -292,6 +300,12 @@ public class Swiping extends  AppCompatActivity {
                 }
             }
 
+            for(int i4 = 0; i4 < notmatches.size(); i4++){
+                if(item.getActID().contains(notmatchesFav[i4])) {
+                    notmatchin = true;   
+                }
+            }
+
             double budget = 0;
 
             try {
@@ -301,7 +315,7 @@ public class Swiping extends  AppCompatActivity {
                 Log.d("swiping", String.valueOf(form));
             }
 
-            if (budget < money && sameTag  && samePeople && !stillInFav) {
+            if (budget < money && sameTag  && samePeople && !stillInFav && !notmatchin) {
                 result.add(item);
             }
             }
