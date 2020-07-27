@@ -116,10 +116,10 @@ public class Favourites extends AppCompatActivity {
                 tr.setLayoutParams(tableRowParams);
 
             mButton.setText(matchesToView[i]);
+            mButton.setPadding(10,0,10,0);
             delButton.setText("X");
             delButton.setTextColor(getResources().getColor(R.color.rot));
             delButton.setHintTextColor(getResources().getColor(R.color.schwarz));
-          //  delButton.setTextSize(17);
             mButton.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
