@@ -1,13 +1,19 @@
 package com.example.apptivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import static com.example.apptivity.PersonalInformation.INPUT_FEMALE;
+import static com.example.apptivity.PersonalInformation.INPUT_MALE;
 
 /**
  * The type Loading from database.
@@ -18,6 +24,7 @@ public class LoadingFromDatabase extends AppCompatActivity {
     private JSONArray countArray;
     private int actAmount;
     private int aktuell = 0;
+    private String conditionTown;
     /**
      * The constant rowItems.
      */
@@ -28,6 +35,11 @@ public class LoadingFromDatabase extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_from_database);
+
+        SharedPreferences mSharedPreferences = getSharedPreferences("town", MODE_PRIVATE);
+        conditionTown = mSharedPreferences.getString("town", "Dorfen");
+
+        Log.d("Tags987654", conditionTown);
 
         rowItems = new ArrayList<>();
 
@@ -41,7 +53,7 @@ public class LoadingFromDatabase extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private static class AsyncTaskLoad extends android.os.AsyncTask<Integer, Integer, String> {
+    private class AsyncTaskLoad extends android.os.AsyncTask<Integer, Integer, String> {
         private WeakReference<LoadingFromDatabase> activityWeakReference;
 
         /**
@@ -69,9 +81,11 @@ public class LoadingFromDatabase extends AppCompatActivity {
             if (activity == null || activity.isFinishing()) {
                 return null;
             }
+
             activity.aktuell = 0;
+
             activity.connection.queryData("Activities", "Ort",
-                    "Landshut", new ConnectFirebaseCallback() {
+                    conditionTown, new ConnectFirebaseCallback() {
                 @Override
                 public void onCallback(final String value) {
                     try {
