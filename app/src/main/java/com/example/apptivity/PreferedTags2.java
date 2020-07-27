@@ -94,6 +94,7 @@ public class PreferedTags2 extends AppCompatActivity {
             CheckBox box2 = new CheckBox(this);
 
             box.setText(tags.get(i));
+            box.setTextSize(22);
             box.setId(i);
             box.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -113,6 +114,7 @@ public class PreferedTags2 extends AppCompatActivity {
            } else {
 
             box2.setText(tags.get(i));
+            box2.setTextSize(22);
             box2.setId(i);
             box2.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
