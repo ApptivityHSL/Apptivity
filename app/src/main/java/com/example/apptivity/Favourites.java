@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashSet;
 import java.util.Set;
@@ -103,6 +105,9 @@ public class Favourites extends AppCompatActivity {
 
             mButton.setText(matchesToView[i]);
             delButton.setText("X");
+            delButton.setTextColor(getResources().getColor(R.color.rot));
+            delButton.setHintTextColor(getResources().getColor(R.color.schwarz));
+            delButton.setTextSize(19);
             mButton.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -112,10 +117,10 @@ public class Favourites extends AppCompatActivity {
 
             mButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
-                    mButton.setBackgroundResource(R.drawable.rounded_button);
+                    mButton.setBackgroundResource(R.drawable.roundfavos);
             delButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
-            delButton.setBackgroundResource(R.drawable.rounded_button);
+            delButton.setBackgroundResource(R.drawable.roundfavos);
             tr.addView(mButton);
             tr.addView(delButton);
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,

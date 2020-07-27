@@ -58,17 +58,17 @@
 
     <TextView
         android:id="@+id/textLeft"
-        android:layout_width="84dp"
-        android:layout_height="34dp"
+        android:layout_width="74dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/calibriregular"
+        android:gravity="center_vertical|left"
         android:text="@string/left"
-        android:gravity = "center_vertical|left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/arrowLeft"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintVertical_bias="0.88" />
 
     <TextView
         android:id="@+id/textRight"
