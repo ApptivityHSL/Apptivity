@@ -29,7 +29,6 @@ public class Swiping extends  AppCompatActivity {
     private int matchnum = 0;
 
     private Set<String> matches = new HashSet<>();
-    public static Set<String> notmatches = new HashSet<>();
 
     private MyArrayAdapter arrayAdapter;
     private ArrayList<cards> filterdCards = new ArrayList<>();
@@ -86,9 +85,8 @@ public class Swiping extends  AppCompatActivity {
 
 
 
-        filterdCards = cardFilter(listOfTags, listOfPeople, money, LoadingFromDatabase.rowItems, notmatches);
+        filterdCards = cardFilter(listOfTags, listOfPeople, money, LoadingFromDatabase.rowItems);
         //matches = new HashSet<String>();
-
 
 
         SharedPreferences mSharedPreferences = getSharedPreferences(
@@ -119,7 +117,7 @@ public class Swiping extends  AppCompatActivity {
             @Override
             public void onLeftCardExit(final Object dataObject) {
                 cards cardMatched = (cards) dataObject;
-                notmatches.add(cardMatched.getActID());
+                LoadingFromDatabase.notmatches.add(cardMatched.getActID());
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
@@ -242,7 +240,7 @@ public class Swiping extends  AppCompatActivity {
      * @return the array list
      */
     public ArrayList<cards> cardFilter(final ArrayList<String> listOfTags, final ArrayList<String> listOfPeople,
-                                       double money, final List<cards> rowItems, final Set<String> notmatches ) {
+                                       double money, final List<cards> rowItems) {
 
         ArrayList<cards> result = new ArrayList<>();
 
@@ -252,7 +250,7 @@ public class Swiping extends  AppCompatActivity {
 
         String[] matchesFav = convert(matches);
 
-        String[] notmatchesFav = convert(notmatches);
+        String[] notmatchesFav = convert(LoadingFromDatabase.notmatches);
 
 
         Log.d("matches", String.valueOf(matches));
@@ -270,6 +268,7 @@ public class Swiping extends  AppCompatActivity {
              sameTag = false;
              samePeople = false;
             stillInFav = false;
+            notmatchin = false;
 
             if (listOfPeople.isEmpty()) {
                 samePeople = true;
@@ -300,7 +299,7 @@ public class Swiping extends  AppCompatActivity {
                 }
             }
 
-            for(int i4 = 0; i4 < notmatches.size(); i4++){
+            for(int i4 = 0; i4 < LoadingFromDatabase.notmatches.size(); i4++){
                 if(item.getActID().contains(notmatchesFav[i4])) {
                     notmatchin = true;   
                 }

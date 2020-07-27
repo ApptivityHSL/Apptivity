@@ -8,7 +8,10 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -25,6 +28,7 @@ public class LoadingFromDatabase extends AppCompatActivity {
     private int actAmount;
     private int aktuell = 0;
     private String conditionTown;
+    public static Set<String> notmatches = new HashSet<>();
     /**
      * The constant rowItems.
      */
