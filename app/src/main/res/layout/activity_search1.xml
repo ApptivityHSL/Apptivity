@@ -13,14 +13,15 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="50dp"
-        android:textSize="20dp"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/WithWho"
         android:textColor="@color/Hintergrundblau"
+        android:textSize="35dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btSearch2"
@@ -69,12 +70,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/calibriregular"
         android:onClick="onCheckboxClicked"
         android:text="@string/partner"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAlone"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputAlone" />
 
     <CheckBox
         android:id="@+id/inputFamily"
