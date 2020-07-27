@@ -112,8 +112,10 @@ public class Favourites extends AppCompatActivity {
 
             mButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
+                    mButton.setBackgroundResource(R.drawable.rounded_button);
             delButton.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
+            delButton.setBackgroundResource(R.drawable.rounded_button);
             tr.addView(mButton);
             tr.addView(delButton);
             tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,

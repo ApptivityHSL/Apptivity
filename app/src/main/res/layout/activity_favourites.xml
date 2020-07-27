@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Favourites">
+    tools:context=".Favourites"
+    >
 
     <Button
         android:id="@+id/btBackToHome"
@@ -51,7 +52,8 @@
             android:layout_height="wrap_content"
             android:minWidth="100dp"
             android:minHeight="400dp"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            />
     </ScrollView>
 
     <ImageView
