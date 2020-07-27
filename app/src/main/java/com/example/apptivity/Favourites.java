@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -101,7 +102,18 @@ public class Favourites extends AppCompatActivity {
                 }
             });
 
-                SystemClock.sleep(magicSeventyFive); //hmm
+            SystemClock.sleep(magicSeventyFive); //hmm
+
+                TableLayout.LayoutParams tableRowParams= new TableLayout.LayoutParams
+                        (TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+
+                int leftMargin=0;
+                int topMargin=10;
+                int rightMargin=0;
+                int bottomMargin=10;
+
+                tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                tr.setLayoutParams(tableRowParams);
 
             mButton.setText(matchesToView[i]);
             delButton.setText("X");
@@ -123,8 +135,8 @@ public class Favourites extends AppCompatActivity {
             delButton.setBackgroundResource(R.drawable.roundfavos);
             tr.addView(mButton);
             tr.addView(delButton);
-            tLayout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
-                    TableLayout.LayoutParams.WRAP_CONTENT));
+            tr.setGravity(Gravity.CENTER_HORIZONTAL);
+            tLayout.addView(tr, tableRowParams);
             }
         }
         Button btBackToHome = findViewById(R.id.btBackToHome);
