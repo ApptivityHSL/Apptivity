@@ -10,66 +10,70 @@
         android:id="@+id/btBackHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/btBackHome"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        app:layout_constraintEnd_toStartOf="@+id/btNewPI"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btNewPI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="48dp"
-        android:text="@string/btNewPI"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
         android:background="@drawable/rounded_button"
-        android:fontFamily="@font/calibriregular"/>
+        android:fontFamily="@font/calibriregular"
+        android:text="@string/btNewPI"
+        app:layout_constraintBottom_toBottomOf="@+id/btBackHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btBackHome" />
 
     <TextView
         android:id="@+id/tvNameOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/tvNameOverview"
+        android:textColor="@color/Hintergrundblau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/Hintergrundblau"
-        android:fontFamily="@font/calibriregular"/>
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/tvAgeOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/tvAgeOverview"
+        android:textColor="@color/Hintergrundblau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/Hintergrundblau"
-        android:fontFamily="@font/calibriregular"/>
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/tvGenderOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="356dp"
+        android:fontFamily="@font/calibriregular"
         android:text="@string/tvGenderOverview"
+        android:textColor="@color/Hintergrundblau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/Hintergrundblau"
-        android:fontFamily="@font/calibriregular"/>
+        android:textSize="24sp"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -82,4 +86,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.224"
         app:srcCompat="@drawable/apptivity_fg" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
